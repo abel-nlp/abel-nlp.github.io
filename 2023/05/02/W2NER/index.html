@@ -4,10 +4,9 @@
 
 论文笔记主要记录和分析论文动机和思想，不对具体方法的细节和实验做讨论
 
-以下为持续记录的草稿，非正式内容
 
 
-Backg"><meta name="keywords" content="Blog, Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/abelsblog.png"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
+Background:现有的NER问题可以大"><meta name="keywords" content="Blog, Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/abelsblog.png"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -125,12 +124,11 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>论文笔记主要记录和分析论文动机和思想，不对具体方法的细节和实验做讨论</p>
 </blockquote>
-<p><em>以下为持续记录的草稿，非正式内容</em></p>
 <hr>
 
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background:"></a>Background:</h2><p>现有的NER问题可以大致分成三种：</p>
 <ol>
-<li>简单实体(flat)，实体的构成比较简单，只识别出实体的开始和结束即可；</li>
+<li>简单实体(flat)，实体的构成比较简单，只识别出实体的开始和结束位置即可；</li>
 <li>重叠(嵌套)实体(overlapped)，会出现多个实体包含相同的token的情况；</li>
 <li>不连续实体(discontinuous)，实体由位置上不相邻的token构成。</li>
 </ol>
@@ -140,7 +138,7 @@ mjx-container[display="true"] + br {
 <ol>
 <li><p>序列标注方法，简单来讲就是对每个token分配一个标签，以识别每个token在一个实体中扮演的角色。如图1中的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="2.042ex" height="1.339ex" role="img" focusable="false" viewBox="0 -442 902.6 592"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mn" transform="translate(499,-150) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></svg></mjx-container>，我们可以将<em>aching in legs</em>分别标为<em>BIE</em>，以表示他们为开始、中间和结束。虽然这种方式简单直观，但是缺陷也很明显，即出现重叠和非连续实体时，简单的标签就无法完成任务了，并且还需要仔细地设计多种标签，复杂度非常高，也不利于解码；</p>
 </li>
-<li><p>基于超图的方法，既然标注法对一个token只能分配一个标签，那么利用节点和边的特点(一个节点可以有多个边)来表示所有的实体span，在一定程度上缓解了标注法的实体嵌套问题，<del>但推理时会出现结构模糊的问题，使得实际的解码结果不够理想</del>；</p>
+<li><p>基于超图的方法，既然标注法对一个token只能分配一个标签，那么利用节点和边的特点(一个节点可以有多个边)来表示所有的实体span，在一定程度上缓解了标注法的实体嵌套问题，<del>但推理时会受到虚假结构和结构模糊性问题的影响</del>(原文如此说，因为还没读过相关方法的论文，没有理解，暂时划掉)；</p>
 </li>
 <li><p>序列生成的方法：既然标注很麻烦，那干脆利用Seq2Seq的方式，直接生成实体，这样会不受嵌套和不连续的影响，但是会受到解码效率和偏差暴露的影响；</p>
 </li>
@@ -169,6 +167,9 @@ mjx-container[display="true"] + br {
 <h2 id="Model-and-Experiment"><a href="#Model-and-Experiment" class="headerlink" title="Model and Experiment:"></a>Model and Experiment:</h2><p>本文使用了Bert和LSTM作为编码器，利用卷积层提取词之间的表示，最后利用双仿射和多层感知机联合分类出词之间的关系。模型总体结构如图3所示：</p>
 <p><img src="/2023/05/02/W2NER/fig3.png" alt="fig 3"></p>
 <p>使用卷积层的目的非常直观，因为本文建模的方式就是表的形式，而CNN相对也很适合处理这种结构的表示。在卷积层中，使用了条件层归一化操作(Conditional Layer Normalization)，论文认为这样能够有效产生词对的网格(表)的表示；之后利用类似Bert的方式，增加了词的位置信息和表格的区域信息；最后，使用不同的空洞卷积以捕获不同词距离之间的交互信息。</p>
+<p>在完成上面对表格的表示refine后，论文使用联合的预测器进行最后的token标记分类。因为原文提到先前的工作验证了MLP和biaffine联合使用有利于关系分类。</p>
+<p>具体的实验内容可见原文，这里以<strong>ShARe14</strong>数据集为例，如下图，可见<strong>W2NER</strong>模型在重叠和不连续场景长的确都取得了明显的性能提升。</p>
+<p><img src="/2023/05/02/W2NER/fig4.png" alt="fig 4"></p>
 <hr>
 
 <h2 id="Decode-Strategy"><a href="#Decode-Strategy" class="headerlink" title="Decode Strategy:"></a>Decode Strategy:</h2><p>解码的基本思想是利用词之间的关系来确定词和词之间的路径，文中以四个示例来展示解码的具体操作：</p>
@@ -183,10 +184,13 @@ mjx-container[display="true"] + br {
 <hr>
 
 <h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h2><hr>
+本文的动机、对应解决方法和解码策略都非常自然，需要注意的是：
 
-
-
-</p><div class="tip">本文著作权归作者所有 <br>Personal blog, please do not repost.<br>Author: abel-neko</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-05-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/paper-notes/" title="paper-notes">paper-notes </a><span class="leancloud_visitors"></span><span>About 1555 words, 5 min 11 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=I%20have%20found%20a%20great%20blog.%0A%0Aabel's%20blog%20%C2%B7%20W2NER%0Ahttps://abel-nlp.github.io/2023/05/02/W2NER/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Todo-List-2023-Spring/" title="Todo-List 2023 Spring">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Literature-Curation-Plan/" title="Literature Curation Plan">Next</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script src="//cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script>var valine = new Valine({
+<ul>
+<li>并非所有表格表示的东西都适合CNN，如果token的分类和其他token没有太多直接的关系，那么使用CNN不一定会有正向的作用；当然，本文中因为NNW关系本就需要邻近token的信息，所以非常适合，但是核不易太大；</li>
+<li>这种方法可以迁移到关系提取(联合提取)上，但是重叠的类型会更多，并且会引入超出实体级别的关系。如果依旧保留NNW这样的关系，可能造成模型学习的负担，并且很容易和其他标签重叠，因此必然需要进一步的修改标签和编码方式。</li>
+</ul>
+</p><div class="tip">本文著作权归作者所有 <br>Personal blog, please do not repost.<br>Author: abel-neko</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-05-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/paper-notes/" title="paper-notes">paper-notes </a><span class="leancloud_visitors"></span><span>About 1906 words, 6 min 21 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=I%20have%20found%20a%20great%20blog.%0A%0Aabel's%20blog%20%C2%B7%20W2NER%0Ahttps://abel-nlp.github.io/2023/05/02/W2NER/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Todo-List-2023-Spring/" title="Todo-List 2023 Spring">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Literature-Curation-Plan/" title="Literature Curation Plan">Next</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script src="//cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script>var valine = new Valine({
   el:'#vcomments',
   notify:false || false, 
   verify:false|| false, 
