@@ -2,12 +2,12 @@
 
 
 
-论文笔记主要记录和分析论文动机和思想，不对具体方法和实验做讨论
+论文笔记主要记录和分析论文动机和思想，不对具体方法的细节和实验做讨论
 
 以下为持续记录的草稿，非正式内容
 
 
-Backgrou"><meta name="keywords" content="Blog, Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/abelsblog.png"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
+Backg"><meta name="keywords" content="Blog, Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/abelsblog.png"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -123,7 +123,7 @@ mjx-container[display="true"] + br {
 <span id="more"></span>
 
 <blockquote>
-<p>论文笔记主要记录和分析论文动机和思想，不对具体方法和实验做讨论</p>
+<p>论文笔记主要记录和分析论文动机和思想，不对具体方法的细节和实验做讨论</p>
 </blockquote>
 <p><em>以下为持续记录的草稿，非正式内容</em></p>
 <hr>
@@ -166,8 +166,9 @@ mjx-container[display="true"] + br {
 <p>这种思想也可以结合图2和图1(b)来直观地感受。</p>
 <hr>
 
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model:"></a>Model:</h2><p>模型总体结构如图3所示：</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model:"></a>Model:</h2><p>本文使用了Bert和LSTM作为编码器，利用卷积层提取词之间的表示，最后利用双仿射和多层感知机联合分类出词之间的关系。模型总体结构如图3所示：</p>
 <p><img src="/2023/05/02/W2NER/fig3.png" alt="fig 3"></p>
+<p>使用卷积层的目的非常直观，因为本文建模的方式就是表的形式，而CNN相对也很适合处理这种结构的表示。</p>
 <hr>
 
 <h2 id="Decode-Strategy"><a href="#Decode-Strategy" class="headerlink" title="Decode Strategy:"></a>Decode Strategy:</h2><hr>
@@ -176,7 +177,7 @@ mjx-container[display="true"] + br {
 
 
 
-</p><div class="tip">本文著作权归作者所有 <br>Personal blog, please do not repost.<br>Author: abel-neko</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-05-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/paper-notes/" title="paper-notes">paper-notes </a><span class="leancloud_visitors"></span><span>About 1075 words, 3 min 35 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=I%20have%20found%20a%20great%20blog.%0A%0Aabel's%20blog%20%C2%B7%20W2NER%0Ahttps://abel-nlp.github.io/2023/05/02/W2NER/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Todo-List-2023-Spring/" title="Todo-List 2023 Spring">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Literature-Curation-Plan/" title="Literature Curation Plan">Next</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script src="//cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script>var valine = new Valine({
+</p><div class="tip">本文著作权归作者所有 <br>Personal blog, please do not repost.<br>Author: abel-neko</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-05-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/paper-notes/" title="paper-notes">paper-notes </a><span class="leancloud_visitors"></span><span>About 1178 words, 3 min 55 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=I%20have%20found%20a%20great%20blog.%0A%0Aabel's%20blog%20%C2%B7%20W2NER%0Ahttps://abel-nlp.github.io/2023/05/02/W2NER/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Todo-List-2023-Spring/" title="Todo-List 2023 Spring">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/05/02/Literature-Curation-Plan/" title="Literature Curation Plan">Next</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script src="//cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script>var valine = new Valine({
   el:'#vcomments',
   notify:false || false, 
   verify:false|| false, 
