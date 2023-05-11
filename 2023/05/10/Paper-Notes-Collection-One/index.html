@@ -162,7 +162,7 @@ mjx-container[display="true"] + br {
 <li>要能以自监督的方式学习，因为大量的人工标注是昂贵的；此外，人类认为有用的信息，对模型而言则不一定，因此让模型自己学习或许更有益；</li>
 <li>语言模型不应该失去它的通用性，应该能够自己决定何时、如何使用哪种工具。与现有的方法相比，这使得对工具的使用更加全面，不受特定任务的束缚。</li>
 </ol>
-<p>文中的调用方式为：<br>$$<br>{<br>e(c, r) = <api>a_{c}(i_{c}) \rightarrow{r}</api> \<br>e(c) = <api>a_{c}(i_{c})</api><br>}<br>$$<br>分别表示一个调用包含其结果和只用调用。下图的示例就是一个调用(c)的工具(a)，输入(i)和结果(r)。</p>
+<p>文中的调用方式为：<br>$$<br>{<br>e(c, r) = <api> a_{c}(i_{c}) \rightarrow{r} </api> \<br>e(c) = <api> a_{c}(i_{c}) </api><br>}<br>$$<br>分别表示一个调用包含其结果和只用调用。下图的示例就是一个调用(c)的工具(a)，输入(i)和结果(r)。</p>
 <p><img src="/2023/05/10/Paper-Notes-Collection-One/tf-fig1.png" alt="tooformer-fig1"></p>
 <p>作者们构建这种使用外部工具的模型的主要方法大致为：</p>
 <ul>
