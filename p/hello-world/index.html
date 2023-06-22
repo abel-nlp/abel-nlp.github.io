@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Hexo Demo 此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。 创建Github Repo: 默认已经注册有自己的Github账户了；'>
+<title>Hello World</title>
+
+<link rel='canonical' href='https://blog.abelcse.cn/p/hello-world/'>
+
+<link rel="stylesheet" href="/scss/style.min.788a5ee71dbb3ef692086b6c6c002861c54a72fb0029c70ed2d34d7964da62c6.css"><meta property='og:title' content='Hello World'>
+<meta property='og:description' content='Hexo Demo 此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。 创建Github Repo: 默认已经注册有自己的Github账户了；'>
+<meta property='og:url' content='https://blog.abelcse.cn/p/hello-world/'>
+<meta property='og:site_name' content='abel&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='official' /><meta property='article:published_time' content='2023-05-01T15:12:54&#43;08:00'/><meta property='article:modified_time' content='2023-05-01T15:12:54&#43;08:00'/>
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Hexo Demo 此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。 创建Github Repo: 默认已经注册有自己的Github账户了；">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue3f7bdfccc0be810572359657e66a4ad_56159_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">abel&#39;s blog</a></h1>
+            <h2 class="site-description">Record abel&#39;s Paper and Tech Notes here.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/abel-nlp'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#hexo-demo">Hexo Demo</a>
+      <ol>
+        <li><a href="#创建github-repo">创建Github Repo:</a></li>
+        <li><a href="#配置git-ssh">配置Git SSH:</a></li>
+        <li><a href="#安装npm和hexo">安装npm和Hexo:</a></li>
+        <li><a href="#配置hexo">配置Hexo:</a></li>
+        <li><a href="#部署hexo">部署Hexo:</a></li>
+        <li><a href="#启动latex渲染">启动latex渲染：</a></li>
+        <li><a href="#公式示例">公式示例：</a></li>
+        <li><a href="#安装自定义字体">安装自定义字体：</a></li>
+        <li><a href="#hexo文章中插入图片">Hexo文章中插入图片：</a></li>
+        <li><a href="#hexo总结">Hexo总结：</a></li>
+      </ol>
+    </li>
+    <li><a href="#hugo-demo">Hugo Demo</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/tech/" style="background-color: #2a9d8f; color: #fff;">
+                Tech
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hello-world/">Hello World</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 01, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="hexo-demo">Hexo Demo</h2>
+<p><strong>此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。</strong></p>
+<h3 id="创建github-repo">创建Github Repo:</h3>
+<ul>
+<li>默认已经注册有自己的Github账户了；</li>
+<li>新建repository: 在仓库名字处，写上<code>username.github.io</code>； 这个username就是自己github注册的名字。例如自己进入自己github的主页时显示为xxx，则新建仓库时名字就为&quot;xxx.github.io&quot;；</li>
+</ul>
+<h3 id="配置git-ssh">配置Git SSH:</h3>
+<ul>
+<li>
+<p>在自己电脑本地下载Git，比如<a class="link" href="https://gitforwindows.org/"  target="_blank" rel="noopener"
+    >Git for Windows</a>；</p>
+</li>
+<li>
+<p>在Git Bash里面输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;your user name&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;your github email&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh-keygen -t rsa -C <span class="s2">&#34;your github email&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 之后按照提示操作即可，或者直接三个回车到底</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/.ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将.pub文件的内容复制好，进入github的settings页面，点击<code>SSH and GPG keys</code>，新增SSH keys，在key中复制刚刚剪切板的内容；</p>
+</li>
+</ul>
+<h3 id="安装npm和hexo">安装npm和Hexo:</h3>
+<ul>
+<li>
+<p>在本地安装<code>npm</code>，如<a class="link" href="https://nodejs.org/en"  target="_blank" rel="noopener"
+    >Node.js (nodejs.org)</a></p>
+</li>
+<li>
+<p>进入<a class="link" href="https://hexo.io/zh-cn/index.html"  target="_blank" rel="noopener"
+    >Hexo</a>官网，按照提示在本地希望后续保存博客的路径中，用Git Bash逐个输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install hexo-cli -g
+</span></span><span class="line"><span class="cl">hexo init your_blog_name
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> your_blog_name
+</span></span><span class="line"><span class="cl">npm install
+</span></span><span class="line"><span class="cl">hexo server
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>之后，就可以在浏览器中输入：<code>localhost:4000</code>查看本地博客是否成功创建</p>
+</li>
+</ul>
+<h3 id="配置hexo">配置Hexo:</h3>
+<ul>
+<li>
+<p>在该博客路径中，打开_config.yml中修改各种信息，可以参考：<a class="link" href="https://hexo.io/zh-cn/docs/configuration"  target="_blank" rel="noopener"
+    >配置 | Hexo</a></p>
+</li>
+<li>
+<p>希望创建新的页面，比如about或者links等，输入:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo new page <span class="s2">&#34;about&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后在<code>source/about/index.md</code>中进行修改即可</p>
+</li>
+<li>
+<p>希望创建新的文章，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo new <span class="s2">&#34;hello world&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后在<code>source/_post</code>中修改对应名字的文章即可</p>
+</li>
+</ul>
+<h3 id="部署hexo">部署Hexo:</h3>
+<ul>
+<li>
+<p>要将博客部署在刚刚创建的xxx.github.io中，则打开本地博客的_config.yml，找到<code>deploy</code>处，修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">deploy:
+</span></span><span class="line"><span class="cl">  type: git
+</span></span><span class="line"><span class="cl">  repo: https://github.com/xxx/xxx.github.io
+</span></span><span class="line"><span class="cl">  branch: main
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>之后安装依赖，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install hexo-deployer-git --save
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>完成后，分别输入以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo clean
+</span></span><span class="line"><span class="cl">hexo g <span class="c1"># 产生静态文件</span>
+</span></span><span class="line"><span class="cl">hexo d <span class="c1"># 自动部署到github.io页面</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等待大概3分钟，即可在<code>https://xxx.github.io</code>里面看到自己的博客内容了。</p>
+</li>
+</ul>
+<h3 id="启动latex渲染">启动latex渲染：</h3>
+<ul>
+<li>
+<p>注意，保持原版不变即可，不需要再在网上查找各种复杂的教程安装各种包；</p>
+</li>
+<li>
+<p>输入以下命令安装包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install hexo-filter-mathjax
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>进入博客的<code>_config.yml</code>，在末尾添加以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mathjax:
+</span></span><span class="line"><span class="cl">  tags: none <span class="c1"># or &#39;ams&#39; or &#39;all&#39;</span>
+</span></span><span class="line"><span class="cl">  single_dollars: <span class="nb">true</span> <span class="c1"># enable single dollar signs as in-line math delimiters</span>
+</span></span><span class="line"><span class="cl">  cjk_width: 0.9 <span class="c1"># relative CJK char width</span>
+</span></span><span class="line"><span class="cl">  normal_width: 0.6 <span class="c1"># relative normal (monospace) width</span>
+</span></span><span class="line"><span class="cl">  append_css: <span class="nb">true</span> <span class="c1"># add CSS to pages rendered by MathJax</span>
+</span></span><span class="line"><span class="cl">  every_page: <span class="nb">false</span> <span class="c1"># if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter</span>
+</span></span><span class="line"><span class="cl">  packages: <span class="c1"># extra packages to load</span>
+</span></span><span class="line"><span class="cl">  extension_options: <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># you can put your extension options here</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># see http://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options for more detail</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>之后，对于需要使用latex的文章，在其<code>front-matter</code>处增加<code>mathjax: true</code>，再重新生成和部署博客即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: Enable Latex on your article
+</span></span><span class="line"><span class="cl">categories: Example
+</span></span><span class="line"><span class="cl">date: 1905-06-30 12:00:00
+</span></span><span class="line"><span class="cl">mathjax: <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="公式示例">公式示例：</h3>
+<ul>
+<li>
+<p>行间公式：</p>
+<p>This is a in-line latex demo:  $\int^{+\infty}_{-\infty}f(x)dx$</p>
+</li>
+<li>
+<p>块间公式：
+$$
+{
+e^x=\lim_{n\to\infty} \left( 1+\frac{x}{n} \right)^n
+\qquad (1)
+}
+$$</p>
+</li>
+</ul>
+<h3 id="安装自定义字体">安装自定义字体：</h3>
+<ul>
+<li>
+<p>如果需要引用google在线字体，可自定于网络搜索；</p>
+</li>
+<li>
+<p>考虑到很多时候引用网络字体会出现不可预见的情况，因此可以将自己心仪字体的ttf下载下来；</p>
+</li>
+<li>
+<p>假设下载的字体文件为<code>abc.ttf</code>；</p>
+</li>
+<li>
+<p>在博客当前所使用的主题路径下:<code>source/css</code>，找到可能的字体文件样式表，如果没有，则自行创建。此次假设该文件叫：<code>style.styl</code>；</p>
+</li>
+<li>
+<p>将字体文件放在样式路径下面，比如创建<code>source/font</code>目录，并将<code>abc.ttf</code>放在该font目录下；</p>
+</li>
+<li>
+<p>在<code>style.styl</code>中，新增或修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">@</span><span class="k">font-face</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;abc&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;../font/abc.ttf&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">body</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此处也可以推广，即url可以新增更多字体，也包括网络字体； <code>body</code>中指定的为网页字体渲染的顺序。</p>
+</li>
+<li>
+<p>然而，在部署到远程服务器上时，有可能存在相对路径错误导致无法看到字体的情况，那么应该结合实际产生的静态文件的路径配置，自行修改<code>src: url('../font/abc.ttf')</code>的地址。</p>
+</li>
+</ul>
+<h3 id="hexo文章中插入图片">Hexo文章中插入图片：</h3>
+<ul>
+<li>
+<p>使用markdown时，插入图片非常方便，但在早期的Hexo中，相关的操作并不友好；</p>
+</li>
+<li>
+<p>在Hexo 3时代，我们可以通过非常简单的方法完成以前相对繁琐的操作；</p>
+</li>
+<li>
+<p>首先，确保博客node_modules中有<code>hexo-renderer-marked</code>包，没有则安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>npm install hexo-renderer-marked &ndash;save</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 之后，在博客的`_config.yml`中修改和新增：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">```bash
+</span></span><span class="line"><span class="cl">post_asset_folder: true
+</span></span><span class="line"><span class="cl">marked:
+</span></span><span class="line"><span class="cl">  prependRoot: true
+</span></span><span class="line"><span class="cl">  postAsset: true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>之后使用命令新增文章时，会同时创建同名的资源文件夹，可以在里面放置图片等资源，然后在文章中使用<code>markdown</code>语法插入图片即可，并且只需要指定资源的名字，不用再指定路径，因为它默认在同名的资源文件中查找相关资源。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">插入图片</span>](<span class="na">image.jpg</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="hexo总结">Hexo总结：</h3>
+<ul>
+<li>
+<p>如果需要更改默认主题，则在相关的主题网站查找Hexo主题，按照他们的说明进行下载和修改。一般来说主要经过下载&ndash;改名&ndash;放入博客theme路径&ndash;修改博客<code>_config</code>中的theme选项&ndash;修改主题文件的配置 这些流程；</p>
+</li>
+<li>
+<p>如果需要新建分类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo new page categories
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后进入<code>surce/categories/index.md</code>并修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: categories
+</span></span><span class="line"><span class="cl">date: 2023-05-01 13:47:40
+</span></span><span class="line"><span class="cl">type: <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后续新建文章后，只需要在文章标头中增加<code>categories: 自定义类别名</code>即可</p>
+</li>
+<li>
+<p>如果需要新建标签：</p>
+<p>同上，无非是将相关的<code>categories</code>改为<code>tags</code>即可。</p>
+</li>
+<li>
+<p>如果需要对文章显示其摘要：由于大多数主题不支持自定义摘要，因此可以在希望显示的文字后面加上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;!-- more --&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>本地服务器预览</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo s
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新建文章</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo n <span class="s2">&#34;新文章&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 新建文章</span>
+</span></span><span class="line"><span class="cl">hexo n page new_page
+</span></span><span class="line"><span class="cl"><span class="c1"># 新建页面</span>
+</span></span><span class="line"><span class="cl">hexo new page --path about/me <span class="s2">&#34;About me&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定路径新建页面</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外，文章还可以有很多属性，包括但不限于：</p>
+<p><code>layout</code> ：page或者post</p>
+<p><code>title</code>：文章标题</p>
+<p><code>date</code>：创建日期</p>
+<p><code>updated</code>：修改日期</p>
+<p><code>comments</code> ：是否开启评论，默认true</p>
+<p><code>tags</code>：标签名</p>
+<p><code>categories</code>：分类名</p>
+</li>
+<li>
+<p>产生静态文件（假设要部署在自己的服务器上，则需要手动移动静态文件)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo g
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>清除缓存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo clean
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>存储草稿</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo new draft <span class="s2">&#34;new draft&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该命令会生成<code>source/_draft/new-draft.md</code>，这些文章不会被发表，不会被链接查看到，可以当作自己撤销的、临时的或者私密的文章来用。</p>
+</li>
+<li>
+<p>部署博客</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo d
+</span></span><span class="line"><span class="cl">hexo clean <span class="o">&amp;&amp;</span> hexo d
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般可以用组合命令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="hugo-demo">Hugo Demo</h2>
+<p><em>后续若有新增，将会于此补充</em></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/official/">official</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>个人博客，请勿转载。Personal blog, please do not repost.</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/server-management-notes/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Server Management Notes</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/deeplearning-environment-setting/">
+        
+        
+            <div class="article-image">
+                <img src="/p/deeplearning-environment-setting/jpy.69793d0c3ebebe2d9bc8c3210856a794_hu1ae3a13d2f896abfab54790c1a46bb60_29343_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post DeepLearning Environment Setting"
+                        
+                        data-hash="md5-aXk9DD6&#43;vi2byMMhCFanlA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DeepLearning Environment Setting</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 abel&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with Hugo <br />
+        
+        Theme Stack designed by Jimmy
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=WenKai:wght@300;400;700&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

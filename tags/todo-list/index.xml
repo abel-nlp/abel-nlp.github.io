@@ -12,8 +12,8 @@
         <pubDate>Tue, 02 May 2023 09:46:16 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/literature-curation-plan/</guid>
-        <description>&lt;img src="https://blog.abelcse.cn/p/literature-curation-plan/paper.png" alt="Featured image of post Literature Curation Plan" /&gt;&lt;h1 id=&#34;important&#34;&gt;Important&lt;/h1&gt;
-&lt;h2 id=&#34;t000&#34;&gt;#T000&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/literature-curation-plan/paper.png" alt="Featured image of post Literature Curation Plan" /&gt;&lt;h2 id=&#34;important&#34;&gt;Important&lt;/h2&gt;
+&lt;h3 id=&#34;t000&#34;&gt;#T000&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Attention is All you Need. (#T001 Transformer)&lt;/li&gt;
 &lt;li&gt;BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)&lt;/li&gt;
@@ -25,13 +25,13 @@
 &lt;li&gt;LIMA: Less Is More for Alignment. (#T008 LIMA)&lt;/li&gt;
 &lt;li&gt;ZeRO: Memory Optimizations Toward Training Trillion Parameter Models. (#T009 ZoRO)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;survey&#34;&gt;Survey&lt;/h1&gt;
-&lt;h2 id=&#34;s000&#34;&gt;#S000&lt;/h2&gt;
+&lt;h2 id=&#34;survey&#34;&gt;Survey&lt;/h2&gt;
+&lt;h3 id=&#34;s000&#34;&gt;#S000&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing.  (#S001 Prompt)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;report&#34;&gt;Report&lt;/h1&gt;
-&lt;h2 id=&#34;r000&#34;&gt;#R000&lt;/h2&gt;
+&lt;h2 id=&#34;report&#34;&gt;Report&lt;/h2&gt;
+&lt;h3 id=&#34;r000&#34;&gt;#R000&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Improving Language Understanding by Generative Pre-Training. (#R001 GPT)&lt;/p&gt;
@@ -52,9 +52,9 @@
 &lt;p&gt;Sparks of Artificial General Intelligence: Early experiments with GPT-4. (#R006 GPT4-Report2)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;re&#34;&gt;RE&lt;/h1&gt;
-&lt;h2 id=&#34;e000&#34;&gt;#E000&lt;/h2&gt;
-&lt;h2 id=&#34;joint&#34;&gt;Joint&lt;/h2&gt;
+&lt;h2 id=&#34;re&#34;&gt;RE&lt;/h2&gt;
+&lt;h3 id=&#34;e000&#34;&gt;#E000&lt;/h3&gt;
+&lt;h4 id=&#34;joint&#34;&gt;Joint&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking. (#E001 TPLinker)&lt;/li&gt;
 &lt;li&gt;A Novel Cascade Binary Tagging Framework for Relational Triple Extraction. (#E002 CasRel)&lt;/li&gt;
@@ -65,7 +65,7 @@
 &lt;li&gt;RFBFN: A Relation-First Blank Filling Network for Joint Relational Triple Extraction. (#E007 RFBFN)&lt;/li&gt;
 &lt;li&gt;UniRel: Unified Representation and Interaction for Joint Relational Triple Extraction. (#E008 UniRel)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;few-shot&#34;&gt;Few-shot&lt;/h2&gt;
+&lt;h4 id=&#34;few-shot&#34;&gt;Few-shot&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. (FewRel)&lt;/p&gt;
@@ -83,20 +83,20 @@
 &lt;p&gt;Relation-Guided Few-Shot Relational Triple Extraction. (#E012 RelATE)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;ner&#34;&gt;NER&lt;/h1&gt;
-&lt;h2 id=&#34;n000&#34;&gt;#N000&lt;/h2&gt;
-&lt;h2 id=&#34;discontinuous&#34;&gt;Discontinuous&lt;/h2&gt;
+&lt;h2 id=&#34;ner&#34;&gt;NER&lt;/h2&gt;
+&lt;h3 id=&#34;n000&#34;&gt;#N000&lt;/h3&gt;
+&lt;h4 id=&#34;discontinuous&#34;&gt;Discontinuous&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Unified Named Entity Recognition as Word-Word Relation Classification. (#N001 W2NER)&lt;/li&gt;
 &lt;li&gt;Rethinking Boundaries: End-To-End Recognition of Discontinuous Mentions with Pointer Networks. (#N002 MAPtr)&lt;/li&gt;
 &lt;li&gt;Discontinuous Named Entity Recognition as Maximal Clique Discovery. (#N003 Mac)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;kge&#34;&gt;KGE&lt;/h1&gt;
-&lt;h2 id=&#34;k000&#34;&gt;#K000&lt;/h2&gt;
-&lt;h1 id=&#34;mrc&#34;&gt;MRC&lt;/h1&gt;
-&lt;h2 id=&#34;m000&#34;&gt;#M000&lt;/h2&gt;
-&lt;h1 id=&#34;mm&#34;&gt;MM&lt;/h1&gt;
-&lt;h2 id=&#34;c000&#34;&gt;#C000&lt;/h2&gt;
+&lt;h2 id=&#34;kge&#34;&gt;KGE&lt;/h2&gt;
+&lt;h3 id=&#34;k000&#34;&gt;#K000&lt;/h3&gt;
+&lt;h2 id=&#34;mrc&#34;&gt;MRC&lt;/h2&gt;
+&lt;h3 id=&#34;m000&#34;&gt;#M000&lt;/h3&gt;
+&lt;h2 id=&#34;mm&#34;&gt;MM&lt;/h2&gt;
+&lt;h3 id=&#34;c000&#34;&gt;#C000&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;An Image Is Worth 16X16 Words: Transformers for Image Recognition at scale.  (#C001 ViT)&lt;/li&gt;
 &lt;li&gt;Swin Transformer: Hierarchical Vision Transformer using Shifted Windows. (#C002 Swin-Transformer)&lt;/li&gt;

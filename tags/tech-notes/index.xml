@@ -245,8 +245,8 @@
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;h1 id=&#34;其他&#34;&gt;其他&lt;/h1&gt;
-&lt;h2 id=&#34;利用docker配置私人网盘&#34;&gt;利用Docker配置私人网盘&lt;/h2&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;h3 id=&#34;利用docker配置私人网盘&#34;&gt;利用Docker配置私人网盘&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;首先拉取docker:&lt;/p&gt;
@@ -347,7 +347,7 @@
         <pubDate>Mon, 01 May 2023 19:38:22 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/deeplearning-environment-setting/</guid>
-        <description>&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/deeplearning-environment-setting/jpy.png" alt="Featured image of post DeepLearning Environment Setting" /&gt;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)；&lt;/li&gt;
 &lt;li&gt;自己在服务器的账号引入了conda和cuda的环境变量&lt;/li&gt;
@@ -355,8 +355,8 @@
 &lt;li&gt;拥有服务器管理员权限或者与管理员沟通过开放端口(只限启用jupyter才需要)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;h1 id=&#34;基本运行环境创建&#34;&gt;基本运行环境创建&lt;/h1&gt;
-&lt;h2 id=&#34;conda环境创建&#34;&gt;Conda环境创建&lt;/h2&gt;
+&lt;h2 id=&#34;基本运行环境创建&#34;&gt;基本运行环境创建&lt;/h2&gt;
+&lt;h3 id=&#34;conda环境创建&#34;&gt;Conda环境创建&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;登录自己服务器账号后，需要创建所需的虚拟环境：&lt;/p&gt;
@@ -416,7 +416,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;pycharm配置&#34;&gt;PyCharm配置&lt;/h2&gt;
+&lt;h3 id=&#34;pycharm配置&#34;&gt;PyCharm配置&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;新建项目，为了方便，最好保持本地项目和服务器所需要配置的目录名一样；&lt;/p&gt;
@@ -534,7 +534,7 @@
 &lt;p&gt;大功告成。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;vscode配置&#34;&gt;VSCode配置&lt;/h2&gt;
+&lt;h3 id=&#34;vscode配置&#34;&gt;VSCode配置&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;VSCode的配置相对比较简单，因此这里中简述基本步骤，不做相信说明，有需要可自行网上检索&lt;/li&gt;
 &lt;/ul&gt;
@@ -611,7 +611,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;h1 id=&#34;配置远程jupyter&#34;&gt;配置远程Jupyter&lt;/h1&gt;
+&lt;h2 id=&#34;配置远程jupyter&#34;&gt;配置远程Jupyter&lt;/h2&gt;
 &lt;p&gt;虽然使用debug也非常方便，但是有时候还是希望可以利用Jupyter的cell执行特点来执行代码。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
