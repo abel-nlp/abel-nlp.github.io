@@ -245,6 +245,11 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#nvidia-cuda相关">Nvidia CUDA相关</a>
+      <ol>
+        <li><a href="#nvidia-smi和驱动通信失败">nvidia-smi和驱动通信失败</a></li>
+      </ol>
+    </li>
     <li><a href="#管理员账户相关">管理员账户相关</a>
       <ol>
         <li><a href="#root">root</a></li>
@@ -330,7 +335,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -345,7 +350,74 @@
     <section class="article-content">
     
     
-    <h2 id="管理员账户相关">管理员账户相关</h2>
+    <h2 id="nvidia-cuda相关">Nvidia CUDA相关</h2>
+<h3 id="nvidia-smi和驱动通信失败">nvidia-smi和驱动通信失败</h3>
+<ul>
+<li>
+<p>当我重启服务器后，输入<code>nvidia-smi</code>命令后，出现报错：</p>
+<p><em>NVIDIA-SMI has failed because it couldn&rsquo;t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</em></p>
+</li>
+<li>
+<p>这个时候查询nvcc会发现其实驱动相关的东西其实是还在的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nvcc -V
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入命令后，出现：</span>
+</span></span><span class="line"><span class="cl">nvcc: NVIDIA <span class="o">(</span>R<span class="o">)</span> Cuda compiler driver
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>c<span class="o">)</span> 2005-2022 NVIDIA Corporation
+</span></span><span class="line"><span class="cl">Built on Tue_May__3_18:49:52_PDT_2022
+</span></span><span class="line"><span class="cl">Cuda compilation tools, release 11.7, V11.7.64
+</span></span><span class="line"><span class="cl">Build cuda_11.7.r11.7/compiler.31294372_0
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>接着查询当前的驱动版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls /usr/src <span class="p">|</span> grep nvidia
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入和出现：</span>
+</span></span><span class="line"><span class="cl">nvidia-515.43.04
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>记住上面的数字，自己是多少就是多少：</p>
+</li>
+<li>
+<p>输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install dkms
+</span></span><span class="line"><span class="cl"><span class="c1"># then</span>
+</span></span><span class="line"><span class="cl">sudo dkms install -m nvidia -v 515.43.04
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>等待安装完成即可</p>
+</li>
+</ul>
+<h2 id="管理员账户相关">管理员账户相关</h2>
 <h3 id="root">root</h3>
 <p>Ubuntu默认是没有root的，而是以sudo用户来代替，这种方式在绝大多数时候是安全可用的，但当sudo用户有操作不当时，会导致系统出现无法修复的问题，因此在有这种需要时，可以提前设置root用户。</p>
 <ul>
