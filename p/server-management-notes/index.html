@@ -245,21 +245,22 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#nvidia-cuda相关">Nvidia CUDA相关</a>
+    <li><a href="#linux-cuda配置">Linux CUDA配置</a>
       <ol>
         <li><a href="#nvidia-smi和驱动通信失败">nvidia-smi和驱动通信失败</a></li>
       </ol>
     </li>
-    <li><a href="#管理员账户相关">管理员账户相关</a>
+    <li><a href="#linux网络配置">Linux网络配置</a>
+      <ol>
+        <li><a href="#内网穿透">内网穿透</a></li>
+        <li><a href="#端口防火墙">端口防火墙</a></li>
+        <li><a href="#配置ipv6">配置ipv6：</a></li>
+      </ol>
+    </li>
+    <li><a href="#linux账户配置">Linux账户配置</a>
       <ol>
         <li><a href="#root">root</a></li>
         <li><a href="#sudo">sudo</a></li>
-      </ol>
-    </li>
-    <li><a href="#网络配置相关">网络配置相关</a>
-      <ol>
-        <li><a href="#端口防火墙">端口防火墙：</a></li>
-        <li><a href="#配置ipv6">配置ipv6：</a></li>
       </ol>
     </li>
     <li><a href="#其他">其他</a>
@@ -335,7 +336,7 @@
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    4 minute read
                 </time>
             </div>
         
@@ -350,7 +351,7 @@
     <section class="article-content">
     
     
-    <h2 id="nvidia-cuda相关">Nvidia CUDA相关</h2>
+    <h2 id="linux-cuda配置">Linux CUDA配置</h2>
 <h3 id="nvidia-smi和驱动通信失败">nvidia-smi和驱动通信失败</h3>
 <ul>
 <li>
@@ -417,7 +418,195 @@
 <p>等待安装完成即可</p>
 </li>
 </ul>
-<h2 id="管理员账户相关">管理员账户相关</h2>
+<h2 id="linux网络配置">Linux网络配置</h2>
+<h3 id="内网穿透">内网穿透</h3>
+<p>最近在实验室服务器上搭建了大模型在线体验服务，但仅限校园网用户可以访问，无法为校外用户提供服务，恰好我们有一台腾讯的云服务器，前期我们尝试在云服务器上配置校园网，但校园网的映射比较固定导致不仅没能成功，还停掉了外网的地址，不得不重启服务器。</p>
+<p>之后我们发现了新的，更简单的免费方法，现记录如下：</p>
+<ul>
+<li>
+<p>拥有外网ip的服务器，假设其公网ip为：<strong>x.x.x.x</strong></p>
+</li>
+<li>
+<p>需要被映射的内网服务器，假设其内网ip为：<strong>y.y.y.y</strong></p>
+</li>
+<li>
+<p>假设公网被访问的端口为8888，内网需要被映射的端口为9999，则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 内网服务器输入以下命令，让外网服务器的8888端口可访问内网的9999端口</span>
+</span></span><span class="line"><span class="cl">ssh -o <span class="nv">ServerAliveInterval</span><span class="o">=</span><span class="m">60</span> -f -N -R 8888:y.y.y.y:9999 root@x.x.x.x
+</span></span><span class="line"><span class="cl"><span class="c1"># 回车后需要输入外网的账户密码，注意这里默认账户名是root，请根据实际情况进行修改</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在公网服务器上输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl http://127.0.0.1:8888
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般会出现所映射到端口的信息，例如映射22，则出现SSH相关的信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>之后，继续在公网服务器上输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sysctl -w net.ipv4.conf.eth0.route_localnet<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许127回环转发</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">8888</span> -j DNAT --to-destination 127.0.0.1:8888
+</span></span><span class="line"><span class="cl"><span class="c1"># 表示让公网服务器允许将8888端口的请求转发到127回路上</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>最后，按照请求内网服务器一样请求外网服务器即可，如：<strong>x.x.x.x:8888</strong></p>
+</li>
+</ul>
+<h3 id="端口防火墙">端口防火墙</h3>
+<ul>
+<li>
+<p>打开某个端口的防火墙</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>4399/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看所有打开的端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --list-ports
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者限定端口的开放协议 如tcp</span>
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --list-ports tcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="配置ipv6">配置ipv6：</h3>
+<p><em>参考: asimok&rsquo;s blog</em></p>
+<ul>
+<li>
+<p>检查是否已经启用ipv6支持</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo cat /proc/net/if_inet6
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果结果不为空，直接下一步，否则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/sysctl.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加以下内容:</span>
+</span></span><span class="line"><span class="cl">net.ipv6.conf.all.disable_ipv6 <span class="o">=</span> <span class="m">0</span> 
+</span></span><span class="line"><span class="cl">net.ipv6.conf.default.disable_ipv6 <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 之后，执行：</span>
+</span></span><span class="line"><span class="cl">sudo sysctl -p
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查是否启用：</span>
+</span></span><span class="line"><span class="cl">sudo cat /proc/net/if_inet6
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>先找一个比较快的ipv6的DNS，比如清华源等；</p>
+</li>
+<li>
+<p>修改配置文件，添加DNS:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/systemd/resolved.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加DNS，比如：</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS</span><span class="o">=</span>2001:67c:2b0::6 2001:67c:2b0::4
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>重启DNS服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart systemd-resolved  
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> systemd-resolved
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>启动配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv /etc/resolv.conf /etc/resolv.conf.bak
+</span></span><span class="line"><span class="cl"><span class="c1"># 先将原来的文件备份</span>
+</span></span><span class="line"><span class="cl">sudo ln -s /run/systemd/resolve/resolv.conf /etc/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>检查是否启用成功：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo cat /etc/resolv.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="linux账户配置">Linux账户配置</h2>
 <h3 id="root">root</h3>
 <p>Ubuntu默认是没有root的，而是以sudo用户来代替，这种方式在绝大多数时候是安全可用的，但当sudo用户有操作不当时，会导致系统出现无法修复的问题，因此在有这种需要时，可以提前设置root用户。</p>
 <ul>
@@ -520,136 +709,6 @@
 </div>
 </div></li>
 </ul>
-<h2 id="网络配置相关">网络配置相关</h2>
-<p><em>参考: asimok&rsquo;s blog</em></p>
-<h3 id="端口防火墙">端口防火墙：</h3>
-<ul>
-<li>
-<p>打开某个端口的防火墙</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>4399/tcp --permanent
-</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>查看所有打开的端口</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --list-ports
-</span></span><span class="line"><span class="cl"><span class="c1"># 或者限定端口的开放协议 如tcp</span>
-</span></span><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --list-ports tcp
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<h3 id="配置ipv6">配置ipv6：</h3>
-<ul>
-<li>
-<p>检查是否已经启用ipv6支持</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo cat /proc/net/if_inet6
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>如果结果不为空，直接下一步，否则：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/sysctl.conf
-</span></span><span class="line"><span class="cl"><span class="c1"># 添加以下内容:</span>
-</span></span><span class="line"><span class="cl">net.ipv6.conf.all.disable_ipv6 <span class="o">=</span> <span class="m">0</span> 
-</span></span><span class="line"><span class="cl">net.ipv6.conf.default.disable_ipv6 <span class="o">=</span> <span class="m">0</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 之后，执行：</span>
-</span></span><span class="line"><span class="cl">sudo sysctl -p
-</span></span><span class="line"><span class="cl"><span class="c1"># 检查是否启用：</span>
-</span></span><span class="line"><span class="cl">sudo cat /proc/net/if_inet6
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>先找一个比较快的ipv6的DNS，比如清华源等；</p>
-</li>
-<li>
-<p>修改配置文件，添加DNS:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/systemd/resolved.conf
-</span></span><span class="line"><span class="cl"><span class="c1"># 添加DNS，比如：</span>
-</span></span><span class="line"><span class="cl"><span class="nv">DNS</span><span class="o">=</span>2001:67c:2b0::6 2001:67c:2b0::4
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>重启DNS服务：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart systemd-resolved  
-</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> systemd-resolved
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>启动配置文件：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv /etc/resolv.conf /etc/resolv.conf.bak
-</span></span><span class="line"><span class="cl"><span class="c1"># 先将原来的文件备份</span>
-</span></span><span class="line"><span class="cl">sudo ln -s /run/systemd/resolve/resolv.conf /etc/
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>检查是否启用成功：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo cat /etc/resolv.conf
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<!-- raw HTML omitted -->
 <h2 id="其他">其他</h2>
 <h3 id="利用docker配置私人网盘">利用Docker配置私人网盘</h3>
 <ul>
