@@ -1,40 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Important #T000 Attention is All you Need. (#T001 Transformer)
-BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
-Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
-Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
-Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
-SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
-RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
-LIMA: Less Is More for Alignment.'>
-<title>Literature Curation Plan</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Introduction 本篇博客将介绍我们在大模型训练过程中遇到的各种问题，并总结我们在训练中得出的各种工程性结论。 由于目前计划寻找LLM相关的实习，因此暂不更新'>
+<title>TechGPT LLM Training Notes</title>
 
-<link rel='canonical' href='https://blog.abelcse.cn/p/literature-curation-plan/'>
+<link rel='canonical' href='https://blog.abelcse.cn/p/techgpt-llm-training-notes/'>
 
-<link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='Literature Curation Plan'>
-<meta property='og:description' content='Important #T000 Attention is All you Need. (#T001 Transformer)
-BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
-Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
-Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
-Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
-SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
-RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
-LIMA: Less Is More for Alignment.'>
-<meta property='og:url' content='https://blog.abelcse.cn/p/literature-curation-plan/'>
+<link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='TechGPT LLM Training Notes'>
+<meta property='og:description' content='Introduction 本篇博客将介绍我们在大模型训练过程中遇到的各种问题，并总结我们在训练中得出的各种工程性结论。 由于目前计划寻找LLM相关的实习，因此暂不更新'>
+<meta property='og:url' content='https://blog.abelcse.cn/p/techgpt-llm-training-notes/'>
 <meta property='og:site_name' content='abel&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='todo-list' /><meta property='article:published_time' content='2023-05-02T09:46:16&#43;08:00'/><meta property='article:modified_time' content='2023-05-02T09:46:16&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/literature-curation-plan/paper.png' />
-<meta name="twitter:title" content="Literature Curation Plan">
-<meta name="twitter:description" content="Important #T000 Attention is All you Need. (#T001 Transformer)
-BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
-Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
-Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
-Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
-SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
-RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
-LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://blog.abelcse.cn/p/literature-curation-plan/paper.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tech-notes' /><meta property='article:published_time' content='2023-06-28T20:38:14&#43;08:00'/><meta property='article:modified_time' content='2023-06-28T20:38:14&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/img/cover.jpg' />
+<meta name="twitter:title" content="TechGPT LLM Training Notes">
+<meta name="twitter:description" content="Introduction 本篇博客将介绍我们在大模型训练过程中遇到的各种问题，并总结我们在训练中得出的各种工程性结论。 由于目前计划寻找LLM相关的实习，因此暂不更新"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.abelcse.cn/img/cover.jpg' />
     </head>
     <body class="
     article-page
@@ -266,55 +245,7 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#important">Important</a>
-      <ol>
-        <li><a href="#t000">#T000</a></li>
-      </ol>
-    </li>
-    <li><a href="#survey">Survey</a>
-      <ol>
-        <li><a href="#s000">#S000</a></li>
-      </ol>
-    </li>
-    <li><a href="#report">Report</a>
-      <ol>
-        <li><a href="#r000">#R000</a></li>
-      </ol>
-    </li>
-    <li><a href="#re">RE</a>
-      <ol>
-        <li><a href="#e000">#E000</a>
-          <ol>
-            <li><a href="#joint">Joint</a></li>
-            <li><a href="#few-shot">Few-shot</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#ner">NER</a>
-      <ol>
-        <li><a href="#n000">#N000</a>
-          <ol>
-            <li><a href="#discontinuous">Discontinuous</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#kge">KGE</a>
-      <ol>
-        <li><a href="#k000">#K000</a></li>
-      </ol>
-    </li>
-    <li><a href="#mrc">MRC</a>
-      <ol>
-        <li><a href="#m000">#M000</a></li>
-      </ol>
-    </li>
-    <li><a href="#mm">MM</a>
-      <ol>
-        <li><a href="#c000">#C000</a></li>
-      </ol>
-    </li>
+    <li><a href="#introduction">Introduction</a></li>
   </ol>
 </nav>
         </div>
@@ -326,15 +257,15 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
 
 
             <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
 
     <div class="article-details">
     
     <header class="article-category">
         
-            <a href="/categories/paper/" style="background-color: 00BFFF; color: #fff;">
-                Paper
+            <a href="/categories/tech/" style="background-color: 3CB371; color: #fff;">
+                Tech
             </a>
         
     </header>
@@ -342,7 +273,7 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/literature-curation-plan/">Literature Curation Plan</a>
+            <a href="/p/techgpt-llm-training-notes/">TechGPT LLM Training Notes</a>
         </h2>
     
         
@@ -364,7 +295,7 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 02, 2023</time>
+                <time class="article-time--published">Jun 28, 2023</time>
             </div>
         
 
@@ -379,7 +310,7 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    1 minute read
                 </time>
             </div>
         
@@ -394,113 +325,9 @@ LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_la
     <section class="article-content">
     
     
-    <h2 id="important">Important</h2>
-<h3 id="t000">#T000</h3>
-<ul>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Attention is All you Need. (#T001 Transformer)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> LIMA: Less Is More for Alignment. (#T008 LIMA)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> ZeRO: Memory Optimizations Toward Training Trillion Parameter Models. (#T009 ZoRO)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> LLaMA: Open and Efficient Foundation Language Models. (#T010 LLaMA)</p>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> LoRA: Low-Rank Adaptation of Large Language Models. (#T011 LoRA)</p>
-</li>
-</ul>
-<h2 id="survey">Survey</h2>
-<h3 id="s000">#S000</h3>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing.  (#S001 Prompt)</li>
-</ul>
-<h2 id="report">Report</h2>
-<h3 id="r000">#R000</h3>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Improving Language Understanding by Generative Pre-Training. (#R001 GPT)</li>
-<li><input checked="" disabled="" type="checkbox"> Language Models are Unsupervised Multitask Learners. (#R002 GPT2)</li>
-<li><input checked="" disabled="" type="checkbox"> Language Models are Few-Shot Learners. (#R003 GPT3)</li>
-<li><input checked="" disabled="" type="checkbox"> Training language models to follow instructions with human feedback. (#R004 InstructGPT)</li>
-<li><input disabled="" type="checkbox"> GPT-4 Technical Report. (#R005 GPT4-Report1)</li>
-<li><input disabled="" type="checkbox"> Sparks of Artificial General Intelligence: Early experiments with GPT-4. (#R006 GPT4-Report2)</li>
-</ul>
-<h2 id="re">RE</h2>
-<h3 id="e000">#E000</h3>
-<h4 id="joint">Joint</h4>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking. (#E001 TPLinker)</li>
-<li><input checked="" disabled="" type="checkbox"> A Novel Cascade Binary Tagging Framework for Relational Triple Extraction. (#E002 CasRel)</li>
-<li><input disabled="" type="checkbox"> A Frustratingly Easy Approach for Entity and Relation Extraction. (#E003 PURE)</li>
-<li><input checked="" disabled="" type="checkbox"> A Novel Global Feature-Oriented Relational Triple Extraction Model based on Table Filling. (#E004 GRTE)</li>
-<li><input checked="" disabled="" type="checkbox"> PRGC: Potential Relation and Global Correspondence Based Joint Relational Triple Extraction. (#E005 PRGC)</li>
-<li><input checked="" disabled="" type="checkbox"> OneRel:Joint Entity and Relation Extraction with One Module in One Step. (#E006 OneRel)</li>
-<li><input checked="" disabled="" type="checkbox"> RFBFN: A Relation-First Blank Filling Network for Joint Relational Triple Extraction. (#E007 RFBFN)</li>
-<li><input disabled="" type="checkbox"> UniRel: Unified Representation and Interaction for Joint Relational Triple Extraction. (#E008 UniRel)</li>
-</ul>
-<h4 id="few-shot">Few-shot</h4>
-<ul>
-<li>
-<p><input checked="" disabled="" type="checkbox"> (#E009 FewRel)
-FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. (FewRel)
-FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.0)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Few-Shot Relational Triple Extraction with Perspective Transfer Network. (#E010 PTN)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Query-based Instance Discrimination Network for Relational Triple Extraction. (#E011 QIDN)</p>
-</li>
-<li>
-<p><input checked="" disabled="" type="checkbox"> Relation-Guided Few-Shot Relational Triple Extraction. (#E012 RelATE)</p>
-</li>
-</ul>
-<h2 id="ner">NER</h2>
-<h3 id="n000">#N000</h3>
-<h4 id="discontinuous">Discontinuous</h4>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Unified Named Entity Recognition as Word-Word Relation Classification. (#N001 W2NER)</li>
-<li><input disabled="" type="checkbox"> Rethinking Boundaries: End-To-End Recognition of Discontinuous Mentions with Pointer Networks. (#N002 MAPtr)</li>
-<li><input disabled="" type="checkbox"> Discontinuous Named Entity Recognition as Maximal Clique Discovery. (#N003 Mac)</li>
-</ul>
-<h2 id="kge">KGE</h2>
-<h3 id="k000">#K000</h3>
-<h2 id="mrc">MRC</h2>
-<h3 id="m000">#M000</h3>
-<h2 id="mm">MM</h2>
-<h3 id="c000">#C000</h3>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> An Image Is Worth 16X16 Words: Transformers for Image Recognition at scale.  (#C001 ViT)</li>
-<li><input checked="" disabled="" type="checkbox"> Swin Transformer: Hierarchical Vision Transformer using Shifted Windows. (#C002 Swin-Transformer)</li>
-<li><input checked="" disabled="" type="checkbox"> Learning Transferable Visual Models From Natural Language Supervision. (#C003 CLIP)</li>
-<li><input checked="" disabled="" type="checkbox"> BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation. (#C004 BLIP)</li>
-<li><input disabled="" type="checkbox"> A Novel Graph-based Multi-modal Fusion Encoder for Neural Machine Translation.  (#C005 NMT)</li>
-<li><input disabled="" type="checkbox"> Multi-modal Graph Fusion for Named Entity Recognition with Targeted Visual Guidance. (#C006 UMGF)</li>
-<li><input disabled="" type="checkbox"> Good Visual Guidance Makes A Better Extractor: Hierarchical Visual Prefix for Multimodal Entity and Relation Extraction. (#C007 HVPNeT)</li>
-<li><input checked="" disabled="" type="checkbox"> Align before Fuse: Vision and Language Representation Learning with Momentum Distillation. (#C008 ALBEF)</li>
-</ul>
-<p><em>Content will be continuously added.</em></p>
+    <h2 id="introduction">Introduction</h2>
+<p>本篇博客将介绍我们在大模型训练过程中遇到的各种问题，并总结我们在训练中得出的各种工程性结论。</p>
+<p>由于目前计划寻找LLM相关的实习，因此暂不更新，待7月中旬后将及时上线。</p>
 
 </section>
 
@@ -509,7 +336,7 @@ FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.
     
     <section class="article-tags">
         
-            <a href="/tags/todo-list/">todo-list</a>
+            <a href="/tags/tech-notes/">tech-notes</a>
         
     </section>
 
@@ -566,24 +393,50 @@ FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.
         <div class="flex article-list--tile">
             
                 
+<article class="">
+    <a href="/p/server-management-notes/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Server Management Notes</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
 <article class="has-image">
-    <a href="/p/paper-notes-collection-one/">
+    <a href="/p/deeplearning-environment-setting/">
         
         
             <div class="article-image">
-                <img src="/p/paper-notes-collection-one/fig3.f6411f559087839ef3c8dd9b854bc4c3.png" 
-                        width="2175" 
-                        height="693" 
+                <img src="/p/deeplearning-environment-setting/jpy.69793d0c3ebebe2d9bc8c3210856a794.png" 
+                        width="1144" 
+                        height="443" 
                         loading="lazy"
-                        alt="Featured image of post Paper Notes Collection One"
+                        alt="Featured image of post DeepLearning Environment Setting"
                         
-                        data-hash="md5-9kEfVZCHg57zyN2bhUvEww==">
+                        data-hash="md5-aXk9DD6&#43;vi2byMMhCFanlA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Paper Notes Collection One</h2>
+            <h2 class="article-title">DeepLearning Environment Setting</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/hello-world/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hello World</h2>
         </div>
     </a>
 </article>
