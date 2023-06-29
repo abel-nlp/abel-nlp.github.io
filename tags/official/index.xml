@@ -12,7 +12,7 @@
         <pubDate>Mon, 01 May 2023 15:12:54 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/hello-world/</guid>
-        <description>&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;创建github-repo&#34;&gt;创建Github Repo:&lt;/h3&gt;
 &lt;ul&gt;

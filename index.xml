@@ -12,7 +12,7 @@
         <pubDate>Wed, 28 Jun 2023 20:38:14 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/techgpt-llm-training-notes/</guid>
-        <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/techgpt-llm-training-notes/cover.jpg" alt="Featured image of post TechGPT LLM Training Notes" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;本篇博客将介绍我们在大模型训练过程中遇到的各种问题，并总结我们在训练中得出的各种工程性结论。&lt;/p&gt;
 &lt;p&gt;由于目前计划寻找LLM相关的实习，因此暂不更新，待7月中旬后将及时上线。&lt;/p&gt;
 </description>
@@ -23,7 +23,7 @@
         <pubDate>Thu, 11 May 2023 09:23:59 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/server-management-notes/</guid>
-        <description>&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/server-management-notes/cover.jpg" alt="Featured image of post Server Management Notes" /&gt;&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
 &lt;h3 id=&#34;nvidia-smi和驱动通信失败&#34;&gt;nvidia-smi和驱动通信失败&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1252,7 +1252,7 @@ FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.
         <pubDate>Mon, 01 May 2023 15:12:54 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/hello-world/</guid>
-        <description>&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;创建github-repo&#34;&gt;创建Github Repo:&lt;/h3&gt;
 &lt;ul&gt;
