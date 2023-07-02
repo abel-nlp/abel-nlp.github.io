@@ -267,7 +267,7 @@
 &lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)&lt;/p&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)&lt;/p&gt;
@@ -285,16 +285,17 @@
 &lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; ZeRO: Memory Optimizations Toward Training Trillion Parameter Models. (#T009 ZoRO)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; LLaMA: Open and Efficient Foundation Language Models. (#T010 LLaMA)&lt;/p&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; LLaMA: Open and Efficient Foundation Language Models. (#T010 LLaMA)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; LoRA: Low-Rank Adaptation of Large Language Models. (#T011 LoRA)&lt;/p&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; LoRA: Low-Rank Adaptation of Large Language Models. (#T011 LoRA)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;survey&#34;&gt;Survey&lt;/h2&gt;
 &lt;h3 id=&#34;s000&#34;&gt;#S000&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing.  (#S001 Prompt)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Multimodal Deep Learning. (#S002 Multimodal)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;report&#34;&gt;Report&lt;/h2&gt;
 &lt;h3 id=&#34;r000&#34;&gt;#R000&lt;/h3&gt;
