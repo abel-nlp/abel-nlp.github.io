@@ -255,6 +255,8 @@
         <li><a href="#内网穿透">内网穿透</a></li>
         <li><a href="#端口防火墙">端口防火墙</a></li>
         <li><a href="#配置ipv6">配置ipv6：</a></li>
+        <li><a href="#ipv4地址未出现">ipv4地址未出现</a></li>
+        <li><a href="#开机进入紧急模式">开机进入紧急模式</a></li>
       </ol>
     </li>
     <li><a href="#linux账户配置">Linux账户配置</a>
@@ -336,7 +338,7 @@
 
 
                 <time class="article-time--reading">
-                    4 minute read
+                    5 minute read
                 </time>
             </div>
         
@@ -606,7 +608,124 @@
 </div>
 </div></li>
 </ul>
-<h2 id="linux账户配置">Linux账户配置</h2>
+<h3 id="ipv4地址未出现">ipv4地址未出现</h3>
+<p><em>注意，以下操作仅在我遇到的问题中可做解决方案，若涉及生产等重要场景，请联系网络和系统管理员协助</em></p>
+<p>因机房停电维护较长时间，因此再次开机时有两个服务器出现了不同的问题，其中一台输入<code>ifconfig</code>后只有ipv6地址</p>
+<p>此时，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/network/interfaces
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现只有lo的地址，也就是local地址，因此可能需要手动配一下ipv4的地址，但这里需要注意两点：</p>
+<ol>
+<li>不一定网卡就叫eth0；</li>
+<li>除非机器有申请的固定ip，否则不要直接按照网上给的address netmask gateway修改</li>
+</ol>
+<p>因此，首先查看网卡设备名字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip link show
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果出现eno1，则：</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##  还是上面的sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##  在这里新增：</span>
+</span></span><span class="line"><span class="cl">auto eth0
+</span></span><span class="line"><span class="cl">iface eth0 inet dhcp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果出现其他的名字，如enp129s0f0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##  类似上面的操作，进行dhcp分配即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但有的人拥有自己固定的IP，不需要DHCP去分配，则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/network/interfaces
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入后新增：</span>
+</span></span><span class="line"><span class="cl">auto eth0
+</span></span><span class="line"><span class="cl">iface eth0 inet static
+</span></span><span class="line"><span class="cl">    address 你的固定ipv4地址
+</span></span><span class="line"><span class="cl">    netmask 255.255.255.0
+</span></span><span class="line"><span class="cl">    gateway 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后进行重启即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart networking.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 有时可能依旧会报错，则检查：</span>
+</span></span><span class="line"><span class="cl">systemctl status networking.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接：</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart NetworkManager.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="开机进入紧急模式">开机进入紧急模式</h3>
+<p>同上，另一台机器开机后，出现: <code>welcome to emergency mode</code>，这大概率是因为写入的自动挂载脚本问题导致的：</p>
+<p>输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/fstab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看一下当初挂载了哪些磁盘，尤其是有的磁盘UUID可能会发生变化，从而导致自检不通过</p>
+<p><em>个人做法</em>：</p>
+<p>返回命令行，输入:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">df -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现原本写在fstab中的有一项磁盘路径没出现在这里，我这里没出现的磁盘叫作<code>data2</code>，那么：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 则最简单的办法是：注释或删除</span>
+</span></span><span class="line"><span class="cl">vim /etc/fstab
+</span></span><span class="line"><span class="cl"><span class="c1">## 将data2对应的UUID注释掉，返回再重启即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他办法是：利用lsblk 和 fdisk等命令，查看未挂载磁盘的UUID信息，重新修改，具体请自信检索</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="linux账户配置">Linux账户配置</h2>
 <h3 id="root">root</h3>
 <p>Ubuntu默认是没有root的，而是以sudo用户来代替，这种方式在绝大多数时候是安全可用的，但当sudo用户有操作不当时，会导致系统出现无法修复的问题，因此在有这种需要时，可以提前设置root用户。</p>
 <ul>
