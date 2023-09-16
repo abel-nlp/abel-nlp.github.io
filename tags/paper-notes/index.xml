@@ -38,6 +38,9 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
+&lt;h4 id=&#34;task&#34;&gt;Task.&lt;/h4&gt;
+&lt;p&gt;Web IE：给定一个目标字段T，需要从相应的网页中提取出相关的信息。&lt;/p&gt;
+&lt;p&gt;在网页中，信息是以DOM树的结构来布局的，往往含有多种模态，最常见的就是文本和图像，而文本和图片本身就是DOM树的叶子节点。&lt;/p&gt;
 </description>
         </item>
         <item>

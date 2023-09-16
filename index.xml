@@ -38,6 +38,9 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
+&lt;h4 id=&#34;task&#34;&gt;Task.&lt;/h4&gt;
+&lt;p&gt;Web IE：给定一个目标字段T，需要从相应的网页中提取出相关的信息。&lt;/p&gt;
+&lt;p&gt;在网页中，信息是以DOM树的结构来布局的，往往含有多种模态，最常见的就是文本和图像，而文本和图片本身就是DOM树的叶子节点。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2125,6 +2128,8 @@ Contact me:&lt;/p&gt;
 &lt;li&gt;中国电信股份有限公司北京研究院(China Telecom)&lt;/li&gt;
 &lt;li&gt;算法实习生(NLP Intern)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;2&#34;&gt;#2&lt;/h3&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt; Confidential Information &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;h2 id=&#34;项目经历project&#34;&gt;项目经历(Project)&lt;/h2&gt;
 &lt;h3 id=&#34;techgpt&#34;&gt;TechGPT&lt;/h3&gt;
