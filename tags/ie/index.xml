@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>IE on abel&#39;s blog</title>
+        <link>https://blog.abelcse.cn/tags/ie/</link>
+        <description>Recent content in IE on abel&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 09 Aug 2023 22:34:25 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/tags/ie/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Paper Reading Collection for Multimodal Information Extraction</title>
+        <link>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</link>
+        <pubDate>Wed, 09 Aug 2023 22:34:25 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mmkg.png" alt="Featured image of post Paper Reading Collection for Multimodal Information Extraction" /&gt;&lt;h2 id=&#34;mustie&#34;&gt;MUSTIE&lt;/h2&gt;
+&lt;p&gt;MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源；&lt;/li&gt;
+&lt;li&gt;如何抽取这些网页信息并结构化对于构建类似网页搜索引擎等应用而言非常重要。而互联网中存在着大量的非结构或者半结构化的信息，例如图片，或者带有网页结构信息的数据，所以如何从繁杂的网页中有效地抽取信息也是非常重要的；&lt;/li&gt;
+&lt;li&gt;正因为网页里面的非结构化信息是丰富多样的，比如他们包含不同的网络布局结构，存在着文本、图片、表格等多种模态的信息，因此，从网页中抽取信息对工业界和学术界来说都是具有挑战性的；&lt;/li&gt;
+&lt;li&gt;网页信息抽取，就是希望从网页中抽取对某个对象的相关属性，例如对于某一部电影的网页内容，我们可能希望抽取出电影的名字、导演、演员、类型、上映时间和放映时长等信息；&lt;/li&gt;
+&lt;li&gt;在对该问题的研究中，人们提出了基于模版的和基于深度学习的方法，在如今语言模型的助力下，人们又将网页表示成类似文本序列或者组成图的方式去处理。近年来，人们开始尝试从文本和视觉信号上提取网页信息的多模态方法；&lt;/li&gt;
+&lt;li&gt;然而，目前这些方法都存在一些不足：
+&lt;ol&gt;
+&lt;li&gt;网页信息是图文并茂地为我们呈现内容，而目前的方法多是对不同的模态用不同的编码器去独立编码，导致模型无法捕获不同模态之间的关联，降低了网页信息的有效性；&lt;/li&gt;
+&lt;li&gt;他们没有对网页布局和结构进行编码，也就是对DOM树等信息进行编码，从而损失了一些不同领域之间的关联信息（例如在宣传电影的网页中，电影名往往就在图片节点的下面，而电影时长、上映日期等一般是同层次其他节点的信息）；&lt;/li&gt;
+&lt;li&gt;文本和图片一般只被简单的拼接在一起，使得现有的Transformer模型无法很好地处理大量的网页信息；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;为了解决这些问题，文本提出的&lt;strong&gt;MUST&lt;/strong&gt;，就是专门设计了结构化的注意力机制，从多种模态上联合编码DOM树的所有节点，从而学到跨模态的嵌入表示。直观来讲，就是利用网页的布局结构信息，更自然地将各种模态的数据（文本、图像和标签）连接起来，从而更好地计算注意力权重；&lt;/li&gt;
+&lt;li&gt;本文的主要贡献在于：
+&lt;ol&gt;
+&lt;li&gt;提出的多模态结构化Transformer可有效地从网页中建模和提取多模态信息；&lt;/li&gt;
+&lt;li&gt;专门设计了结构化的注意力机制，从而用来捕获网页中不同模态之间的联系，更好地学习跨模态的嵌入；&lt;/li&gt;
+&lt;li&gt;在WedSRC和Common Crawl两个数据集上进行测试，得到了SOTA的结果，验证了方法的有效性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

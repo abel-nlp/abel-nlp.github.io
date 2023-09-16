@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>MultiModal on abel&#39;s blog</title>
+        <link>https://blog.abelcse.cn/categories/multimodal/</link>
+        <description>Recent content in MultiModal on abel&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 09 Aug 2023 22:34:25 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/categories/multimodal/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Paper Reading Collection for Multimodal Information Extraction</title>
+        <link>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</link>
+        <pubDate>Wed, 09 Aug 2023 22:34:25 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mmkg.png" alt="Featured image of post Paper Reading Collection for Multimodal Information Extraction" /&gt;&lt;h2 id=&#34;mustie&#34;&gt;MUSTIE&lt;/h2&gt;
+&lt;p&gt;MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源；&lt;/li&gt;
+&lt;li&gt;如何抽取这些网页信息并结构化对于构建类似网页搜索引擎等应用而言非常重要。而互联网中存在着大量的非结构或者半结构化的信息，例如图片，或者带有网页结构信息的数据，所以如何从繁杂的网页中有效地抽取信息也是非常重要的；&lt;/li&gt;
+&lt;li&gt;正因为网页里面的非结构化信息是丰富多样的，比如他们包含不同的网络布局结构，存在着文本、图片、表格等多种模态的信息，因此，从网页中抽取信息对工业界和学术界来说都是具有挑战性的；&lt;/li&gt;
+&lt;li&gt;网页信息抽取，就是希望从网页中抽取对某个对象的相关属性，例如对于某一部电影的网页内容，我们可能希望抽取出电影的名字、导演、演员、类型、上映时间和放映时长等信息；&lt;/li&gt;
+&lt;li&gt;在对该问题的研究中，人们提出了基于模版的和基于深度学习的方法，在如今语言模型的助力下，人们又将网页表示成类似文本序列或者组成图的方式去处理。近年来，人们开始尝试从文本和视觉信号上提取网页信息的多模态方法；&lt;/li&gt;
+&lt;li&gt;然而，目前这些方法都存在一些不足：
+&lt;ol&gt;
+&lt;li&gt;网页信息是图文并茂地为我们呈现内容，而目前的方法多是对不同的模态用不同的编码器去独立编码，导致模型无法捕获不同模态之间的关联，降低了网页信息的有效性；&lt;/li&gt;
+&lt;li&gt;他们没有对网页布局和结构进行编码，也就是对DOM树等信息进行编码，从而损失了一些不同领域之间的关联信息（例如在宣传电影的网页中，电影名往往就在图片节点的下面，而电影时长、上映日期等一般是同层次其他节点的信息）；&lt;/li&gt;
+&lt;li&gt;文本和图片一般只被简单的拼接在一起，使得现有的Transformer模型无法很好地处理大量的网页信息；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;为了解决这些问题，文本提出的&lt;strong&gt;MUST&lt;/strong&gt;，就是专门设计了结构化的注意力机制，从多种模态上联合编码DOM树的所有节点，从而学到跨模态的嵌入表示。直观来讲，就是利用网页的布局结构信息，更自然地将各种模态的数据（文本、图像和标签）连接起来，从而更好地计算注意力权重；&lt;/li&gt;
+&lt;li&gt;本文的主要贡献在于：
+&lt;ol&gt;
+&lt;li&gt;提出的多模态结构化Transformer可有效地从网页中建模和提取多模态信息；&lt;/li&gt;
+&lt;li&gt;专门设计了结构化的注意力机制，从而用来捕获网页中不同模态之间的联系，更好地学习跨模态的嵌入；&lt;/li&gt;
+&lt;li&gt;在WedSRC和Common Crawl两个数据集上进行测试，得到了SOTA的结果，验证了方法的有效性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
+</description>
+        </item>
+        <item>
+        <title>Paper Reading Collection for Visual Language Models</title>
+        <link>https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/</link>
+        <pubDate>Thu, 06 Jul 2023 20:25:59 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit.png" alt="Featured image of post Paper Reading Collection for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
+&lt;p&gt;An Image is worth 16x16 Words: Transformers for Image Recognition at Scale. (ICLR 2021)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先，Transformer在NLP已经很普遍了，并且得到了很大的进步(无论是数据还是模型参数)，而CV这边尝试的大多是让自注意力和CNN进行配合；&lt;/p&gt;
+&lt;p&gt;然而，如果让每个像素点都参与到SA的计算中来，将是无法接受的计算开销。因此，有将SA仅仅用作局部的查询的工作，也有让SA分别在不同的块中使用的办法，但这些办法都需要复杂的工程能力才能在硬件加速器上跑起来。和ViT最近似的工作是从输入中提取2x2大小的patch(块)，然后使用SA，但这种方式只适合低分辨率的图像，而ViT不仅几乎和文本Transformer一样，还能处理中等分辨率的图像，并能达到或超过CNN的性能；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;本文希望能够参考transformer，尽可能做少的修改，让其像处理文本一样处理图像信息，以利用transformer的计算效率特性和扩展性；&lt;/p&gt;
+&lt;p&gt;Transformer原文中说，对于每一层的计算复杂度，SA和CNN分别是$O(n^2·d)$和$O(k·n·d^2)$，因为n往往都比d小，所以SA是比CNN更高效的；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因此，本文将图像拆成patch，这个patch可以看成是NLP那边的token一样；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;本文发现，在中等的图像数据集ImageNet上，不经过正则化，得到的模型比ResNet要低几个点，这主要是因为transformer没有CNN的两个归纳性偏好：平移不变性和局部性；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;但在继续增大训练数据的规模后（从14M扩大到300M），Visual-Transformer的性能在逐步增加，并实现SOTA&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;model&#34;&gt;Model.&lt;/h3&gt;
+&lt;p&gt;文本的Transformer处理的是一维的序列，因此ViT需要先将2D的图像输入也变成类似的。对于一张图片$X \in R^{H \times W \times C}$，其中$(H, W)$为图片的高和宽，而$C$为图像的通道，首先将其展成2D的patch，每个patch的大小为$X_p\in R^{N \times (P^2 · C)}$，这里的$(P, P)$为patch的高和宽，$N$为patch的数量，不难得到$N = HW/P^2$。&lt;/p&gt;
+&lt;p&gt;根据上面的表示，对于一个224x224x3的图，如果需要patch为16x16x3的分辨率，那么将得到$224^2 / 16^2$，也就是14x14个（共196个）patch。当然，这样来讲也并不容易让人理解，所以直接看部分核心代码的实现（为直观起见，省略并修改了部分代码）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;PatchEmbed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Module&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;img_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;224&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;patch_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in_chans&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;embed_dim&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;768&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;norm_layer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flatten&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num_patches&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatten&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flatten&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;proj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Conv2d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in_channels&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in_chans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out_channels&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;embed_dim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;kernel_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;patch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stride&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;patch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# (B, 3, 14, 14) ==&amp;gt; (B, 768, 14, 14)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;norm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;norm_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;embed_dim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;norm_layer&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Identity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;forward&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;W&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shape&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;H&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;W&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;img_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;proj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# (B, 768, 14, 14)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatten&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatten&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transpose&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# BCHW -- BNC (B, 196, 768)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;norm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过代码可知，利用16x16的卷积核，将原图打成14x14个patch，每个patch的通道维度从3变为768，再Flatten并变维为$(B, N, C)$。具体可看下图的图片输入及Linear Projection部分。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit.png&#34;
+	width=&#34;934&#34;
+	height=&#34;461&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ViT&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;486px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此外，为了和NLP分类任务保持一致，这里也在所有patch前面增加了一个patch，即分类头CLS，因此最终传给Transformer的是$(B, N+1, C)$，在这里的例子中是$(B, 197, 768)$&lt;/p&gt;
+&lt;p&gt;之后还需要做位置编码，ViT使用的是可训练的1维位置嵌入，shape和$(B, N+1, C)$保持一致，然后直接和每个patch相加。&lt;/p&gt;
+&lt;p&gt;接着就是具体Transformer Encoder部分，经过LayerNorm之后，shape依旧是$(197, 768)$，在MSA部分，先将输入映射到QKV，假设有12个头，则QKV的shape为$(197, 64)$，输出后再拼接成$(197, 768)$，再经过一层LayerNorm，然后送入MLP。这里MLP的操作也比较简单，完成了：$(197, 768) \rightarrow (197, 3072) \rightarrow (197, 768)$的操作。当然，在每次送入LN层前有一个残差$x + f(x)$的操作。&lt;/p&gt;
+&lt;p&gt;因为每个block的输入和输出都是$(197, 768)$，因此可以堆叠多个block，最后输出CLS作为分类任务的依据。&lt;/p&gt;
+&lt;p&gt;具体流程也可以参考下面的公式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_eq.png&#34;
+	width=&#34;1148&#34;
+	height=&#34;171&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ViT-equation&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;671&#34;
+		data-flex-basis=&#34;1611px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;注：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;这里的位置编码，原文实验显示，无论使用(1, 2, &amp;hellip;, N)的1D方式，还是(11, 12, 13, &amp;hellip;., )的2D方式，性能差距都不大；也就是没有位置编码和有位置编码会有一定的性能差距，而不同的位置编码方式之间的性能差距则比较小。文中推测这是因为使用的是patch，而非pixel的输入，因此空间之间的信息差异就没那么重要了；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;考虑到Transformer没有CNN那样的inductive bias，也就是局部性和平移不变性，那么能不能适当的将两者混合一下呢(Hybrid)，因此ViT利用Conv2d提取特征图的方式得到了patch,也就是上面代码部分的16x16卷积操作；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ViT一般是现在一个很大的数据集上进行预训练，再针对下游任务进行微调(like bert)，根据以前的经验，使用比预训练更高分辨率的图片进行微调更有用。需要注意的是，虽然微调增加图片分辨率对Transformer没有影响，但是前期预训练好的位置编码可能就意义不大了，文中推荐采取二维插值的办法；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;上面提到增加了CLS分类头，那么能否不用它，而是直接对最终的$(196, 768)$做平均，然后进行分类呢？实验证明二者性能也差不多。（那为什么要使用CLS？只是为了和BERT一类的方法保持一致性）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;位置编码和CLS头可以简单按照下面的方法添加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;position_embedding&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Parameter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zeros&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;196&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;768&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;class_patch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Parameter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;zeros&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;768&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;exp&#34;&gt;Exp.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;数据集上，模型主要用了：ImageNet (1K class, 1.3M image)、ImageNet-21K (21k class, 14M image)和JFT (18k class, 303M 高分辨率image)做预训练，用了CIFAR-10等多个数据集做测试(包括微调和few-shot的方式)；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模型变体上，base和large和BERT一样，但是ViT扩展了Huge的版本：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_model.png&#34;
+	width=&#34;690&#34;
+	height=&#34;163&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ViT variants&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;423&#34;
+		data-flex-basis=&#34;1015px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;后续的文献和模型应用中，有特定的表示方法，如ViT-L/16表示ViT Large, patch的大小是16x16；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;比较的baseline主要是两个：BiT(Big Transfer，ResNet-based)和Noisy Student(semi-supervised, EfficientNet-based)，他们是下面数据集的SOTA，其中Noisy Student是ImageNet的SOTA，BiT是其他几个的SOTA；具体实验参数是：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_exp_1.png&#34;
+	width=&#34;953&#34;
+	height=&#34;308&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ViT-Exp1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;309&#34;
+		data-flex-basis=&#34;742px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中TPUv3-core-days表示以：使用一个TPUv3单核训练一天，为标准单位。&lt;em&gt;可以看到，ViT-H/14 要2500个，普通机构是消耗不起的&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;但我们依旧能看到，ViT可以说是全胜，这也证明了开头论文说的&lt;strong&gt;继续增大训练数据的规模后，ViT的性能在逐步增加，并实现SOTA&lt;/strong&gt;; （但是后面也做了实验，实验结果大概是：&lt;strong&gt;数据集较小时，建议还是使用ResNet，数据集很大时用ViT来预训练才会有用&lt;/strong&gt;）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ViT的训练时间也变少了（相对两个baseline来说）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;conclu&#34;&gt;Conclu.&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;ViT适合用在数据集较大的视觉预训练任务上，如果数据集较小，使用ResNet更合适；&lt;/li&gt;
+&lt;li&gt;ViT相对CNN-based的方法，训练更省时间，但预训练的成本依旧是一般机构无法承担的；&lt;/li&gt;
+&lt;li&gt;混合结构Hybrid，即上面代码中利用卷积的方式，而非直接按照图片像素切分成patch，在小模型上表现更好，但随着模型变大，就不如直接切分了（原文中也比较疑惑，因为混合结构应该是兼具二者长处的，&lt;em&gt;个人认为可能是模型大了后，Transformer不再需要inductive bias的帮助，甚至它可能会影响SA的学习，因此模型越大，纯SA的Transformer就更好&lt;/em&gt;）&lt;/li&gt;
+&lt;li&gt;当前的ViT主要用在分类任务上，那么还有很多的，如目标检测、分割等任务需要进一步的研究&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;clip&#34;&gt;CLIP&lt;/h2&gt;
+&lt;p&gt;Learning Transferable Visual Models From Natural Language Supervision. (ICML 2021 CCF-A)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;p&gt;先前用于分类的SOTA模型，需要通过对预定义好的类别进行学习，这种方式使得这类模型的通用性和扩展性不好，因此一旦需要预测新的类别时，就需要额外的标注数据进行训练。那么，通过直接从文本中学习图像也许可以是一种更节省更直观的替代方案。&lt;/p&gt;
+&lt;p&gt;在NLP任务中，以GPT3为例，通过利用大规模语料进行学习的预训练模型，即使不增加额外数据或只使用很少的数据微调，也能够很好地应用于下游任务。这种利用大量网络语料的方法所产生的效果已经比高质量人工标注数据带来的性能提升更强了。&lt;/p&gt;
+&lt;p&gt;但是在CV这边，却主要还是依靠人工标注的数据，那么能不能借箭NLP这种方法，使用来自于网络的文本和图像，而不再依靠手工标注的数据呢？&lt;/p&gt;
+&lt;p&gt;事实上，以前也有很多工作采取了这种方式，但他们依旧不如全监督的模型。这主要的原因在于这些方法所使用的数据的规模太少。&lt;/p&gt;
+&lt;h3 id=&#34;model-1&#34;&gt;Model.&lt;/h3&gt;
+&lt;h4 id=&#34;dataset&#34;&gt;Dataset.&lt;/h4&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

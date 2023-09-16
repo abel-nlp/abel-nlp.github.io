@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Important #T000 Attention is All you Need. (#T001 Transformer)
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
+Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
+Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
+SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
+RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
+LIMA: Less Is More for Alignment.'>
+<title>Literature Curation Plan</title>
+
+<link rel='canonical' href='https://blog.abelcse.cn/p/literature-curation-plan/'>
+
+<link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='Literature Curation Plan'>
+<meta property='og:description' content='Important #T000 Attention is All you Need. (#T001 Transformer)
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
+Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
+Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
+SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
+RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
+LIMA: Less Is More for Alignment.'>
+<meta property='og:url' content='https://blog.abelcse.cn/p/literature-curation-plan/'>
+<meta property='og:site_name' content='abel&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='todo-list' /><meta property='article:published_time' content='2023-05-02T09:46:16&#43;08:00'/><meta property='article:modified_time' content='2023-05-02T09:46:16&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/literature-curation-plan/paper.png' />
+<meta name="twitter:title" content="Literature Curation Plan">
+<meta name="twitter:description" content="Important #T000 Attention is All you Need. (#T001 Transformer)
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)
+Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)
+Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)
+SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)
+RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)
+LIMA: Less Is More for Alignment."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.abelcse.cn/p/literature-curation-plan/paper.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue3f7bdfccc0be810572359657e66a4ad_56159_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">abel&#39;s blog</a></h1>
+            <h2 class="site-description">Record abel&#39;s Paper and Tech Notes here.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/abel-nlp'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#important">Important</a>
+      <ol>
+        <li><a href="#t000">#T000</a></li>
+      </ol>
+    </li>
+    <li><a href="#survey">Survey</a>
+      <ol>
+        <li><a href="#s000">#S000</a></li>
+      </ol>
+    </li>
+    <li><a href="#report">Report</a>
+      <ol>
+        <li><a href="#r000">#R000</a></li>
+      </ol>
+    </li>
+    <li><a href="#re">RE</a>
+      <ol>
+        <li><a href="#e000">#E000</a>
+          <ol>
+            <li><a href="#joint">Joint</a></li>
+            <li><a href="#few-shot">Few-shot</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#ner">NER</a>
+      <ol>
+        <li><a href="#n000">#N000</a>
+          <ol>
+            <li><a href="#discontinuous">Discontinuous</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#kge">KGE</a>
+      <ol>
+        <li><a href="#k000">#K000</a></li>
+      </ol>
+    </li>
+    <li><a href="#mrc">MRC</a>
+      <ol>
+        <li><a href="#m000">#M000</a></li>
+      </ol>
+    </li>
+    <li><a href="#mm">MM</a>
+      <ol>
+        <li><a href="#c000">#C000</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/other/" style="background-color: 3CB371; color: #fff;">
+                Other
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/literature-curation-plan/">Literature Curation Plan</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 02, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="important">Important</h2>
+<h3 id="t000">#T000</h3>
+<ul>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Attention is All you Need. (#T001 Transformer)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. (#T002 BERT)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. (#T003 CoT)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Augmenting Reinforcement Learning with Human Feedback. (#T004 RLHF)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Toolformer: Language Models Can Teach Themselves to Use Tools. (#T005 Toolformer)</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> SWARM Parallelism: Training Large Models Can Be Surprisingly Communication-Efficient. (#T006 SWARM)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> RWKV: Reinventing RNNs for the Transformer Era. (#T007 RWKV)</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> LIMA: Less Is More for Alignment. (#T008 LIMA)</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> ZeRO: Memory Optimizations Toward Training Trillion Parameter Models. (#T009 ZoRO)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> LLaMA: Open and Efficient Foundation Language Models. (#T010 LLaMA)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> LoRA: Low-Rank Adaptation of Large Language Models. (#T011 LoRA)</p>
+</li>
+</ul>
+<h2 id="survey">Survey</h2>
+<h3 id="s000">#S000</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing.  (#S001 Prompt)</li>
+<li><input disabled="" type="checkbox"> Multimodal Deep Learning. (#S002 Multimodal)</li>
+</ul>
+<h2 id="report">Report</h2>
+<h3 id="r000">#R000</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Improving Language Understanding by Generative Pre-Training. (#R001 GPT)</li>
+<li><input checked="" disabled="" type="checkbox"> Language Models are Unsupervised Multitask Learners. (#R002 GPT2)</li>
+<li><input checked="" disabled="" type="checkbox"> Language Models are Few-Shot Learners. (#R003 GPT3)</li>
+<li><input checked="" disabled="" type="checkbox"> Training language models to follow instructions with human feedback. (#R004 InstructGPT)</li>
+<li><input disabled="" type="checkbox"> GPT-4 Technical Report. (#R005 GPT4-Report1)</li>
+<li><input disabled="" type="checkbox"> Sparks of Artificial General Intelligence: Early experiments with GPT-4. (#R006 GPT4-Report2)</li>
+</ul>
+<h2 id="re">RE</h2>
+<h3 id="e000">#E000</h3>
+<h4 id="joint">Joint</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> TPLinker: Single-stage Joint Extraction of Entities and Relations Through Token Pair Linking. (#E001 TPLinker)</li>
+<li><input checked="" disabled="" type="checkbox"> A Novel Cascade Binary Tagging Framework for Relational Triple Extraction. (#E002 CasRel)</li>
+<li><input disabled="" type="checkbox"> A Frustratingly Easy Approach for Entity and Relation Extraction. (#E003 PURE)</li>
+<li><input checked="" disabled="" type="checkbox"> A Novel Global Feature-Oriented Relational Triple Extraction Model based on Table Filling. (#E004 GRTE)</li>
+<li><input checked="" disabled="" type="checkbox"> PRGC: Potential Relation and Global Correspondence Based Joint Relational Triple Extraction. (#E005 PRGC)</li>
+<li><input checked="" disabled="" type="checkbox"> OneRel:Joint Entity and Relation Extraction with One Module in One Step. (#E006 OneRel)</li>
+<li><input checked="" disabled="" type="checkbox"> RFBFN: A Relation-First Blank Filling Network for Joint Relational Triple Extraction. (#E007 RFBFN)</li>
+<li><input disabled="" type="checkbox"> UniRel: Unified Representation and Interaction for Joint Relational Triple Extraction. (#E008 UniRel)</li>
+</ul>
+<h4 id="few-shot">Few-shot</h4>
+<ul>
+<li>
+<p><input checked="" disabled="" type="checkbox"> (#E009 FewRel)
+FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. (FewRel)
+FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.0)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Few-Shot Relational Triple Extraction with Perspective Transfer Network. (#E010 PTN)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Query-based Instance Discrimination Network for Relational Triple Extraction. (#E011 QIDN)</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Relation-Guided Few-Shot Relational Triple Extraction. (#E012 RelATE)</p>
+</li>
+</ul>
+<h2 id="ner">NER</h2>
+<h3 id="n000">#N000</h3>
+<h4 id="discontinuous">Discontinuous</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Unified Named Entity Recognition as Word-Word Relation Classification. (#N001 W2NER)</li>
+<li><input disabled="" type="checkbox"> Rethinking Boundaries: End-To-End Recognition of Discontinuous Mentions with Pointer Networks. (#N002 MAPtr)</li>
+<li><input disabled="" type="checkbox"> Discontinuous Named Entity Recognition as Maximal Clique Discovery. (#N003 Mac)</li>
+</ul>
+<h2 id="kge">KGE</h2>
+<h3 id="k000">#K000</h3>
+<h2 id="mrc">MRC</h2>
+<h3 id="m000">#M000</h3>
+<h2 id="mm">MM</h2>
+<h3 id="c000">#C000</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> An Image Is Worth 16X16 Words: Transformers for Image Recognition at scale.  (#C001 ViT)</li>
+<li><input checked="" disabled="" type="checkbox"> Swin Transformer: Hierarchical Vision Transformer using Shifted Windows. (#C002 Swin-Transformer)</li>
+<li><input checked="" disabled="" type="checkbox"> Learning Transferable Visual Models From Natural Language Supervision. (#C003 CLIP)</li>
+<li><input checked="" disabled="" type="checkbox"> BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation. (#C004 BLIP)</li>
+<li><input disabled="" type="checkbox"> A Novel Graph-based Multi-modal Fusion Encoder for Neural Machine Translation.  (#C005 NMT)</li>
+<li><input disabled="" type="checkbox"> Multi-modal Graph Fusion for Named Entity Recognition with Targeted Visual Guidance. (#C006 UMGF)</li>
+<li><input disabled="" type="checkbox"> Good Visual Guidance Makes A Better Extractor: Hierarchical Visual Prefix for Multimodal Entity and Relation Extraction. (#C007 HVPNeT)</li>
+<li><input checked="" disabled="" type="checkbox"> Align before Fuse: Vision and Language Representation Learning with Momentum Distillation. (#C008 ALBEF)</li>
+</ul>
+<p><em>Content will be continuously added.</em></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/todo-list/">todo-list</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>个人博客，请勿转载。Personal blog, please do not repost.</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 abel&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with Hugo <br />
+        
+        Theme Stack designed by Jimmy
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=WenKai:wght@300;400;700&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

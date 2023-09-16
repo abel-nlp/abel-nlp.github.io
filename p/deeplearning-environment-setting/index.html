@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Prerequisites 搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)； 自己在服务器的账号引入了conda和cuda的环境变'>
+<title>DeepLearning Environment Setting</title>
+
+<link rel='canonical' href='https://blog.abelcse.cn/p/deeplearning-environment-setting/'>
+
+<link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='DeepLearning Environment Setting'>
+<meta property='og:description' content='Prerequisites 搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)； 自己在服务器的账号引入了conda和cuda的环境变'>
+<meta property='og:url' content='https://blog.abelcse.cn/p/deeplearning-environment-setting/'>
+<meta property='og:site_name' content='abel&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tech-notes' /><meta property='article:published_time' content='2023-05-01T19:38:22&#43;08:00'/><meta property='article:modified_time' content='2023-05-01T19:38:22&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/deeplearning-environment-setting/jpy.png' />
+<meta name="twitter:title" content="DeepLearning Environment Setting">
+<meta name="twitter:description" content="Prerequisites 搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)； 自己在服务器的账号引入了conda和cuda的环境变"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.abelcse.cn/p/deeplearning-environment-setting/jpy.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue3f7bdfccc0be810572359657e66a4ad_56159_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">abel&#39;s blog</a></h1>
+            <h2 class="site-description">Record abel&#39;s Paper and Tech Notes here.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/abel-nlp'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#基本运行环境创建">基本运行环境创建</a>
+      <ol>
+        <li><a href="#conda环境创建">Conda环境创建</a></li>
+        <li><a href="#pycharm配置">PyCharm配置</a></li>
+        <li><a href="#vscode配置">VSCode配置</a></li>
+      </ol>
+    </li>
+    <li><a href="#配置远程jupyter">配置远程Jupyter</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/tech/" style="background-color: 3CB371; color: #fff;">
+                Tech
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/deeplearning-environment-setting/">DeepLearning Environment Setting</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 01, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)；</li>
+<li>自己在服务器的账号引入了conda和cuda的环境变量</li>
+<li>本地下载了PyCharm或VSCode；</li>
+<li>拥有服务器管理员权限或者与管理员沟通过开放端口(只限启用jupyter才需要)</li>
+</ol>
+<!-- raw HTML omitted -->
+<h2 id="基本运行环境创建">基本运行环境创建</h2>
+<h3 id="conda环境创建">Conda环境创建</h3>
+<ul>
+<li>
+<p>登录自己服务器账号后，需要创建所需的虚拟环境：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda create -n env_name <span class="nv">python</span><span class="o">=</span>3.7
+</span></span><span class="line"><span class="cl"><span class="c1"># 自己指定python版本</span>
+</span></span><span class="line"><span class="cl">conda remove -n env_name --all
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果以后需要删除环境，则可以使用该命令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>激活虚拟环境：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda activate env_name
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> activate env_name
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭环境：</span>
+</span></span><span class="line"><span class="cl">conda deactivate
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> deactivate
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装自己所需要的第三方库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip3 install package_name
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者临时使用清华源</span>
+</span></span><span class="line"><span class="cl">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple package_name
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者使用conda安装，自行搜索</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="pycharm配置">PyCharm配置</h3>
+<ul>
+<li>
+<p>新建项目，为了方便，最好保持本地项目和服务器所需要配置的目录名一样；</p>
+</li>
+<li>
+<p>在新建项目处，<code>Location</code>处是本地的项目路径。 选择<code>Preciously</code>的解释器，并点击<code>Add Interpreter</code>，选择<code>SSH</code>;</p>
+<p><img src="/p/deeplearning-environment-setting/create.png"
+	width="796"
+	height="415"
+	
+	loading="lazy"
+	
+		alt="new project"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="460px"
+	
+></p>
+</li>
+<li>
+<p>如果本地已经在某个服务器上已经创建过解释器，则直接在<code>Existing</code>处选择即可，否则，依旧点此处，再点击<code>...</code>处进入<code>SSH Configurations</code>页面；点击<code>+</code>，输入服务器地址、用户名和密码，之后再<code>OK</code>&ndash;&gt;<code>Next</code>:</p>
+<p><img src="/p/deeplearning-environment-setting/add.png"
+	width="1468"
+	height="654"
+	
+	loading="lazy"
+	
+		alt="add interpreter"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="224"
+		data-flex-basis="538px"
+	
+></p>
+</li>
+<li>
+<p>如果是第一次添加，则可能出现下图的情况，直接点击<code>Move</code>，再点<code>Next</code>按照提示操作</p>
+<p><img src="/p/deeplearning-environment-setting/move.png"
+	width="572"
+	height="110"
+	
+	loading="lazy"
+	
+		alt="move"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="520"
+		data-flex-basis="1248px"
+	
+></p>
+</li>
+<li>
+<p>如下图，选择<code>Existing</code>，点击<code>...</code>，之后会出现一个选择路径的选项框，按照自己账户所存在的根目录(如<code>home或者data</code>)，在自己账号下面，逐步点击<code>.conda</code>&ndash;&gt;<code>envs</code>&ndash;&gt;<code>需要的虚拟环境</code>&ndash;&gt;<code>bin</code>&ndash;&gt;<code>python3</code>即可，选择<code>OK</code>和<code>Create</code>，按照提示进入项目中。</p>
+<p><img src="/p/deeplearning-environment-setting/conda.png"
+	width="854"
+	height="611"
+	
+	loading="lazy"
+	
+		alt="conda"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+</li>
+<li>
+<p>之后，选择<code>Tools</code>&ndash;&gt;<code>Deployment</code>&ndash;&gt;<code>Configuration...</code>；一般来说，现在已经有了SFTP的选项，因为刚刚创建SSH解释器时，这里也同时附带被创建了；</p>
+</li>
+<li>
+<p>类似于选择<code>.conda</code>的操作，选择好<code>Local path</code>和服务器<code>Deployment path</code>，即后续项目代码同步的路径；</p>
+</li>
+<li>
+<p>如果有需要排除同步的路径，例如模型本身或者较大的数据集，则可以在<code>Excluded Paths</code>中选好本地及服务器不同步的路径；</p>
+<p><img src="/p/deeplearning-environment-setting/deployment.png"
+	width="793"
+	height="262"
+	
+	loading="lazy"
+	
+		alt="sftp"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="302"
+		data-flex-basis="726px"
+	
+></p>
+</li>
+<li>
+<p>完成这些配置后，此时是默认不自动同步的，因此可以进入<code>Tools</code>&ndash;&gt;<code>Deployment</code>&ndash;&gt;<code>Options..</code>，将<code>Upload changed files automatically to the default server</code>改成<code>On explicit save action</code>，即自己按<code>Ctrl+S</code>时进行同步，当然也可以改成<code>Always</code>;</p>
+</li>
+<li>
+<p>之后，在PyCharm的右下角，将<code>&lt;no default server&gt;</code>改成上面配置好的<code>SFTP</code>；</p>
+<p><img src="/p/deeplearning-environment-setting/footer.png"
+	width="392"
+	height="71"
+	
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="552"
+		data-flex-basis="1325px"
+	
+></p>
+</li>
+<li>
+<p>大功告成。</p>
+</li>
+</ul>
+<h3 id="vscode配置">VSCode配置</h3>
+<ul>
+<li>VSCode的配置相对比较简单，因此这里中简述基本步骤，不做相信说明，有需要可自行网上检索</li>
+</ul>
+<ol>
+<li>
+<p>下载微软官方插件<code>Remote - SSH</code>；</p>
+</li>
+<li>
+<p>在<code>远程资源管理器</code>中的右上角的小齿轮中，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Host &lt;远程主机名称&gt;
+</span></span><span class="line"><span class="cl">    HostName &lt;远程主机IP&gt;
+</span></span><span class="line"><span class="cl">    User &lt;用户名&gt;
+</span></span><span class="line"><span class="cl">    Port &lt;ssh端口，默认22&gt;
+</span></span><span class="line"><span class="cl">    IdentityFile &lt;本机SSH私钥路径&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Host ：连接的主机名称，可自定义；</li>
+<li>Hostname ：远程主机的 IP 地址；</li>
+<li>User ：用于登录远程主机的用户名；</li>
+<li>Port ：用于登录远程主机的端口，SSH 默认为 22 ；</li>
+<li>IdentityFile ：本地的私钥文件 id_rsa 路径；</li>
+</ul>
+</li>
+<li>
+<p>一开始是没有私钥文件的，需要使用以下方式得到：</p>
+<p>本地：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.ssh
+</span></span><span class="line"><span class="cl"><span class="c1"># 复制 id_rsa.pub的内容</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.ssh
+</span></span><span class="line"><span class="cl">vim authorized_keys
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后将刚刚复制的文件粘贴进去</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若不熟悉vim请自行检索</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后，本地的<code>id_rsa</code>即为私钥</p>
+</li>
+<li>
+<p>小齿轮还可以再新增其他服务器的或者其他账户的信息；</p>
+</li>
+<li>
+<p>需要注意的问题：</p>
+<ul>
+<li>创建好后，左下角可以选择连接服务器，连接后需要下载相应的插件，如<code>python</code>和<code>jupyter</code>相关；</li>
+<li>有时候vscode的网络不好，连接服务器下载会非常慢，插件也是如此；</li>
+<li>如果难以下载，可以本地下载好，包括服务器本身或者需要按照的插件，然后进入服务器的<code>.vscode-server</code>中进行配置，具体自行查询</li>
+</ul>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<h2 id="配置远程jupyter">配置远程Jupyter</h2>
+<p>虽然使用debug也非常方便，但是有时候还是希望可以利用Jupyter的cell执行特点来执行代码。</p>
+<ul>
+<li>
+<p>因此，先在虚拟环境中<code>pip install jupyter</code>；</p>
+</li>
+<li>
+<p>假设服务器有比较严格的防火墙，那么请提前确定好端口(假设是4399)，让管理员开启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span>4399/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>之后，初始化jupyter配置：</p>
+<ul>
+<li>
+<p>产生配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jupyter notebook --generate-config
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>设置密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jupyter notebook password
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>复制密钥：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.jupyter
+</span></span><span class="line"><span class="cl">vim jupyter_notebook_config.json
+</span></span><span class="line"><span class="cl"><span class="c1"># 将password的value复制下来</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>配置端口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim jupyter_notebook_config.py
+</span></span><span class="line"><span class="cl"><span class="c1"># 拉到最后</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">c.NotebookApp.ip <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+</span></span><span class="line"><span class="cl">c.NotebookApp.password <span class="o">=</span> <span class="s2">&#34;刚刚复制的密钥&#34;</span>
+</span></span><span class="line"><span class="cl">c.NotebookApp.open_browser <span class="o">=</span> False
+</span></span><span class="line"><span class="cl">c.NotebookApp.port <span class="o">=</span> <span class="m">4399</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>启动jupyter：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jupyter notebook
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后测试一下，例如浏览器输入 http://浏览器ip:4399</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入token密码</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，在哪里启动<code>jupyter</code>，那么其根目录就在哪里；</p>
+</li>
+<li>
+<p>长期挂载：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nohup jupyter notebook &gt; note.log <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则会一直挂在后台，保持运行</p>
+</li>
+<li>
+<p>在PyCharm中使用jupyter：</p>
+<p>在项目中新建一个<code>jupyter</code>文件，打开后右上角设置其<code>configuration</code>:</p>
+<p><img src="/p/deeplearning-environment-setting/jupyter.png"
+	width="720"
+	height="244"
+	
+	loading="lazy"
+	
+		alt="jupyter"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="295"
+		data-flex-basis="708px"
+	
+></p>
+<p>选中<code>Configured Server</code>，输入<code>http://xxx.xxx.xxx.xxx:4399</code>，然后回到文件运行代码，运行时会提示输入密码，输入即可;</p>
+</li>
+<li>
+<p>大功告成！</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/tech-notes/">tech-notes</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>个人博客，请勿转载。Personal blog, please do not repost.</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/server-management-notes/">
+        
+        
+            <div class="article-image">
+                <img src="/p/server-management-notes/cover.83e26b81ce19e6d3ece4fd997c409b7d.jpg" 
+                        width="1600" 
+                        height="1067" 
+                        loading="lazy"
+                        alt="Featured image of post Server Management Notes"
+                        
+                        data-hash="md5-g&#43;Jrgc4Z5tPs5P2ZfECbfQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Server Management Notes</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/hello-world/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hello-world/cover.83e26b81ce19e6d3ece4fd997c409b7d.jpg" 
+                        width="1600" 
+                        height="1067" 
+                        loading="lazy"
+                        alt="Featured image of post Hello World"
+                        
+                        data-hash="md5-g&#43;Jrgc4Z5tPs5P2ZfECbfQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hello World</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 abel&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with Hugo <br />
+        
+        Theme Stack designed by Jimmy
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=WenKai:wght@300;400;700&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

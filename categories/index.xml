@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on abel&#39;s blog</title>
+        <link>https://blog.abelcse.cn/categories/</link>
+        <description>Recent content in Categories on abel&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 09 Aug 2023 22:34:25 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MultiModal</title>
+        <link>https://blog.abelcse.cn/categories/multimodal/</link>
+        <pubDate>Wed, 09 Aug 2023 22:34:25 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/categories/multimodal/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/categories/multimodal/paper.svg" alt="Featured image of post MultiModal" /&gt;</description>
+        </item>
+        <item>
+        <title>Tech</title>
+        <link>https://blog.abelcse.cn/categories/tech/</link>
+        <pubDate>Thu, 11 May 2023 09:23:59 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/categories/tech/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/categories/tech/a.jpg" alt="Featured image of post Tech" /&gt;</description>
+        </item>
+        <item>
+        <title>NLP</title>
+        <link>https://blog.abelcse.cn/categories/nlp/</link>
+        <pubDate>Wed, 10 May 2023 15:39:15 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/categories/nlp/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/categories/nlp/acl.png" alt="Featured image of post NLP" /&gt;</description>
+        </item>
+        <item>
+        <title>Other</title>
+        <link>https://blog.abelcse.cn/categories/other/</link>
+        <pubDate>Tue, 02 May 2023 09:46:16 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/categories/other/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/categories/other/cover.jpg" alt="Featured image of post Other" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
