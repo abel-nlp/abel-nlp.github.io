@@ -253,10 +253,15 @@
             <li><a href="#overview">Overview.</a></li>
             <li><a href="#embedding-layer">Embedding Layer</a></li>
             <li><a href="#must-encoder">MUST Encoder</a></li>
+            <li><a href="#extraction-layer">Extraction Layer</a></li>
           </ol>
         </li>
+        <li><a href="#exp">Exp.</a></li>
+        <li><a href="#result">Result.</a></li>
+        <li><a href="#conclu">Conclu.</a></li>
       </ol>
     </li>
+    <li><a href="#formnetv2">FormNetv2</a></li>
   </ol>
 </nav>
         </div>
@@ -321,7 +326,7 @@
 
 
                 <time class="article-time--reading">
-                    4 minute read
+                    7 minute read
                 </time>
             </div>
         
@@ -384,6 +389,97 @@
 <p>嵌入层的目的是初始化 DOM节点 和 TI token 的向量表示，本文认为，每个DOM节点都可看作是其子树的一个总结，例如head节点就可被用作文档级别的分类依据。对于DOM节点的表示，主要由三部分构成：node嵌入、type嵌入和tag嵌入；对于TI token的嵌入，则由其文本(或图像)的嵌入和type嵌入构成，如果是文本，则由语言模型提供(like bert)，如果是图像，则由patch当作其嵌入(本文使用的ResNet101的线性层投影)。</p>
 <p>其中，type嵌入用于表明该嵌入是DOM节点还是TI token，tag嵌入表明了DOM节点的HTML标签，比如<code>&lt;div&gt;</code>，<code>&lt;img&gt;</code>等。这些嵌入都是可训练的。</p>
 <h4 id="must-encoder">MUST Encoder</h4>
+<p>编码器通过堆叠L层完全相同的编码器层来学习多模态的知识。在每个编码器层中，都有四个注意力模式，分别是：结构化注意力，旨在迁移DOM树的结构知识；自下而上的注意力，旨在将TI token的信息传递给DOM节点；自上而下的注意力，旨在将DOM节点的信息传递给TI token；局部注意力，旨在从兄弟节点的TI token中更好地学习上下文嵌入；</p>
+<p>DOM-to-DOM注意力：简单说就是专门计算DOM节点的注意力，对于某个节点，它将分别和它的父节点、子节点和兄弟节点进行计算。</p>
+<p>Bottom-UP注意力：考虑到随着TI token增长而带来的计算开销，本文仅计算TI token和与之相关的DOM节点的注意力，也就是说，TI token的信息直接传递给它的父节点，而再继续往上的传递，则通过DOM-to-DOM注意力进行；</p>
+<p>Top-Down注意力：本文在此处的计算方式是让TI token和每个DOM节点都相互连接。（图1可以清晰地看出来）</p>
+<p>Local注意力：本文仅仅计算同一个叶子DOM节点的两个TI token。</p>
+<h4 id="extraction-layer">Extraction Layer</h4>
+<p>提取层直接使用Transformer的解码器，根据词表产生答案。但在本文的这里，并非简单地使用生成方式，而是额外增加了序列标注方法进行span的提取，以及利用<code>&lt;head&gt;</code>节点来对网页文件进行分类，最终得到解码的损失：
+$$
+L = L_D + \alpha L_{Seq} + \beta L_{Cls}
+$$</p>
+<h3 id="exp">Exp.</h3>
+<p>本文主要使用了两个数据集：</p>
+<p><strong>WebSRC</strong>：是被设计用于网页的结构化阅读理解和信息抽取的数据集，包含了6.5K的带HTML格式和图像的网页数据，包含10个领域的信息。本文使用的是带有key-value结构的数据，即3214个网页，71个不同的属性字段，简单说就是key被当作属性字段，而value当作答案；</p>
+<p><strong>Common Crawl</strong>：包含超过30亿的网页数据，本文选了其中的Movies、Events和Products三个领域的数据，并通过schema.org的标注数据，对这三个领域的字段进行了筛选，限制和维护了必须是 英语 和 属性的答案只有一个 的网页数据。</p>
+<p>此外，对这两个数据集，本文还单独进行了span的标注，以对序列标注起作用。</p>
+<p>本文使用32核的TPU v3进行训练，使用EM和F1进行评估标注，并重复10次实验计算其平均指标。</p>
+<h3 id="result">Result.</h3>
+<p>实验结果表明，本文的方法实现了SOTA的性能，其主要数据见表1。</p>
+<p><img src="/p/paper-reading-collection-for-multimodal-information-extraction/mustie2.png"
+	width="1310"
+	height="324"
+	
+	loading="lazy"
+	
+		alt="table 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="404"
+		data-flex-basis="970px"
+	
+></p>
+<p>从结果中可以看到：</p>
+<p>GraphIE和FreeDOM效果不好，因为他们仅从文本节点中提取文本信息；SimpDOM增加了XPath的信息，因此性能相比前两个要有提升，剩下的几个方法显式地对HTML进行了建模，因此性能也进一步地增加。</p>
+<p>本文的方法则实现了最好的性能，在EM分数上，MUST相比于WebFormer和MarkupLM分别实现了**2.57%<strong>和</strong>4.61%**的增长，这主要是因为这两个方法虽然引入了多模态信息，但都是分别独立地对不同模型进行建模和编码，而MUST则是统一地进行编码，更好地融合了多模态和网页结构的信息。</p>
+<p>为了验证方法的有效性，文中还对不同的模态所起的作用进行了验证，如图2所示。</p>
+<p><img src="/p/paper-reading-collection-for-multimodal-information-extraction/mustie3.png"
+	width="592"
+	height="306"
+	
+	loading="lazy"
+	
+		alt="figure 2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="464px"
+	
+></p>
+<p>可以看到没有HTML结构的情况下，模型损失的点最多，这意味着在网页文本中，如果仅仅使用文本和图片数据，效果提升是有限的，而DOM信息则非常重要，这也符合网页信息的特点。</p>
+<p>在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结构都证明了结合多模态信息对网页信息提取是有用的。</p>
+<p><img src="/p/paper-reading-collection-for-multimodal-information-extraction/mustie4.png"
+	width="618"
+	height="300"
+	
+	loading="lazy"
+	
+		alt="figure 3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="494px"
+	
+></p>
+<p>因为MUST模型自己修改了编码器中的注意力机制，因此本文还对不同注意力机制的影响进行了验证，也就是在保持局部注意力的情况下，分别单独训练了三个模型。在图4中可以看到，从下自上的注意力起的作用最大，文中认为这是由于该机制需要将TI token的信息传递给DOM节点，这对于维护DOM节点的嵌入非常重要。</p>
+<p><img src="/p/paper-reading-collection-for-multimodal-information-extraction/mustie5.png"
+	width="573"
+	height="316"
+	
+	loading="lazy"
+	
+		alt="figure 4"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="435px"
+	
+></p>
+<h3 id="conclu">Conclu.</h3>
+<ol>
+<li>HTML结构信息对于网页信息抽取任务而言是很重要的；</li>
+<li>文本信息和视觉信息对不同场景和特点的属性字段起的作用不尽相同；</li>
+<li>将文本信息、视觉信息和网页结构统一进行编码，可以更好地学习多模态的信息，相比于分别进行不同模态的编码要有用；</li>
+<li>本文的模型目前只关注于单目标的任务，也就是某个属性字段只有一个答案。</li>
+</ol>
+<!-- raw HTML omitted -->
+<h2 id="formnetv2">FormNetv2</h2>
+<p>FormNetV2: Multimodal Graph Contrastive Learning for Form Document Information Extraction. (ACL 2023)</p>
 
 </section>
 
