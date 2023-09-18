@@ -28,7 +28,7 @@
 &lt;li&gt;文本和图片一般只被简单的拼接在一起，使得现有的Transformer模型无法很好地处理大量的网页信息；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;li&gt;为了解决这些问题，文本提出的&lt;strong&gt;MUST&lt;/strong&gt;，就是专门设计了结构化的注意力机制，从多种模态上联合编码DOM树的所有节点，从而学到跨模态的嵌入表示。直观来讲，就是利用网页的布局结构信息，更自然地将各种模态的数据（文本、图像和标签）连接起来，从而更好地计算注意力权重；&lt;/li&gt;
+&lt;li&gt;为了解决这些问题，文本提出的模型&lt;strong&gt;MUST&lt;/strong&gt;，就是专门设计了结构化的注意力机制，从多种模态上联合编码DOM树的所有节点，从而学到跨模态的嵌入表示。直观来讲，就是利用网页的布局结构信息，更自然地将各种模态的数据（文本、图像和标签）连接起来，从而更好地计算注意力权重；&lt;/li&gt;
 &lt;li&gt;本文的主要贡献在于：
 &lt;ol&gt;
 &lt;li&gt;提出的多模态结构化Transformer可有效地从网页中建模和提取多模态信息；&lt;/li&gt;
@@ -38,9 +38,9 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
-&lt;h4 id=&#34;task&#34;&gt;Task.&lt;/h4&gt;
+&lt;h4 id=&#34;overview&#34;&gt;Overview.&lt;/h4&gt;
 &lt;p&gt;Web IE：给定一个目标字段T，需要从相应的网页文件中提取出相关的信息。&lt;/p&gt;
-&lt;p&gt;在网页中，信息是以DOM树的结构来布局的，往往含有多种模态，最常见的就是文本和图像，而文本和图片本身就是DOM树的叶子节点。为了编码需要提取的目标，本文在原DOM树中增加了Field这类节点，作为后续要提取的属性。除了文本的表示外，对于图像节点，本文使用了OCR去识别其中的文字信息。具体的结构可图1：&lt;/p&gt;
+&lt;p&gt;在网页中，信息是以DOM树的结构来布局的，往往含有多种模态，最常见的就是文本和图像，而文本和图片本身就是DOM树的叶子节点。为了编码需要提取的目标，本文在原DOM树中增加了&lt;em&gt;Field&lt;/em&gt;这类节点，作为后续要提取的属性。除了文本的表示外，对于图像节点，本文使用了OCR去识别其中的文字信息。具体的结构可图1：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie1.png&#34;
 	width=&#34;1238&#34;
 	height=&#34;667&#34;
@@ -55,6 +55,11 @@
 		data-flex-basis=&#34;445px&#34;
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MUST&lt;/strong&gt;模型主要由三个部分组成，分别是嵌入层、MUST编码器和提取层，嵌入层主要负责将图像和文本token(后续以&lt;strong&gt;TI&lt;/strong&gt;表示，即Text+Image)初始化为嵌入表示，MUST编码器利用结构化注意力机制将DOM树中的多模态信息进行联合编码，提取层则利用Transformer解码器提取&lt;em&gt;Field&lt;/em&gt;字段的答案。&lt;/p&gt;
+&lt;h4 id=&#34;embedding-layer&#34;&gt;Embedding Layer&lt;/h4&gt;
+&lt;p&gt;嵌入层的目的是初始化 DOM节点 和 TI token 的向量表示，本文认为，每个DOM节点都可看作是其子树的一个总结，例如head节点就可被用作文档级别的分类依据。对于DOM节点的表示，主要由三部分构成：node嵌入、type嵌入和tag嵌入；对于TI token的嵌入，则由其文本(或图像)的嵌入和type嵌入构成，如果是文本，则由语言模型提供(like bert)，如果是图像，则由patch当作其嵌入(本文使用的ResNet101的线性层投影)。&lt;/p&gt;
+&lt;p&gt;其中，type嵌入用于表明该嵌入是DOM节点还是TI token，tag嵌入表明了DOM节点的HTML标签，比如&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;等。这些嵌入都是可训练的。&lt;/p&gt;
+&lt;h4 id=&#34;must-encoder&#34;&gt;MUST Encoder&lt;/h4&gt;
 </description>
         </item>
         
