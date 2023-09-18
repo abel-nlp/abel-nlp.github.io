@@ -54,6 +54,8 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing.  (#S001 Prompt)&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Multimodal Deep Learning. (#S002 Multimodal)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Multi-Modal Knowledge Graph Construction and Application: A Survey. (#S003 MMKG)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; A Survey of Large Language Models. (#S004 LLM survey)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;report&#34;&gt;Report&lt;/h2&gt;
 &lt;h3 id=&#34;r000&#34;&gt;#R000&lt;/h3&gt;
@@ -118,6 +120,8 @@ FewRel 2.0: Towards More Challenging Few-Shot Relation Classification. (FewRel2.
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Multi-modal Graph Fusion for Named Entity Recognition with Targeted Visual Guidance. (#C006 UMGF)&lt;/li&gt;
 &lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Good Visual Guidance Makes A Better Extractor: Hierarchical Visual Prefix for Multimodal Entity and Relation Extraction. (#C007 HVPNeT)&lt;/li&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Align before Fuse: Vision and Language Representation Learning with Momentum Distillation. (#C008 ALBEF)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (#C009 MUSTIE)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; FormNetV2: Multimodal Graph Contrastive Learning for Form Document Information Extraction. (#C010 FormNetv2)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;Content will be continuously added.&lt;/em&gt;&lt;/p&gt;
 </description>
