@@ -248,7 +248,16 @@
     <li><a href="#mmkg">MMKG</a>
       <ol>
         <li><a href="#abs--int">Abs. &amp; Int.</a></li>
-        <li><a href="#define">Define.</a></li>
+        <li><a href="#define">Define.</a>
+          <ol>
+            <li><a href="#mmkgs">MMKGs</a></li>
+          </ol>
+        </li>
+        <li><a href="#construct">Construct.</a>
+          <ol>
+            <li><a href="#from-images-to-symbols">From Images to Symbols</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -319,7 +328,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -345,6 +354,63 @@
 </ul>
 <p>简而言之就是在传统KG中增加多模态数据很重要，一是因为他们对文本数据有很好的提升作用，二是因为学、业界对多模态的KG有需求。</p>
 <h3 id="define">Define.</h3>
+<h4 id="mmkgs">MMKGs</h4>
+<p>传统的KG可表示为有向图$G = {E, R, A, V, T_R, T_A}$，其中，$E, R, A, V$分别表示实体集合、关系集合、属性集合和属性对应的值的集合；$T_R = E \times R \times E$，即关系三元组的集合，如$(s, p, o) \in T_R$表示实体$s \in E$和实体$o \in E$之间存在一个关系$p \in R$；而$T_A = E \times A \times V$表示属性三元组，如$(s, p, o) \in T_A$表示实体$s \in E$有一个属性$p \in A$，该属性的值为$o \in V$。</p>
+<p>多模态的KG和传统KG一样，但是其中的部分项不再局限于文本，还可以是图片、音频或者视频等。</p>
+<p>现存的工作主要可以分为两类：</p>
+<p>一种是将多模态数据<strong>当作实体的特定属性</strong>来对待(A-MMKG)，例如对于某个实体，它的属性<em>hasImage</em>​关联的就是一个具体的值，而这个值是一张图片；</p>
+<p>另一种则是将多模态数据<strong>当作实体</strong>对待(N-MMKG)，也就说一张图片、一个音频，它本身就已经作为了实体，而不再是某个属性关联下的属性值了，例如<em>Eiffel Tower</em>的关系<em>imageOf</em>​所关联的是<em>Eiffel_Tower.jpg</em>，或者<em>Eiffel_Tower_in_Paris.jpg</em> 可能和<em>Eiffel_Tower.jpg</em>存在关系<em>similar​</em>。</p>
+<p>通过图1可以更清晰地了解这两种分类。</p>
+<p><img src="/p/survey-multi-modal-knowledge-graph/mmkg.png"
+	width="1611"
+	height="559"
+	
+	loading="lazy"
+	
+		alt="figure 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="288"
+		data-flex-basis="691px"
+	
+></p>
+<p>此外，对于N-MMKG而言，一张图片往往会有多种不同的图像描述，比如灰度直方图描述GHD，方向梯度描述HOG和色彩布局描述CLD等；在表1中提供了两种类别的示例。</p>
+<p><img src="/p/survey-multi-modal-knowledge-graph/mmkg_t1.png"
+	width="1539"
+	height="320"
+	
+	loading="lazy"
+	
+		alt="table 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="480"
+		data-flex-basis="1154px"
+	
+></p>
+<h3 id="construct">Construct.</h3>
+<p>进行MMKG构建时，可以大体分为两类，分别是用标记过的图去匹配符号，和用标记过的符号去匹配图片。</p>
+<h4 id="from-images-to-symbols">From Images to Symbols</h4>
+<p>主要通过标注的图片去关联文本，常见于CV领域，如图2所示，其中a是进行简单的分割；b是对不同目标的位置进行标注；c是标记出具有所属关系的目标。</p>
+<p><img src="/p/survey-multi-modal-knowledge-graph/fig2.png"
+	width="843"
+	height="321"
+	
+	loading="lazy"
+	
+		alt="figure 2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="262"
+		data-flex-basis="630px"
+	
+></p>
+<p>在这类构建方法中，还可以更细地划分为视觉实体（概念）抽取、视觉关系抽取和视觉事件抽取三类任务。</p>
+<p>视觉实体抽取旨在检测和定位图中的视觉物体，并通过KG中的实体符号进行标注。可以采用比如目标检测的方法（对检测出的物体区域分类到具体的实体上）</p>
+<p>该任务的主要挑战在于：如何有效地在没有大规模、细粒度和标注良好的实体-图片数据集上训练出一个细粒度的抽取模型。因为目前cv虽然有很多数据，但多为粗粒度的数据，无法满足MMKG的需求。</p>
 
 </section>
 
