@@ -12,7 +12,7 @@
         <pubDate>Wed, 09 Aug 2023 22:34:25 +0800</pubDate>
         
         <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</guid>
-        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mmkg.png" alt="Featured image of post Paper Reading Collection for Multimodal Information Extraction" /&gt;&lt;h2 id=&#34;mustie&#34;&gt;MUSTIE&lt;/h2&gt;
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/cover.jpg" alt="Featured image of post Paper Reading Collection for Multimodal Information Extraction" /&gt;&lt;h2 id=&#34;mustie&#34;&gt;MUSTIE&lt;/h2&gt;
 &lt;p&gt;MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023)&lt;/p&gt;
 &lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
 &lt;ul&gt;
@@ -111,7 +111,7 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;可以看到没有HTML结构的情况下，模型损失的点最多，这意味着在网页文本中，如果仅仅使用文本和图片数据，效果提升是有限的，而DOM信息则非常重要，这也符合网页信息的特点。&lt;/p&gt;
-&lt;p&gt;在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结构都证明了结合多模态信息对网页信息提取是有用的。&lt;/p&gt;
+&lt;p&gt;在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结果都证明了结合多模态信息对网页信息提取是有用的。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie4.png&#34;
 	width=&#34;618&#34;
 	height=&#34;300&#34;

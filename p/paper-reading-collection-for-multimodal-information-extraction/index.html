@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='MUSTIE MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023) Abs. &amp;amp; Int. 互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源； 如何抽'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Notes for some Multimodal IE paper.'>
 <title>Paper Reading Collection for Multimodal Information Extraction</title>
 
 <link rel='canonical' href='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/'>
 
 <link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='Paper Reading Collection for Multimodal Information Extraction'>
-<meta property='og:description' content='MUSTIE MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023) Abs. &amp;amp; Int. 互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源； 如何抽'>
+<meta property='og:description' content='Notes for some Multimodal IE paper.'>
 <meta property='og:url' content='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/'>
 <meta property='og:site_name' content='abel&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='paper-notes' /><meta property='article:tag' content='MM' /><meta property='article:tag' content='IE' /><meta property='article:published_time' content='2023-08-09T22:34:25&#43;08:00'/><meta property='article:modified_time' content='2023-08-09T22:34:25&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mmkg.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='paper-notes' /><meta property='article:tag' content='MM' /><meta property='article:tag' content='IE' /><meta property='article:published_time' content='2023-08-09T22:34:25&#43;08:00'/><meta property='article:modified_time' content='2023-08-09T22:34:25&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/cover.jpg' />
 <meta name="twitter:title" content="Paper Reading Collection for Multimodal Information Extraction">
-<meta name="twitter:description" content="MUSTIE MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023) Abs. &amp;amp; Int. 互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源； 如何抽"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mmkg.png' />
+<meta name="twitter:description" content="Notes for some Multimodal IE paper."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/cover.jpg' />
     </head>
     <body class="
     article-page
@@ -293,6 +293,10 @@
         </h2>
     
         
+        <h3 class="article-subtitle">
+            Notes for some Multimodal IE paper.
+        </h3>
+        
     </div>
 
     
@@ -440,7 +444,7 @@ $$</p>
 	
 ></p>
 <p>可以看到没有HTML结构的情况下，模型损失的点最多，这意味着在网页文本中，如果仅仅使用文本和图片数据，效果提升是有限的，而DOM信息则非常重要，这也符合网页信息的特点。</p>
-<p>在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结构都证明了结合多模态信息对网页信息提取是有用的。</p>
+<p>在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结果都证明了结合多模态信息对网页信息提取是有用的。</p>
 <p><img src="/p/paper-reading-collection-for-multimodal-information-extraction/mustie4.png"
 	width="618"
 	height="300"

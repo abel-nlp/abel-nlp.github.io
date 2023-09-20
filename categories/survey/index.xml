@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Survey on abel&#39;s blog</title>
+        <link>https://blog.abelcse.cn/categories/survey/</link>
+        <description>Recent content in Survey on abel&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 20 Sep 2023 15:54:21 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/categories/survey/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Survey Multi-Modal Knowledge Graph</title>
+        <link>https://blog.abelcse.cn/p/survey-multi-modal-knowledge-graph/</link>
+        <pubDate>Wed, 20 Sep 2023 15:54:21 +0800</pubDate>
+        
+        <guid>https://blog.abelcse.cn/p/survey-multi-modal-knowledge-graph/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/survey-multi-modal-knowledge-graph/mmkg.png" alt="Featured image of post Survey Multi-Modal Knowledge Graph" /&gt;&lt;h2 id=&#34;mmkg&#34;&gt;MMKG&lt;/h2&gt;
+&lt;p&gt;Multi-Modal Knowledge Graph Construction and Application: A Survey.  (2022)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;知识图谱对很多下游任务和真实场景都非常有用，比如文本理解、推荐系统和问答，因此现在已有很多知识图谱库，如Cyc, ConceptNet, WordNet, Freebase, DBPedia等；&lt;/li&gt;
+&lt;li&gt;然而，现在大多的KG库都用纯符号的方式（比如文本）来呈现，削弱了机器理解和描述真实世界的能力。正如一个人无法理解&lt;code&gt;狗&lt;/code&gt;，除非他见过&lt;code&gt;狗&lt;/code&gt;或者&lt;code&gt;狗的照片&lt;/code&gt;，基于此，很多研究者开始建立符号和物理世界的联系，比如将文本和对应的图像、音频和视频联系起来，从而让机器能够产生类似人的&lt;code&gt;经验&lt;/code&gt;以更好地理解世界；&lt;/li&gt;
+&lt;li&gt;此外，目前很多应用场景都有较强的多模态需求，比如在关系抽取中，像&lt;code&gt;partOf&lt;/code&gt;、&lt;code&gt;colorOf&lt;/code&gt;等关系，仅仅通过文本的理解很可能无法回答，而结合图像，则能够得到极大提升，比如&lt;em&gt;The keyboard and the screen are parts of a laptop.&lt;em&gt;和&lt;/em&gt;A banana is usually yellow or yellowish-green but not blue&lt;/em&gt;；再比如，增加了图像得信息，可以让模型产生&lt;em&gt;Donald Trump is making a speech&lt;/em&gt; 而不只是简单的&lt;em&gt;A tall man with blond hair is making a speech&lt;/em&gt;；&lt;/li&gt;
+&lt;li&gt;本文主要为多模态知识图谱(MMKG)的基本情况做介绍，包含&lt;strong&gt;构建&lt;/strong&gt;和&lt;strong&gt;应用&lt;/strong&gt;两部分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;简而言之就是在传统KG中增加多模态数据很重要，一是因为他们对文本数据有很好的提升作用，二是因为学、业界对多模态的KG有需求。&lt;/p&gt;
+&lt;h3 id=&#34;define&#34;&gt;Define.&lt;/h3&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
