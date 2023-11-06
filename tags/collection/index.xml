@@ -1,166 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>MultiModal on abel&#39;s blog</title>
-        <link>https://blog.abelcse.cn/categories/multimodal/</link>
-        <description>Recent content in MultiModal on abel&#39;s blog</description>
+        <title>collection on abel&#39;s blog</title>
+        <link>https://blog.abelcse.cn/tags/collection/</link>
+        <description>Recent content in collection on abel&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 09 Aug 2023 22:34:25 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/categories/multimodal/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Paper Reading Collection for Multimodal Information Extraction</title>
-        <link>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</link>
-        <pubDate>Wed, 09 Aug 2023 22:34:25 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Nov 2023 10:53:42 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/tags/collection/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Paper Notes for Video Visual Relation Detection</title>
+        <link>https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/</link>
+        <pubDate>Mon, 06 Nov 2023 10:53:42 +0800</pubDate>
         
-        <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/</guid>
-        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/cover.jpg" alt="Featured image of post Paper Reading Collection for Multimodal Information Extraction" /&gt;&lt;h2 id=&#34;mustie&#34;&gt;MUSTIE&lt;/h2&gt;
-&lt;p&gt;MUSTIE: Multimodal Structural Transformer for Web Information Extraction. (ACL 2023)&lt;/p&gt;
+        <guid>https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/cover.jpg" alt="Featured image of post Paper Notes for Video Visual Relation Detection" /&gt;&lt;h2 id=&#34;vidor&#34;&gt;VidOR&lt;/h2&gt;
+&lt;p&gt;Annotating Objects and Relations in User-Generated Videos. (ICMR 2019)&lt;/p&gt;
 &lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;互联网在过去几十年里呈现出爆炸式的增长，每天都有百万计的网页诞生，这些内容已经成为人们非常重要的信息来源；&lt;/li&gt;
-&lt;li&gt;如何抽取这些网页信息并结构化对于构建类似网页搜索引擎等应用而言非常重要。而互联网中存在着大量的非结构或者半结构化的信息，例如图片，或者带有网页结构信息的数据，所以如何从繁杂的网页中有效地抽取信息也是非常重要的；&lt;/li&gt;
-&lt;li&gt;正因为网页里面的非结构化信息是丰富多样的，比如他们包含不同的网络布局结构，存在着文本、图片、表格等多种模态的信息，因此，从网页中抽取信息对工业界和学术界来说都是具有挑战性的；&lt;/li&gt;
-&lt;li&gt;网页信息抽取，就是希望从网页中抽取对某个对象的相关属性，例如对于某一部电影的网页内容，我们可能希望抽取出电影的名字、导演、演员、类型、上映时间和放映时长等信息；&lt;/li&gt;
-&lt;li&gt;在对该问题的研究中，人们提出了基于模版的和基于深度学习的方法，在如今语言模型的助力下，人们又将网页表示成类似文本序列或者组成图的方式去处理。近年来，人们开始尝试从文本和视觉信号上提取网页信息的多模态方法；&lt;/li&gt;
-&lt;li&gt;然而，目前这些方法都存在一些不足：
-&lt;ol&gt;
-&lt;li&gt;网页信息是图文并茂地为我们呈现内容，而目前的方法多是对不同的模态用不同的编码器去独立编码，导致模型无法捕获不同模态之间的关联，降低了网页信息的有效性；&lt;/li&gt;
-&lt;li&gt;他们没有对网页布局和结构进行编码，也就是对DOM树等信息进行编码，从而损失了一些不同领域之间的关联信息（例如在宣传电影的网页中，电影名往往就在图片节点的下面，而电影时长、上映日期等一般是同层次其他节点的信息）；&lt;/li&gt;
-&lt;li&gt;文本和图片一般只被简单的拼接在一起，使得现有的Transformer模型无法很好地处理大量的网页信息；&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;为了解决这些问题，文本提出的模型&lt;strong&gt;MUST&lt;/strong&gt;，就是专门设计了结构化的注意力机制，从多种模态上联合编码DOM树的所有节点，从而学到跨模态的嵌入表示。直观来讲，就是利用网页的布局结构信息，更自然地将各种模态的数据（文本、图像和标签）连接起来，从而更好地计算注意力权重；&lt;/li&gt;
-&lt;li&gt;本文的主要贡献在于：
-&lt;ol&gt;
-&lt;li&gt;提出的多模态结构化Transformer可有效地从网页中建模和提取多模态信息；&lt;/li&gt;
-&lt;li&gt;专门设计了结构化的注意力机制，从而用来捕获网页中不同模态之间的联系，更好地学习跨模态的嵌入；&lt;/li&gt;
-&lt;li&gt;在WedSRC和Common Crawl两个数据集上进行测试，得到了SOTA的结果，验证了方法的有效性。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
-&lt;h4 id=&#34;overview&#34;&gt;Overview.&lt;/h4&gt;
-&lt;p&gt;Web IE：给定一个目标字段T，需要从相应的网页文件中提取出相关的信息。&lt;/p&gt;
-&lt;p&gt;在网页中，信息是以DOM树的结构来布局的，往往含有多种模态，最常见的就是文本和图像，而文本和图片本身就是DOM树的叶子节点。为了编码需要提取的目标，本文在原DOM树中增加了&lt;em&gt;Field&lt;/em&gt;这类节点，作为后续要提取的属性。除了文本的表示外，对于图像节点，本文使用了OCR去识别其中的文字信息。具体的结构可图1：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie1.png&#34;
-	width=&#34;1238&#34;
-	height=&#34;667&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;figure 1&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;185&#34;
-		data-flex-basis=&#34;445px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MUST&lt;/strong&gt;模型主要由三个部分组成，分别是嵌入层、MUST编码器和提取层，嵌入层主要负责将图像和文本token(后续以&lt;strong&gt;TI&lt;/strong&gt;表示，即Text+Image)初始化为嵌入表示，MUST编码器利用结构化注意力机制将DOM树中的多模态信息进行联合编码，提取层则利用Transformer解码器提取&lt;em&gt;Field&lt;/em&gt;字段的答案。&lt;/p&gt;
-&lt;h4 id=&#34;embedding-layer&#34;&gt;Embedding Layer&lt;/h4&gt;
-&lt;p&gt;嵌入层的目的是初始化 DOM节点 和 TI token 的向量表示，本文认为，每个DOM节点都可看作是其子树的一个总结，例如head节点就可被用作文档级别的分类依据。对于DOM节点的表示，主要由三部分构成：node嵌入、type嵌入和tag嵌入；对于TI token的嵌入，则由其文本(或图像)的嵌入和type嵌入构成，如果是文本，则由语言模型提供(like bert)，如果是图像，则由patch当作其嵌入(本文使用的ResNet101的线性层投影)。&lt;/p&gt;
-&lt;p&gt;其中，type嵌入用于表明该嵌入是DOM节点还是TI token，tag嵌入表明了DOM节点的HTML标签，比如&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;等。这些嵌入都是可训练的。&lt;/p&gt;
-&lt;h4 id=&#34;must-encoder&#34;&gt;MUST Encoder&lt;/h4&gt;
-&lt;p&gt;编码器通过堆叠L层完全相同的编码器层来学习多模态的知识。在每个编码器层中，都有四个注意力模式，分别是：结构化注意力，旨在迁移DOM树的结构知识；自下而上的注意力，旨在将TI token的信息传递给DOM节点；自上而下的注意力，旨在将DOM节点的信息传递给TI token；局部注意力，旨在从兄弟节点的TI token中更好地学习上下文嵌入；&lt;/p&gt;
-&lt;p&gt;DOM-to-DOM注意力：简单说就是专门计算DOM节点的注意力，对于某个节点，它将分别和它的父节点、子节点和兄弟节点进行计算。&lt;/p&gt;
-&lt;p&gt;Bottom-UP注意力：考虑到随着TI token增长而带来的计算开销，本文仅计算TI token和与之相关的DOM节点的注意力，也就是说，TI token的信息直接传递给它的父节点，而再继续往上的传递，则通过DOM-to-DOM注意力进行；&lt;/p&gt;
-&lt;p&gt;Top-Down注意力：本文在此处的计算方式是让TI token和每个DOM节点都相互连接。（图1可以清晰地看出来）&lt;/p&gt;
-&lt;p&gt;Local注意力：本文仅仅计算同一个叶子DOM节点的两个TI token。&lt;/p&gt;
-&lt;h4 id=&#34;extraction-layer&#34;&gt;Extraction Layer&lt;/h4&gt;
-&lt;p&gt;提取层直接使用Transformer的解码器，根据词表产生答案。但在本文的这里，并非简单地使用生成方式，而是额外增加了序列标注方法进行span的提取，以及利用&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;节点来对网页文件进行分类，最终得到解码的损失：
-$$
-L = L_D + \alpha L_{Seq} + \beta L_{Cls}
-$$&lt;/p&gt;
-&lt;h3 id=&#34;exp&#34;&gt;Exp.&lt;/h3&gt;
-&lt;p&gt;本文主要使用了两个数据集：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;WebSRC&lt;/strong&gt;：是被设计用于网页的结构化阅读理解和信息抽取的数据集，包含了6.5K的带HTML格式和图像的网页数据，包含10个领域的信息。本文使用的是带有key-value结构的数据，即3214个网页，71个不同的属性字段，简单说就是key被当作属性字段，而value当作答案；&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Common Crawl&lt;/strong&gt;：包含超过30亿的网页数据，本文选了其中的Movies、Events和Products三个领域的数据，并通过schema.org的标注数据，对这三个领域的字段进行了筛选，限制和维护了必须是 英语 和 属性的答案只有一个 的网页数据。&lt;/p&gt;
-&lt;p&gt;此外，对这两个数据集，本文还单独进行了span的标注，以对序列标注起作用。&lt;/p&gt;
-&lt;p&gt;本文使用32核的TPU v3进行训练，使用EM和F1进行评估标注，并重复10次实验计算其平均指标。&lt;/p&gt;
-&lt;h3 id=&#34;result&#34;&gt;Result.&lt;/h3&gt;
-&lt;p&gt;实验结果表明，本文的方法实现了SOTA的性能，其主要数据见表1。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie2.png&#34;
-	width=&#34;1310&#34;
-	height=&#34;324&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;table 1&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;404&#34;
-		data-flex-basis=&#34;970px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;从结果中可以看到：&lt;/p&gt;
-&lt;p&gt;GraphIE和FreeDOM效果不好，因为他们仅从文本节点中提取文本信息；SimpDOM增加了XPath的信息，因此性能相比前两个要有提升，剩下的几个方法显式地对HTML进行了建模，因此性能也进一步地增加。&lt;/p&gt;
-&lt;p&gt;本文的方法则实现了最好的性能，在EM分数上，MUST相比于WebFormer和MarkupLM分别实现了&lt;code&gt;2.57%&lt;/code&gt;和&lt;code&gt;4.61%&lt;/code&gt;的增长，这主要是因为这两个方法虽然引入了多模态信息，但都是分别独立地对不同模型进行建模和编码，而MUST则是统一地进行编码，更好地融合了多模态和网页结构的信息。&lt;/p&gt;
-&lt;p&gt;为了验证方法的有效性，文中还对不同的模态所起的作用进行了验证，如图2所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie3.png&#34;
-	width=&#34;592&#34;
-	height=&#34;306&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;figure 2&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;193&#34;
-		data-flex-basis=&#34;464px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;可以看到没有HTML结构的情况下，模型损失的点最多，这意味着在网页文本中，如果仅仅使用文本和图片数据，效果提升是有限的，而DOM信息则非常重要，这也符合网页信息的特点。&lt;/p&gt;
-&lt;p&gt;在图3中，实验还分别验证了不同属性字段的情况，可以看出依旧是HTML结构起的作用最大，此外还可以发现如Name，Description这些字段，视觉信息的帮助并不很大，而像Color这种明显需要用到视觉信息的属性则会受益，特别的，对于Brand这个属性，现实中很多商品的品牌名都会画在图片上，因此OCR也能提供较大帮助。这些结果都证明了结合多模态信息对网页信息提取是有用的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie4.png&#34;
-	width=&#34;618&#34;
-	height=&#34;300&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;figure 3&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;206&#34;
-		data-flex-basis=&#34;494px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;因为MUST模型自己修改了编码器中的注意力机制，因此本文还对不同注意力机制的影响进行了验证，也就是在保持局部注意力的情况下，分别单独训练了三个模型。在图4中可以看到，从下自上的注意力起的作用最大，文中认为这是由于该机制需要将TI token的信息传递给DOM节点，这对于维护DOM节点的嵌入非常重要。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie5.png&#34;
-	width=&#34;573&#34;
-	height=&#34;316&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;figure 4&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;181&#34;
-		data-flex-basis=&#34;435px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;conclu&#34;&gt;Conclu.&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;HTML结构信息对于网页信息抽取任务而言是很重要的；&lt;/li&gt;
-&lt;li&gt;文本信息和视觉信息对不同场景和特点的属性字段起的作用不尽相同；&lt;/li&gt;
-&lt;li&gt;将文本信息、视觉信息和网页结构统一进行编码，可以更好地学习多模态的信息，相比于分别进行不同模态的编码要有用；&lt;/li&gt;
-&lt;li&gt;本文的模型目前只关注于单目标的任务，也就是某个属性字段只有一个答案。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;formnetv2&#34;&gt;FormNetv2&lt;/h2&gt;
-&lt;p&gt;FormNetV2: Multimodal Graph Contrastive Learning for Form Document Information Extraction. (ACL 2023)&lt;/p&gt;
-&lt;h3 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
 </description>
         </item>
         <item>
-        <title>Paper Reading Collection for Visual Language Models</title>
-        <link>https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/</link>
+        <title>Paper Notes for Visual Language Models</title>
+        <link>https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/</link>
         <pubDate>Thu, 06 Jul 2023 20:25:59 +0800</pubDate>
         
-        <guid>https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/</guid>
-        <description>&lt;img src="https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit.png" alt="Featured image of post Paper Reading Collection for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
+        <guid>https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit.png" alt="Featured image of post Paper Notes for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
 &lt;p&gt;An Image is worth 16x16 Words: Transformers for Image Recognition at Scale. (ICLR 2021)&lt;/p&gt;
 &lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
 &lt;ul&gt;
@@ -228,7 +91,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过代码可知，利用16x16的卷积核，将原图打成14x14个patch，每个patch的通道维度从3变为768，再Flatten并变维为$(B, N, C)$。具体可看下图的图片输入及Linear Projection部分。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit.png&#34;
 	width=&#34;934&#34;
 	height=&#34;461&#34;
 	
@@ -247,7 +110,7 @@ $$&lt;/p&gt;
 &lt;p&gt;接着就是具体Transformer Encoder部分，经过LayerNorm之后，shape依旧是$(197, 768)$，在MSA部分，先将输入映射到QKV，假设有12个头，则QKV的shape为$(197, 64)$，输出后再拼接成$(197, 768)$，再经过一层LayerNorm，然后送入MLP。这里MLP的操作也比较简单，完成了：$(197, 768) \rightarrow (197, 3072) \rightarrow (197, 768)$的操作。当然，在每次送入LN层前有一个残差$x + f(x)$的操作。&lt;/p&gt;
 &lt;p&gt;因为每个block的输入和输出都是$(197, 768)$，因此可以堆叠多个block，最后输出CLS作为分类任务的依据。&lt;/p&gt;
 &lt;p&gt;具体流程也可以参考下面的公式：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_eq.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit_eq.png&#34;
 	width=&#34;1148&#34;
 	height=&#34;171&#34;
 	
@@ -296,7 +159,7 @@ $$&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;模型变体上，base和large和BERT一样，但是ViT扩展了Huge的版本：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_model.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit_model.png&#34;
 	width=&#34;690&#34;
 	height=&#34;163&#34;
 	
@@ -314,7 +177,7 @@ $$&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;比较的baseline主要是两个：BiT(Big Transfer，ResNet-based)和Noisy Student(semi-supervised, EfficientNet-based)，他们是下面数据集的SOTA，其中Noisy Student是ImageNet的SOTA，BiT是其他几个的SOTA；具体实验参数是：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-visual-language-models/vit_exp_1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit_exp_1.png&#34;
 	width=&#34;953&#34;
 	height=&#34;308&#34;
 	

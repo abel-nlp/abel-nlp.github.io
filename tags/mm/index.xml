@@ -94,7 +94,7 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;从结果中可以看到：&lt;/p&gt;
 &lt;p&gt;GraphIE和FreeDOM效果不好，因为他们仅从文本节点中提取文本信息；SimpDOM增加了XPath的信息，因此性能相比前两个要有提升，剩下的几个方法显式地对HTML进行了建模，因此性能也进一步地增加。&lt;/p&gt;
-&lt;p&gt;本文的方法则实现了最好的性能，在EM分数上，MUST相比于WebFormer和MarkupLM分别实现了**2.57%&lt;strong&gt;和&lt;/strong&gt;4.61%**的增长，这主要是因为这两个方法虽然引入了多模态信息，但都是分别独立地对不同模型进行建模和编码，而MUST则是统一地进行编码，更好地融合了多模态和网页结构的信息。&lt;/p&gt;
+&lt;p&gt;本文的方法则实现了最好的性能，在EM分数上，MUST相比于WebFormer和MarkupLM分别实现了&lt;code&gt;2.57%&lt;/code&gt;和&lt;code&gt;4.61%&lt;/code&gt;的增长，这主要是因为这两个方法虽然引入了多模态信息，但都是分别独立地对不同模型进行建模和编码，而MUST则是统一地进行编码，更好地融合了多模态和网页结构的信息。&lt;/p&gt;
 &lt;p&gt;为了验证方法的有效性，文中还对不同的模态所起的作用进行了验证，如图2所示。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-reading-collection-for-multimodal-information-extraction/mustie3.png&#34;
 	width=&#34;592&#34;
@@ -151,6 +151,7 @@ $$&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;h2 id=&#34;formnetv2&#34;&gt;FormNetv2&lt;/h2&gt;
 &lt;p&gt;FormNetV2: Multimodal Graph Contrastive Learning for Form Document Information Extraction. (ACL 2023)&lt;/p&gt;
+&lt;h3 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
 </description>
         </item>
         

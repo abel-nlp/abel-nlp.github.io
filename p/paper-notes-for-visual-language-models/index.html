@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Notes for some Visual Language Model paper.'>
+<title>Paper Notes for Visual Language Models</title>
+
+<link rel='canonical' href='https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/'>
+
+<link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='Paper Notes for Visual Language Models'>
+<meta property='og:description' content='Notes for some Visual Language Model paper.'>
+<meta property='og:url' content='https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/'>
+<meta property='og:site_name' content='abel&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='paper-notes' /><meta property='article:tag' content='multi-modal' /><meta property='article:tag' content='collection' /><meta property='article:published_time' content='2023-07-06T20:25:59&#43;08:00'/><meta property='article:modified_time' content='2023-07-06T20:25:59&#43;08:00'/><meta property='og:image' content='https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit.png' />
+<meta name="twitter:title" content="Paper Notes for Visual Language Models">
+<meta name="twitter:description" content="Notes for some Visual Language Model paper."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.abelcse.cn/p/paper-notes-for-visual-language-models/vit.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hue3f7bdfccc0be810572359657e66a4ad_56159_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😴</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">abel&#39;s blog</a></h1>
+            <h2 class="site-description">Record abel&#39;s Paper and Tech Notes here.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/abel-nlp'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#vit">ViT</a>
+      <ol>
+        <li><a href="#abs--int">Abs. &amp; Int.</a></li>
+        <li><a href="#model">Model.</a></li>
+        <li><a href="#exp">Exp.</a></li>
+        <li><a href="#conclu">Conclu.</a></li>
+      </ol>
+    </li>
+    <li><a href="#clip">CLIP</a>
+      <ol>
+        <li><a href="#abs--int-1">Abs. &amp; Int.</a></li>
+        <li><a href="#model-1">Model.</a>
+          <ol>
+            <li><a href="#dataset">Dataset.</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/paper/" style="background-color: 00BFFF; color: #fff;">
+                Paper
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/paper-notes-for-visual-language-models/">Paper Notes for Visual Language Models</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Notes for some Visual Language Model paper.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 06, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="vit">ViT</h2>
+<p>An Image is worth 16x16 Words: Transformers for Image Recognition at Scale. (ICLR 2021)</p>
+<h3 id="abs--int">Abs. &amp; Int.</h3>
+<ul>
+<li>
+<p>首先，Transformer在NLP已经很普遍了，并且得到了很大的进步(无论是数据还是模型参数)，而CV这边尝试的大多是让自注意力和CNN进行配合；</p>
+<p>然而，如果让每个像素点都参与到SA的计算中来，将是无法接受的计算开销。因此，有将SA仅仅用作局部的查询的工作，也有让SA分别在不同的块中使用的办法，但这些办法都需要复杂的工程能力才能在硬件加速器上跑起来。和ViT最近似的工作是从输入中提取2x2大小的patch(块)，然后使用SA，但这种方式只适合低分辨率的图像，而ViT不仅几乎和文本Transformer一样，还能处理中等分辨率的图像，并能达到或超过CNN的性能；</p>
+</li>
+<li>
+<p>本文希望能够参考transformer，尽可能做少的修改，让其像处理文本一样处理图像信息，以利用transformer的计算效率特性和扩展性；</p>
+<p>Transformer原文中说，对于每一层的计算复杂度，SA和CNN分别是$O(n^2·d)$和$O(k·n·d^2)$，因为n往往都比d小，所以SA是比CNN更高效的；</p>
+</li>
+<li>
+<p>因此，本文将图像拆成patch，这个patch可以看成是NLP那边的token一样；</p>
+</li>
+<li>
+<p>本文发现，在中等的图像数据集ImageNet上，不经过正则化，得到的模型比ResNet要低几个点，这主要是因为transformer没有CNN的两个归纳性偏好：平移不变性和局部性；</p>
+</li>
+<li>
+<p>但在继续增大训练数据的规模后（从14M扩大到300M），Visual-Transformer的性能在逐步增加，并实现SOTA</p>
+</li>
+</ul>
+<h3 id="model">Model.</h3>
+<p>文本的Transformer处理的是一维的序列，因此ViT需要先将2D的图像输入也变成类似的。对于一张图片$X \in R^{H \times W \times C}$，其中$(H, W)$为图片的高和宽，而$C$为图像的通道，首先将其展成2D的patch，每个patch的大小为$X_p\in R^{N \times (P^2 · C)}$，这里的$(P, P)$为patch的高和宽，$N$为patch的数量，不难得到$N = HW/P^2$。</p>
+<p>根据上面的表示，对于一个224x224x3的图，如果需要patch为16x16x3的分辨率，那么将得到$224^2 / 16^2$，也就是14x14个（共196个）patch。当然，这样来讲也并不容易让人理解，所以直接看部分核心代码的实现（为直观起见，省略并修改了部分代码）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PatchEmbed</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_size</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">patch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">in_chans</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">embed_dim</span><span class="o">=</span><span class="mi">768</span><span class="p">,</span> <span class="n">norm_layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_patches</span> <span class="o">=</span> <span class="mi">14</span> <span class="n">x</span> <span class="mi">14</span>  
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">flatten</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="n">in_chans</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="n">patch_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">patch_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># (B, 3, 14, 14) ==&gt; (B, 768, 14, 14)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">norm_layer</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">)</span> <span class="k">if</span> <span class="n">norm_layer</span> <span class="k">else</span> <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">H</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">W</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (B, 768, 14, 14)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># BCHW -- BNC (B, 196, 768)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过代码可知，利用16x16的卷积核，将原图打成14x14个patch，每个patch的通道维度从3变为768，再Flatten并变维为$(B, N, C)$。具体可看下图的图片输入及Linear Projection部分。</p>
+<p><img src="/p/paper-notes-for-visual-language-models/vit.png"
+	width="934"
+	height="461"
+	
+	loading="lazy"
+	
+		alt="ViT"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="486px"
+	
+></p>
+<p>此外，为了和NLP分类任务保持一致，这里也在所有patch前面增加了一个patch，即分类头CLS，因此最终传给Transformer的是$(B, N+1, C)$，在这里的例子中是$(B, 197, 768)$</p>
+<p>之后还需要做位置编码，ViT使用的是可训练的1维位置嵌入，shape和$(B, N+1, C)$保持一致，然后直接和每个patch相加。</p>
+<p>接着就是具体Transformer Encoder部分，经过LayerNorm之后，shape依旧是$(197, 768)$，在MSA部分，先将输入映射到QKV，假设有12个头，则QKV的shape为$(197, 64)$，输出后再拼接成$(197, 768)$，再经过一层LayerNorm，然后送入MLP。这里MLP的操作也比较简单，完成了：$(197, 768) \rightarrow (197, 3072) \rightarrow (197, 768)$的操作。当然，在每次送入LN层前有一个残差$x + f(x)$的操作。</p>
+<p>因为每个block的输入和输出都是$(197, 768)$，因此可以堆叠多个block，最后输出CLS作为分类任务的依据。</p>
+<p>具体流程也可以参考下面的公式：</p>
+<p><img src="/p/paper-notes-for-visual-language-models/vit_eq.png"
+	width="1148"
+	height="171"
+	
+	loading="lazy"
+	
+		alt="ViT-equation"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="671"
+		data-flex-basis="1611px"
+	
+></p>
+<p>注：</p>
+<ol>
+<li>
+<p>这里的位置编码，原文实验显示，无论使用(1, 2, &hellip;, N)的1D方式，还是(11, 12, 13, &hellip;., )的2D方式，性能差距都不大；也就是没有位置编码和有位置编码会有一定的性能差距，而不同的位置编码方式之间的性能差距则比较小。文中推测这是因为使用的是patch，而非pixel的输入，因此空间之间的信息差异就没那么重要了；</p>
+</li>
+<li>
+<p>考虑到Transformer没有CNN那样的inductive bias，也就是局部性和平移不变性，那么能不能适当的将两者混合一下呢(Hybrid)，因此ViT利用Conv2d提取特征图的方式得到了patch,也就是上面代码部分的16x16卷积操作；</p>
+</li>
+<li>
+<p>ViT一般是现在一个很大的数据集上进行预训练，再针对下游任务进行微调(like bert)，根据以前的经验，使用比预训练更高分辨率的图片进行微调更有用。需要注意的是，虽然微调增加图片分辨率对Transformer没有影响，但是前期预训练好的位置编码可能就意义不大了，文中推荐采取二维插值的办法；</p>
+</li>
+<li>
+<p>上面提到增加了CLS分类头，那么能否不用它，而是直接对最终的$(196, 768)$做平均，然后进行分类呢？实验证明二者性能也差不多。（那为什么要使用CLS？只是为了和BERT一类的方法保持一致性）；</p>
+</li>
+<li>
+<p>位置编码和CLS头可以简单按照下面的方法添加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">196</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">768</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">class_patch</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">768</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="exp">Exp.</h3>
+<ul>
+<li>
+<p>数据集上，模型主要用了：ImageNet (1K class, 1.3M image)、ImageNet-21K (21k class, 14M image)和JFT (18k class, 303M 高分辨率image)做预训练，用了CIFAR-10等多个数据集做测试(包括微调和few-shot的方式)；</p>
+</li>
+<li>
+<p>模型变体上，base和large和BERT一样，但是ViT扩展了Huge的版本：</p>
+<p><img src="/p/paper-notes-for-visual-language-models/vit_model.png"
+	width="690"
+	height="163"
+	
+	loading="lazy"
+	
+		alt="ViT variants"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="423"
+		data-flex-basis="1015px"
+	
+></p>
+<p>后续的文献和模型应用中，有特定的表示方法，如ViT-L/16表示ViT Large, patch的大小是16x16；</p>
+</li>
+<li>
+<p>比较的baseline主要是两个：BiT(Big Transfer，ResNet-based)和Noisy Student(semi-supervised, EfficientNet-based)，他们是下面数据集的SOTA，其中Noisy Student是ImageNet的SOTA，BiT是其他几个的SOTA；具体实验参数是：</p>
+<p><img src="/p/paper-notes-for-visual-language-models/vit_exp_1.png"
+	width="953"
+	height="308"
+	
+	loading="lazy"
+	
+		alt="ViT-Exp1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="309"
+		data-flex-basis="742px"
+	
+></p>
+<p>其中TPUv3-core-days表示以：使用一个TPUv3单核训练一天，为标准单位。<em>可以看到，ViT-H/14 要2500个，普通机构是消耗不起的</em></p>
+</li>
+<li>
+<p>但我们依旧能看到，ViT可以说是全胜，这也证明了开头论文说的<strong>继续增大训练数据的规模后，ViT的性能在逐步增加，并实现SOTA</strong>; （但是后面也做了实验，实验结果大概是：<strong>数据集较小时，建议还是使用ResNet，数据集很大时用ViT来预训练才会有用</strong>）</p>
+</li>
+<li>
+<p>ViT的训练时间也变少了（相对两个baseline来说）</p>
+</li>
+</ul>
+<h3 id="conclu">Conclu.</h3>
+<ol>
+<li>ViT适合用在数据集较大的视觉预训练任务上，如果数据集较小，使用ResNet更合适；</li>
+<li>ViT相对CNN-based的方法，训练更省时间，但预训练的成本依旧是一般机构无法承担的；</li>
+<li>混合结构Hybrid，即上面代码中利用卷积的方式，而非直接按照图片像素切分成patch，在小模型上表现更好，但随着模型变大，就不如直接切分了（原文中也比较疑惑，因为混合结构应该是兼具二者长处的，<em>个人认为可能是模型大了后，Transformer不再需要inductive bias的帮助，甚至它可能会影响SA的学习，因此模型越大，纯SA的Transformer就更好</em>）</li>
+<li>当前的ViT主要用在分类任务上，那么还有很多的，如目标检测、分割等任务需要进一步的研究</li>
+</ol>
+<!-- raw HTML omitted -->
+<h2 id="clip">CLIP</h2>
+<p>Learning Transferable Visual Models From Natural Language Supervision. (ICML 2021 CCF-A)</p>
+<h3 id="abs--int-1">Abs. &amp; Int.</h3>
+<p>先前用于分类的SOTA模型，需要通过对预定义好的类别进行学习，这种方式使得这类模型的通用性和扩展性不好，因此一旦需要预测新的类别时，就需要额外的标注数据进行训练。那么，通过直接从文本中学习图像也许可以是一种更节省更直观的替代方案。</p>
+<p>在NLP任务中，以GPT3为例，通过利用大规模语料进行学习的预训练模型，即使不增加额外数据或只使用很少的数据微调，也能够很好地应用于下游任务。这种利用大量网络语料的方法所产生的效果已经比高质量人工标注数据带来的性能提升更强了。</p>
+<p>但是在CV这边，却主要还是依靠人工标注的数据，那么能不能借箭NLP这种方法，使用来自于网络的文本和图像，而不再依靠手工标注的数据呢？</p>
+<p>事实上，以前也有很多工作采取了这种方式，但他们依旧不如全监督的模型。这主要的原因在于这些方法所使用的数据的规模太少。</p>
+<h3 id="model-1">Model.</h3>
+<h4 id="dataset">Dataset.</h4>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/paper-notes/">paper-notes</a>
+        
+            <a href="/tags/multi-modal/">multi-modal</a>
+        
+            <a href="/tags/collection/">collection</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>个人博客，请勿转载。Personal blog, please do not repost.</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/paper-notes-for-video-visual-relation-detection/">
+        
+        
+            <div class="article-image">
+                <img src="/p/paper-notes-for-video-visual-relation-detection/cover.83e26b81ce19e6d3ece4fd997c409b7d.jpg" 
+                        width="1600" 
+                        height="1067" 
+                        loading="lazy"
+                        alt="Featured image of post Paper Notes for Video Visual Relation Detection"
+                        
+                        data-hash="md5-g&#43;Jrgc4Z5tPs5P2ZfECbfQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Paper Notes for Video Visual Relation Detection</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 abel&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with Hugo <br />
+        
+        Theme Stack designed by Jimmy
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=WenKai:wght@300;400;700&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
