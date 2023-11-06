@@ -245,9 +245,34 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#vidvrd">VidVRD</a>
+      <ol>
+        <li><a href="#abs--int">Abs. &amp; Int.</a>
+          <ol>
+            <li><a href="#definition">Definition</a></li>
+          </ol>
+        </li>
+        <li><a href="#rel">Rel.</a>
+          <ol>
+            <li><a href="#video-object-detection">Video object detection</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
     <li><a href="#vidor">VidOR</a>
       <ol>
-        <li><a href="#abs--int">Abs. &amp; Int.</a></li>
+        <li><a href="#abs--int-1">Abs. &amp; Int.</a></li>
+        <li><a href="#rel-1">Rel.</a>
+          <ol>
+            <li><a href="#video-annotation">Video Annotation</a></li>
+            <li><a href="#video-datasets">Video Datasets</a></li>
+          </ol>
+        </li>
+        <li><a href="#stat">Stat.</a>
+          <ol>
+            <li><a href="#annotation-pipeline">Annotation Pipeline</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -318,7 +343,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    9 minute read
                 </time>
             </div>
         
@@ -333,9 +358,114 @@
     <section class="article-content">
     
     
-    <h2 id="vidor">VidOR</h2>
-<p>Annotating Objects and Relations in User-Generated Videos. (ICMR 2019)</p>
+    <h2 id="vidvrd">VidVRD</h2>
+<p>Video Visual Relation Detection. (ACM MM 2017)</p>
 <h3 id="abs--int">Abs. &amp; Int.</h3>
+<p>作为连接视觉和语言的桥梁，以关系三元组<code>&lt;主语，谓语，宾语&gt;</code>为形式的目标间视觉关系提供了超过目标本身的更为全面的视觉内容理解，如<code>&lt;person, touch, dog&gt;</code>和<code>&lt;cat, above, sofa&gt;</code>等。</p>
+<p>本文提出了一种新的视觉任务，叫作<strong>Video Visual Relation Detection (VidVRD)</strong>，用于在视频而非静态的图片上进行关系检测。与静态图相比，视频为检测视觉关系提供了更自然的一组特征，比如动态的关系如<code>&lt;A, follow, B&gt;, &lt;A, towards, B&gt;</code>（A跟着B，A朝着B），以及类似<code>&lt;A, chase, B&gt;</code>然后<code>&lt;A, hold, B&gt;</code>（A追逐B，然后A抓住B）这种时序关系。然而，VidVRD任务相比于图像关系检测任务ImgVRD，在技术上具有更大的挑战性，因为其很难对准确的目标进行追踪和应付多种多样的关系表现。</p>
+<p>为此，本文提出了一个包含目标轨迹小片段候选、短期关系预测和贪心关系关联的VidVRD方法，并提供了一个用于任务评估的数据集，其中包含1000个人工标注的视频。与以前的相关方法相比，本文在该数据集上实现了最佳性能。</p>
+<p>缩小视觉和语言之间的差距对多媒体分析至关重要，相关工作涉及<em>visual concept annotations, semantic description with captioning</em> 和 <em>visual question-answering</em>、字幕语义描述和视觉问答等。视觉关系检测<em>VRD</em>是最近为了更全面地理解目标之外的视觉内容而做出的工作，目的是为了捕获目标之间的各种互动，它可以有效地支持众多的视觉语言任务，如<em>captioning, visual search</em> 和 <em>visual question-answering</em>等。</p>
+<p>视觉关系包括用边界框定位的一对目标和连接他们之间的谓语，也就是关系。如图1-1(a)所示，其中两个目标可以有不同的关系，同一个关系也可连接起不同外观的目标对。在本文中将使用关系三元组来表示由<code>&lt;subject, predicate, object&gt;</code>构成的视觉关系类型。因为这种组合的可能性非常多，传统的目标检测方法在这个任务中并不适合，即使已经有的几个相关任务的方法也更适用于静态图片而非视频。与静态图片相比，视频为检测视觉关系提供了一组更为自然的特征。图1-1(b)中，从视频的时空内容中提取的运动特征有助于区分相似的关系，如<em>walk</em> 和 <em>run</em>。此外，一些动态的视觉关系只能在视频中被检测到，如<code>&lt;dog, run past, person&gt;</code>和<code>&lt;dog, faster than, person&gt;</code>。因此，与ImgVRD相比，VidVRD是一个更通用更可行的任务。</p>
+<p><img src="/p/paper-notes-for-video-visual-relation-detection/p1_1.png"
+	width="1021"
+	height="519"
+	
+	loading="lazy"
+	
+		alt="figure 1-1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="196"
+		data-flex-basis="472px"
+	
+></p>
+<p>VidVRD和ImgVRD之间的另一个显著不同是：视频中的视觉关系通常是随时间变化的，而图像中的关系则是固定的。目标可能会因为遮挡或离开画面而导致视觉关系出现和消失，即使两个目标始终出现在同一个视频帧中，它们之间的互动关系也可能随着时间而发生变化。如图1-2所示，其中的狗和飞盘同时出现在$t_2$和$t_7$之间，但它们之间的关系却从追逐变成了撕咬。因此，应当重新设定义VidVRD任务，以处理视觉关系的可变性。</p>
+<p><img src="/p/paper-notes-for-video-visual-relation-detection/p1_2.png"
+	width="1039"
+	height="407"
+	
+	loading="lazy"
+	
+		alt="figure 1-2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="255"
+		data-flex-basis="612px"
+	
+></p>
+<h4 id="definition">Definition</h4>
+<p>为了与ImgVRD的定义保持一致，本文将VidVRD任务定义如下：给定一组目标类别$C$和谓语(关系)类别$P$，VidVRD旨在检测出视频中的视觉关系实例$C \times P \times C$，其中视觉关系实例由关系三元组<code>&lt;subject, predicate, object&gt;</code>$\in C \times P \times C$表示，并带有主语和宾语的轨迹信息$T_s$和$T_o$，具体来说，$T_s$和$T_o$是两个边界框的序列，在视觉关系的最长持续时间内构成主语和宾语。如图1-2中，给定的视频关系可以用三元组<code>&lt;dog, chasem frisbee&gt;</code>和<code>&lt;dog, bite, frisbee&gt;</code>来表示，狗和飞盘分别用$(t_2, t_4)$和$(t_5, t_7)$之间的红色与绿色轨迹定位。</p>
+<p>与ImgVRD相比，VidVRD面临更多的技术挑战。</p>
+<p>首先，VidVRD需要用边界框轨迹来定位目标，这比在ImgVRD中为每个目标提供一个边界框更加困难，因为轨迹准确性受到每一帧的目标定位及目标跟踪的性能影响。本文所提出的VidVRD方法通过在视频的每个重叠短片段中生成目标轨迹小片段，然后根据预测出的关系将小片段和目标轨迹关联起来。其次，VidVRD需要在最长持续时间中时序地定位视觉关系。为了完成该任务，本文提出了一个贪心关联算法，其通过判断相邻片段中检测到的视觉关系是否具有相同关系三元组，且目标轨迹小片段具有足够高的重叠度来决定是否合并他们。最后，与ImgVRD相比，VidVRD需要预测更多类型的视觉关系，因为有的视觉关系只能在视频中检测到，为了有效预测关系，本文提出了关系预测模型，该模型从主语/宾语的轨迹小片段中提取出多种特征，包括外观特征、运动特征和相对特征。然后将这些特征编码成关系特征，再分别使用单独的主语、宾语和关系预测器来预测视觉关系。</p>
+<p>截至目前，还没有针对VidVRD的数据集，不过有几个针对ImgVRD的数据集，如 <em>Visual Relationship dataset, Visual Genome</em>，因此，本文构建了一个VidVRD的数据集进行评估。本文设计了一个谓语描述机制，并从 <em>ILSVRC2016-VID</em> 中构建该数据集。该数据集包含1000个视频，其中有人工标注的视觉关系和目标边界轨迹信息。</p>
+<p>本文的主要贡献在于：</p>
+<ol>
+<li>提出了新颖的VidVRD任务，旨在探索视频中目标之间的各种关系，与ImgVRD相比，它提供了更可行地VRD任务；</li>
+<li>提出了一种新的VidVRD方法，该方法通过目标轨迹小片段候选、关系预测和贪心关系关联来检测视频中的视觉关系；</li>
+<li>贡献了第一个VidVRD数据集，带有1000个人工标注的视频数据。</li>
+</ol>
+<h3 id="rel">Rel.</h3>
+<h4 id="video-object-detection">Video object detection</h4>
+<p>视频目标检测旨在</p>
+<!-- raw HTML omitted -->
+<h2 id="vidor">VidOR</h2>
+<p>Annotating Objects and Relations in User-Generated Videos. (ICMR 2019)</p>
+<h3 id="abs--int-1">Abs. &amp; Int.</h3>
+<p>要进行细粒度的视频内容分析，理解目标之间的关系必不可少。然而，现存的工作受到数据集规模太小和评价指标不直接的限制。这些限制主要是因为构建大规模详细标注的视频数据集费时费力。因此，本文提出了一种pipeline的视频标注方法，能够以少量的花费构建数据集，并构造了新的视频数据集VidOR，该数据集包含了10k个视频（大概84小时），共80个目标类别和50个关系类别。</p>
+<p>细粒度的视频内容分析很重要，目前一些视频字幕描述和问答任务已经证明了这一点。随着粒度的不断细化，理解目标之间的关系也变得重要，目前的研究表明理解目标之间的关系对视频内容分析生成更稳健的表示是有效的。但是目前相关的工作都是较为隐性地建模和评估目标之间的关系，对模型是否和如何很好理解细粒度内容并不很清楚。</p>
+<p>但是在视频中进行目标和关系的识别是很有挑战性的任务，这需要对目标的外观、身份、动作和目标之间的交互。如图1-1中的狗所示，其外观可能因为它的活动、光照和遮挡而发生较大变化，这对给跨视频帧去确定狗的身份带来较大的困扰，而这却是进一步总结视频内容的必要线索。此外，动作和交互表示的差异也对模型学习根本的模式和稳健的推理带来了新的挑战。为此有很多工作，如<em>video object detection</em>和<em>video visual relation detection</em>在深入地研究这些问题，但他们主要受到了可用数据集规模太小的限制。</p>
+<p><img src="/p/paper-notes-for-video-visual-relation-detection/vidor_1.png"
+	width="2092"
+	height="357"
+	
+	loading="lazy"
+	
+		alt="figure 1-1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="585"
+		data-flex-basis="1406px"
+	
+></p>
+<p>对上面的内容，我们可以总结为：</p>
+<ol>
+<li>细粒度的视频内容分析非常重要，比如生成视频字幕，进行视频问答等；</li>
+<li>但是进行细粒度的视频内容分析并不容易，这主要是因为现存的数据集规模小，无法设计更好的模型；</li>
+<li>而视频中目标的关系检测是很重要的部分，能够帮助进行视频内容分析。而要进行关系检测，需要考虑目标的外观、身份、动作和目标之间的交互，这是具有挑战性的，甚至连一个这样的大规模数据集都还没有。</li>
+</ol>
+<p>因此，本文的目的就是构建一个包含详细标注的目标和关系的更大规模数据集，视频均来源于网上以确保反映真实场景。标注信息通过边界框轨迹对目标进行时空定位，对关系进行时间定位。和类似的图片数据集相比，本文希望构建一个视频的benchmark，并且能够对动作和动态关系进行学习和推理。</p>
+<p>但是构建这样的数据集代价高昂，假设平均一个视频150帧，10k个视频就需要标注1.5m张图片，这已经达到了当前一些图像数据集的规模。</p>
+<p>如果假设相邻帧之间具有相似性，那么就可以在固定的间隔中进行手工标注，然后再进行插值。但这种方式只适合电影及监控视频这种连贯的视频类型。而由用户生成的视频内容则是完全自由的，质量一般不太高，视频的连续性也不强，所以不能简单的进行插值，而需要选择一种更好的策略进行关键帧的选取和人工标注。</p>
+<p>此外，如何将标注任务划分为子任务也是比较复杂的问题。假设我们将标注视频中的目标和关系视为一个单一任务，那么标注者就需要接受相关的培训，花费大量的精力。因此，更好的选择是将标注任务变成更宏观的子任务，如判断目标的类型，确定是否有边框，边框是否正确等等。</p>
+<p>为此，本文将设计一种新的pipeline方法，它适用于长度从几秒到几分钟不等的用户生成的视频。</p>
+<h3 id="rel-1">Rel.</h3>
+<h4 id="video-annotation">Video Annotation</h4>
+<p>当前的时序标注大致可以分为两类，一类是通过标注目标在视频中的开始和结束帧进行时序的定位，因此需要标注者仔细地浏览整个视频；另一类方法是在较短的视频片段钟标记目标是否存在，然后自动合并各片段的结果以实现时间定位，这种方法相对节省时间，但可能产生粗粒度的标注结果。</p>
+<p>在本文的方法中，通过为不同的关系仔细挑选合适的方法，从而结合了两类方法的优点。</p>
+<h4 id="video-datasets">Video Datasets</h4>
+<p>视频数据集按照标注程度来划分。一种是按照整个视频级别来进行标注，如CCV、Kinetics和MSR-VTT，他们都是用于事件识别，动作识别和视频字幕任务的典型benchmark；第二类是片段级别的标注，比如THUMOS、MultiTHUMOS和ActivityNet Caption，他们一般用于动作、活动和事件的时序定位的评测；第三类是目标级别的标注，TrackingNet就是其中一个大规模的标注了目标边框轨迹的目标追踪数据集。ImageNet-VID是一个超过30类目标的目标检测数据集。AVA则是一个时空活动定位的视觉动作数据集；最后则是关系级别的标注，VidVRD是基于ImageNet-VID构建的当前唯一一个提供目标和关系的视频数据集，但是该数据集相对较小，并且标注的比较稀疏。</p>
+<h3 id="stat">Stat.</h3>
+<h4 id="annotation-pipeline">Annotation Pipeline</h4>
+<p>为了更好地进行标注，本文提出了如图1-2所示的包含目标和关系标注的流水线标注方案。为了完成标注任务，标注者需要完成三个子任务：浏览视频以发现新的目标；绘制这些目标的边框；将被遮挡或者离开镜头外的目标的帧标注为不可见。</p>
+<p><img src="/p/paper-notes-for-video-visual-relation-detection/vidor_2.png"
+	width="2018"
+	height="777"
+	
+	loading="lazy"
+	
+		alt="figure 1-2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="259"
+		data-flex-basis="623px"
+	
+></p>
+<p><em><strong>多是数据集的描述和统计，后续将简要总结出来。</strong></em></p>
+<!-- raw HTML omitted -->
 
 </section>
 
