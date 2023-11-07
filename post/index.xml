@@ -62,8 +62,36 @@
 &lt;/ol&gt;
 &lt;h3 id=&#34;rel&#34;&gt;Rel.&lt;/h3&gt;
 &lt;h4 id=&#34;video-object-detection&#34;&gt;Video object detection&lt;/h4&gt;
-&lt;p&gt;视频目标检测旨在&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;视频目标检测旨在从给定视频中检测出预定义的目标，并通过边界框轨迹对其进行定位。目前最好的方法主要是通过整合目标检测和多目标跟踪来实现。&lt;/p&gt;
+&lt;p&gt;最近，复杂的深度神经网络在图像目标检测方面取得了很好的性能。然而视频中存在模糊、运动和遮挡等情况，阻碍了利用边界框轨迹对目标进行精确定位的操作，因此视频中的目标检测仍然存在准确率低的问题。&lt;/p&gt;
+&lt;p&gt;另一方面，由于目标检测器漏检率较高，采用逐个检测追踪策略的多目标追踪往往会产生较短的轨迹，因此有研究开发了额外的合并算法，以获得时间上更一致的目标轨迹。&lt;/p&gt;
+&lt;p&gt;为此，本文的方法利用视频目标检测器生成短时的目标小轨迹候选来避免上面两个问题，并且该方案适合所有好的目标检测和多目标追踪方法。&lt;/p&gt;
+&lt;h4 id=&#34;visual-relation-detection&#34;&gt;Visual relation detection&lt;/h4&gt;
+&lt;p&gt;近期的研究工作主要集中于图像的关系检测上，人们普遍认为视觉关系检测的基本挑战在于，如何通过从少量训练实例中学习来建模和预测大量的关系。为解决该问题，现有的大部分方法都是分别预测视觉关系三元组中的主语、宾语和谓语。但目前的ImgVRD方法不适用于VidVRD任务，如其中的动态关系和视频关系的可变性。因此，本文提出了一种视频特定关系特征和一个新的训练准则，用于学习单独的预测模型。&lt;/p&gt;
+&lt;p&gt;本文的方法是首次在视频上进行视觉关系检测的尝试，虽然之前的一些工作也和视频视觉关系任务相关，但它们所追求的目标和VidVRD完全不同。&lt;/p&gt;
+&lt;h4 id=&#34;action-recognition&#34;&gt;Action recognition&lt;/h4&gt;
+&lt;p&gt;动作是视觉关系中一种主要的谓词类别，VidVRD可以借鉴动作识别方面的进展，在动作识别中，特征表示在处理大的类别差距、背景干扰和摄像机运动方面起着重要的作用。为了解决这些问题，人们开发了手工特征和深度神经网络的方法。受相关工作的启发，本文将改进的密集轨迹(iDT)作为部分特征，因为iDT在大多数动作识别数据集上取得了出色的性能，尤其是在训练数据不足的情况下。值得注意的是，本文的方法旨在检测目标之间比动作更一般的关系，如空间关系和比较（相对）关系。&lt;/p&gt;
+&lt;h3 id=&#34;dataset&#34;&gt;Dataset.&lt;/h3&gt;
+&lt;p&gt;本文基于 &lt;em&gt;ILSVRC2016-VID&lt;/em&gt; 构建了第一个用于评估VidVRD任务的数据集，包含人工标注边界框的30类目标的视频共1000个，视频中视觉关系清晰丰富，忽略了目标单一，视觉关系模糊的视频。数据集被划分为训练集和测试集，分别包含800个和200个视频。&lt;/p&gt;
+&lt;p&gt;此外，还补充了5个经常出现的目标类别，即 &lt;em&gt;person, ball, sofa, skateboard&lt;/em&gt; 和 &lt;em&gt;frisbee&lt;/em&gt;，因此共有35个目标种类。这些类别都是相对比较独立的，也就是不包括目标之间的分属关系，比如&lt;code&gt;&amp;lt;bicycle, with, wheel&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;通过对及物动词、比较动词、空间描述和不及物动词等进行筛选和变换，共有132种关系被包含在数据集中。&lt;/p&gt;
+&lt;p&gt;具体的数据划分等，见表1-1：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/t1_1.png&#34;
+	width=&#34;874&#34;
+	height=&#34;446&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;table 1-1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;method&#34;&gt;Method.&lt;/h3&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;vidor&#34;&gt;VidOR&lt;/h2&gt;
 &lt;p&gt;Annotating Objects and Relations in User-Generated Videos. (ICMR 2019)&lt;/p&gt;
 &lt;h3 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
@@ -119,7 +147,9 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;多是数据集的描述和统计，后续将简要总结出来。&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vrd-gcn&#34;&gt;VRD-GCN&lt;/h2&gt;
+&lt;p&gt;Video Relation Detection with Spatio-Temporal Graph. (ACM MM 2019)&lt;/p&gt;
 </description>
         </item>
         <item>
