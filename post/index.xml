@@ -6,24 +6,28 @@
         <description>Recent content in Posts on abel&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 06 Nov 2023 10:53:42 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Paper Notes for Video Visual Relation Detection</title>
-        <link>https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/</link>
-        <pubDate>Mon, 06 Nov 2023 10:53:42 +0800</pubDate>
+        <lastBuildDate>Mon, 25 Mar 2024 15:37:28 +0800</lastBuildDate><atom:link href="https://blog.abelcse.cn/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Paper Notes for Multi Modal Relation Extraction</title>
+        <link>https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/</link>
+        <pubDate>Mon, 25 Mar 2024 15:37:28 +0800</pubDate>
         
-        <guid>https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/</guid>
-        <description>&lt;img src="https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/cover.jpg" alt="Featured image of post Paper Notes for Video Visual Relation Detection" /&gt;&lt;h2 id=&#34;dataset&#34;&gt;Dataset&lt;/h2&gt;
-&lt;h3 id=&#34;vidvrd-imagenet-vidvrd&#34;&gt;VidVRD (ImageNet-VidVRD)&lt;/h3&gt;
-&lt;p&gt;Video Visual Relation Detection. (ACM MM 2017)&lt;/p&gt;
-&lt;h4 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h4&gt;
-&lt;p&gt;作为连接视觉和语言的桥梁，以关系三元组&lt;code&gt;&amp;lt;主语，谓语，宾语&amp;gt;&lt;/code&gt;为形式的目标间视觉关系提供了超过目标本身的更为全面的视觉内容理解，如&lt;code&gt;&amp;lt;person, touch, dog&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;cat, above, sofa&amp;gt;&lt;/code&gt;等。&lt;/p&gt;
-&lt;p&gt;本文提出了一种新的视觉任务，叫作&lt;strong&gt;Video Visual Relation Detection (VidVRD)&lt;/strong&gt;，用于在视频而非静态的图片上进行关系检测。与静态图相比，视频为检测视觉关系提供了更自然的一组特征，比如动态的关系如&lt;code&gt;&amp;lt;A, follow, B&amp;gt;, &amp;lt;A, towards, B&amp;gt;&lt;/code&gt;（A跟着B，A朝着B），以及类似&lt;code&gt;&amp;lt;A, chase, B&amp;gt;&lt;/code&gt;然后&lt;code&gt;&amp;lt;A, hold, B&amp;gt;&lt;/code&gt;（A追逐B，然后A抓住B）这种时序关系。然而，VidVRD任务相比于图像关系检测任务ImgVRD，在技术上具有更大的挑战性，因为其很难对准确的目标进行追踪和应付多种多样的关系表现。&lt;/p&gt;
-&lt;p&gt;为此，本文提出了一个包含目标轨迹小片段候选、短期关系预测和贪心关系关联的VidVRD方法，并提供了一个用于任务评估的数据集，其中包含1000个人工标注的视频。与以前的相关方法相比，本文在该数据集上实现了最佳性能。&lt;/p&gt;
-&lt;p&gt;缩小视觉和语言之间的差距对多媒体分析至关重要，相关工作涉及&lt;em&gt;visual concept annotations, semantic description with captioning&lt;/em&gt; 和 &lt;em&gt;visual question-answering&lt;/em&gt;、字幕语义描述和视觉问答等。视觉关系检测&lt;em&gt;VRD&lt;/em&gt;是最近为了更全面地理解目标之外的视觉内容而做出的工作，目的是为了捕获目标之间的各种互动，它可以有效地支持众多的视觉语言任务，如&lt;em&gt;captioning, visual search&lt;/em&gt; 和 &lt;em&gt;visual question-answering&lt;/em&gt;等。&lt;/p&gt;
-&lt;p&gt;视觉关系包括用边界框定位的一对目标和连接他们之间的谓语，也就是关系。如图1-1(a)所示，其中两个目标可以有不同的关系，同一个关系也可连接起不同外观的目标对。在本文中将使用关系三元组来表示由&lt;code&gt;&amp;lt;subject, predicate, object&amp;gt;&lt;/code&gt;构成的视觉关系类型。因为这种组合的可能性非常多，传统的目标检测方法在这个任务中并不适合，即使已经有的几个相关任务的方法也更适用于静态图片而非视频。与静态图片相比，视频为检测视觉关系提供了一组更为自然的特征。图1-1(b)中，从视频的时空内容中提取的运动特征有助于区分相似的关系，如&lt;em&gt;walk&lt;/em&gt; 和 &lt;em&gt;run&lt;/em&gt;。此外，一些动态的视觉关系只能在视频中被检测到，如&lt;code&gt;&amp;lt;dog, run past, person&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;dog, faster than, person&amp;gt;&lt;/code&gt;。因此，与ImgVRD相比，VidVRD是一个更通用更可行的任务。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/p1_1.png&#34;
-	width=&#34;1021&#34;
-	height=&#34;519&#34;
+        <guid>https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/</guid>
+        <description>&lt;img src="https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/cover.jpg" alt="Featured image of post Paper Notes for Multi Modal Relation Extraction" /&gt;&lt;h2 id=&#34;mnre&#34;&gt;MNRE&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;MNRE: A CHALLENGE MULTIMODAL DATASET FOR NEURAL RELATION EXTRACTION WITH VISUAL EVIDENCE IN SOCIAL MEDIA POSTS. (ICME 2021) (后续简称为 MNRE)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Multimodal Relation Extraction with Efficient Graph Alignment. (ACM MM 2021) (后续简称为 MEGA)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h3&gt;
+&lt;p&gt;关系抽取任务，就是给定文本和实体后，抽取出实体之间的关系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MNRE&lt;/strong&gt;这篇论文认为，现有的关系抽取任务都主要基于新闻类的数据，这些数据组织良好，形式正规，相对来说更容易建模。&lt;/p&gt;
+&lt;p&gt;但对于社交媒体类的数据，这些方法会出现较大的性能下降。这是因为社交媒体的文本内容本身就可能不完整，人们往往会配合图片一起发文，所以在进行关系抽取时，还需要额外对图像的内容进行理解。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/fig1-1.png&#34;
+	width=&#34;809&#34;
+	height=&#34;854&#34;
 	
 	loading=&#34;lazy&#34;
 	
@@ -31,55 +35,22 @@
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;196&#34;
-		data-flex-basis=&#34;472px&#34;
+		data-flex-grow=&#34;94&#34;
+		data-flex-basis=&#34;227px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;VidVRD和ImgVRD之间的另一个显著不同是：视频中的视觉关系通常是随时间变化的，而图像中的关系则是固定的。目标可能会因为遮挡或离开画面而导致视觉关系出现和消失，即使两个目标始终出现在同一个视频帧中，它们之间的互动关系也可能随着时间而发生变化。如图1-2所示，其中的狗和飞盘同时出现在$t_2$和$t_7$之间，但它们之间的关系却从追逐变成了撕咬。因此，应当重新设定义VidVRD任务，以处理视觉关系的可变性。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/p1_2.png&#34;
-	width=&#34;1039&#34;
-	height=&#34;407&#34;
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;figure 1-2&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;255&#34;
-		data-flex-basis=&#34;612px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h5 id=&#34;definition&#34;&gt;Definition&lt;/h5&gt;
-&lt;p&gt;为了与ImgVRD的定义保持一致，本文将VidVRD任务定义如下：给定一组目标类别$C$和谓语(关系)类别$P$，VidVRD旨在检测出视频中的视觉关系实例$C \times P \times C$，其中视觉关系实例由关系三元组&lt;code&gt;&amp;lt;subject, predicate, object&amp;gt;&lt;/code&gt;$\in C \times P \times C$表示，并带有主语和宾语的轨迹信息$T_s$和$T_o$，具体来说，$T_s$和$T_o$是两个边界框的序列，在视觉关系的最长持续时间内构成主语和宾语。如图1-2中，给定的视频关系可以用三元组&lt;code&gt;&amp;lt;dog, chasem frisbee&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;dog, bite, frisbee&amp;gt;&lt;/code&gt;来表示，狗和飞盘分别用$(t_2, t_4)$和$(t_5, t_7)$之间的红色与绿色轨迹定位。&lt;/p&gt;
-&lt;p&gt;与ImgVRD相比，VidVRD面临更多的技术挑战。&lt;/p&gt;
-&lt;p&gt;首先，VidVRD需要用边界框轨迹来定位目标，这比在ImgVRD中为每个目标提供一个边界框更加困难，因为轨迹准确性受到每一帧的目标定位及目标跟踪的性能影响。本文所提出的VidVRD方法通过在视频的每个重叠短片段中生成目标轨迹小片段，然后根据预测出的关系将小片段和目标轨迹关联起来。其次，VidVRD需要在最长持续时间中时序地定位视觉关系。为了完成该任务，本文提出了一个贪心关联算法，其通过判断相邻片段中检测到的视觉关系是否具有相同关系三元组，且目标轨迹小片段具有足够高的重叠度来决定是否合并他们。最后，与ImgVRD相比，VidVRD需要预测更多类型的视觉关系，因为有的视觉关系只能在视频中检测到，为了有效预测关系，本文提出了关系预测模型，该模型从主语/宾语的轨迹小片段中提取出多种特征，包括外观特征、运动特征和相对特征。然后将这些特征编码成关系特征，再分别使用单独的主语、宾语和关系预测器来预测视觉关系。&lt;/p&gt;
-&lt;p&gt;截至目前，还没有针对VidVRD的数据集，不过有几个针对ImgVRD的数据集，如 &lt;em&gt;Visual Relationship dataset, Visual Genome&lt;/em&gt;，因此，本文构建了一个VidVRD的数据集进行评估。本文设计了一个谓语描述机制，并从 &lt;em&gt;ILSVRC2016-VID&lt;/em&gt; 中构建该数据集。该数据集包含1000个视频，其中有人工标注的视觉关系和目标边界轨迹信息。&lt;/p&gt;
-&lt;p&gt;本文的主要贡献在于：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;提出了新颖的VidVRD任务，旨在探索视频中目标之间的各种关系，与ImgVRD相比，它提供了更可行地VRD任务；&lt;/li&gt;
-&lt;li&gt;提出了一种新的VidVRD方法，该方法通过目标轨迹小片段候选、关系预测和贪心关系关联来检测视频中的视觉关系；&lt;/li&gt;
-&lt;li&gt;贡献了第一个VidVRD数据集，带有1000个人工标注的视频数据。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;rel&#34;&gt;Rel.&lt;/h4&gt;
-&lt;h5 id=&#34;video-object-detection&#34;&gt;Video object detection&lt;/h5&gt;
-&lt;p&gt;视频目标检测旨在从给定视频中检测出预定义的目标，并通过边界框轨迹对其进行定位。目前最好的方法主要是通过整合目标检测和多目标跟踪来实现。&lt;/p&gt;
-&lt;p&gt;最近，复杂的深度神经网络在图像目标检测方面取得了很好的性能。然而视频中存在模糊、运动和遮挡等情况，阻碍了利用边界框轨迹对目标进行精确定位的操作，因此视频中的目标检测仍然存在准确率低的问题。&lt;/p&gt;
-&lt;p&gt;另一方面，由于目标检测器漏检率较高，采用逐个检测追踪策略的多目标追踪往往会产生较短的轨迹，因此有研究开发了额外的合并算法，以获得时间上更一致的目标轨迹。&lt;/p&gt;
-&lt;p&gt;为此，本文的方法利用视频目标检测器生成短时的目标小轨迹候选来避免上面两个问题，并且该方案适合所有好的目标检测和多目标追踪方法。&lt;/p&gt;
-&lt;h5 id=&#34;visual-relation-detection&#34;&gt;Visual relation detection&lt;/h5&gt;
-&lt;p&gt;近期的研究工作主要集中于图像的关系检测上，人们普遍认为视觉关系检测的基本挑战在于，如何通过从少量训练实例中学习来建模和预测大量的关系。为解决该问题，现有的大部分方法都是分别预测视觉关系三元组中的主语、宾语和谓语。但目前的ImgVRD方法不适用于VidVRD任务，如其中的动态关系和视频关系的可变性。因此，本文提出了一种视频特定关系特征和一个新的训练准则，用于学习单独的预测模型。&lt;/p&gt;
-&lt;p&gt;本文的方法是首次在视频上进行视觉关系检测的尝试，虽然之前的一些工作也和视频视觉关系任务相关，但它们所追求的目标和VidVRD完全不同。&lt;/p&gt;
-&lt;h5 id=&#34;action-recognition&#34;&gt;Action recognition&lt;/h5&gt;
-&lt;p&gt;动作是视觉关系中一种主要的谓词类别，VidVRD可以借鉴动作识别方面的进展，在动作识别中，特征表示在处理大的类别差距、背景干扰和摄像机运动方面起着重要的作用。为了解决这些问题，人们开发了手工特征和深度神经网络的方法。受相关工作的启发，本文将改进的密集轨迹(iDT)作为部分特征，因为iDT在大多数动作识别数据集上取得了出色的性能，尤其是在训练数据不足的情况下。值得注意的是，本文的方法旨在检测目标之间比动作更一般的关系，如空间关系和比较（相对）关系。&lt;/p&gt;
-&lt;h4 id=&#34;dataset-1&#34;&gt;Dataset.&lt;/h4&gt;
-&lt;p&gt;本文基于 &lt;em&gt;ILSVRC2016-VID&lt;/em&gt; 构建了第一个用于评估VidVRD任务的数据集，包含人工标注边界框的30类目标的视频共1000个，视频中视觉关系清晰丰富，忽略了目标单一，视觉关系模糊的视频。数据集被划分为训练集和测试集，分别包含800个和200个视频。&lt;/p&gt;
-&lt;p&gt;此外，还补充了5个经常出现的目标类别，即 &lt;em&gt;person, ball, sofa, skateboard&lt;/em&gt; 和 &lt;em&gt;frisbee&lt;/em&gt;，因此共有35个目标种类。这些类别都是相对比较独立的，也就是不包括目标之间的分属关系，比如&lt;code&gt;&amp;lt;bicycle, with, wheel&amp;gt;&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;通过对及物动词、比较动词、空间描述和不及物动词等进行筛选和变换，共有132种关系被包含在数据集中。&lt;/p&gt;
-&lt;p&gt;具体的数据划分等，见表1-1：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/t1_1.png&#34;
-	width=&#34;874&#34;
-	height=&#34;446&#34;
+&lt;p&gt;如图1-1所示，对于文本&lt;code&gt;JFK and Obama at Harvard @Harvard&lt;/code&gt;，可以得到三个实体：&lt;em&gt;JFK&lt;/em&gt;、&lt;em&gt;Obama&lt;/em&gt;和&lt;em&gt;Harvard&lt;/em&gt;，如果不考虑图像信息，可能会错误地得到&lt;code&gt;&amp;lt;JFK, Residence（住在）, Harvard&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;JFK, Spouse（配偶）, Obama&amp;gt;&lt;/code&gt;这些关系。&lt;/p&gt;
+&lt;p&gt;但如果同时根据图像信息进行理解，就会得到&lt;code&gt;&amp;lt;JFK, Graduated at, Harvard&amp;gt;&lt;/code&gt;，因为&lt;em&gt;JFK&lt;/em&gt;戴着学位帽，穿着学位服，因此根据文本信息，更容易判断出他毕业于哈佛。&lt;/p&gt;
+&lt;p&gt;为此，&lt;strong&gt;MNRE&lt;/strong&gt;提出了一个新的任务：多模态关系抽取（MRE，或者MMRE），并为此构建了数据集MNRE（Multimodal dataset for Neural Relation Extraction），该数据集主要由Twitter-15和Twitter-17构建而来，因此是偏向于社交媒体关系抽取的。作者认为，该工作既推动了多模态关系抽取任务的发展，也为对齐较细粒度的文本-图像信息做出了贡献。&lt;/p&gt;
+&lt;p&gt;第2篇论文是同一批作者，主要是对该数据集做了一些改进，对新数据集做了几个baseline，并验证了自己的方法，具体内容将在后续介绍。&lt;/p&gt;
+&lt;h3 id=&#34;数据集构建&#34;&gt;数据集构建&lt;/h3&gt;
+&lt;p&gt;数据集来源：两个多模态实体识别数据集：Twitter-15和Twitter-17，以及部分从Twitter上爬取的内容（2019年1月-2月的内容）；&lt;/p&gt;
+&lt;p&gt;数据集涵盖：没有特意挑选具体的领域，比如运动、社会事件，而是尽可能确保实体的多样性，并且去除了非英语以及实体数量低于两个的句子；&lt;/p&gt;
+&lt;p&gt;标注方法：源数据、预训练好的NER标注工具、人工标注；&lt;/p&gt;
+&lt;p&gt;具体情况见表1-1所示，其中&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/tab1-1.png&#34;
+	width=&#34;1617&#34;
+	height=&#34;375&#34;
 	
 	loading=&#34;lazy&#34;
 	
@@ -87,54 +58,29 @@
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;195&#34;
-		data-flex-basis=&#34;470px&#34;
+		data-flex-grow=&#34;431&#34;
+		data-flex-basis=&#34;1034px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;method&#34;&gt;Method.&lt;/h4&gt;
-&lt;h3 id=&#34;vidor&#34;&gt;VidOR&lt;/h3&gt;
-&lt;p&gt;Annotating Objects and Relations in User-Generated Videos. (ICMR 2019)&lt;/p&gt;
-&lt;h4 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h4&gt;
-&lt;p&gt;要进行细粒度的视频内容分析，理解目标之间的关系必不可少。然而，现存的工作受到数据集规模太小和评价指标不直接的限制。这些限制主要是因为构建大规模详细标注的视频数据集费时费力。因此，本文提出了一种pipeline的视频标注方法，能够以少量的花费构建数据集，并构造了新的视频数据集VidOR，该数据集包含了10k个视频（大概84小时），共80个目标类别和50个关系类别。&lt;/p&gt;
-&lt;p&gt;细粒度的视频内容分析很重要，目前一些视频字幕描述和问答任务已经证明了这一点。随着粒度的不断细化，理解目标之间的关系也变得重要，目前的研究表明理解目标之间的关系对视频内容分析生成更稳健的表示是有效的。但是目前相关的工作都是较为隐性地建模和评估目标之间的关系，对模型是否和如何很好理解细粒度内容并不很清楚。&lt;/p&gt;
-&lt;p&gt;但是在视频中进行目标和关系的识别是很有挑战性的任务，这需要对目标的外观、身份、动作和目标之间的交互。如图1-1中的狗所示，其外观可能因为它的活动、光照和遮挡而发生较大变化，这对给跨视频帧去确定狗的身份带来较大的困扰，而这却是进一步总结视频内容的必要线索。此外，动作和交互表示的差异也对模型学习根本的模式和稳健的推理带来了新的挑战。为此有很多工作，如&lt;em&gt;video object detection&lt;/em&gt;和&lt;em&gt;video visual relation detection&lt;/em&gt;在深入地研究这些问题，但他们主要受到了可用数据集规模太小的限制。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/vidor_1.png&#34;
-	width=&#34;2092&#34;
-	height=&#34;357&#34;
+&lt;p&gt;第2篇论文对此做了改进，新的数据信息见表1-2和图1-2。由于后续的大量研究都是基于新数据集的，所以&lt;code&gt;MNRE&lt;/code&gt;论文后续的方法和内容将不再介绍，而是以第2篇论文&lt;code&gt;MEGA&lt;/code&gt;为主。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/tab1-2.png&#34;
+	width=&#34;617&#34;
+	height=&#34;352&#34;
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;figure 1-1&#34;
+		alt=&#34;table 1-2&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;585&#34;
-		data-flex-basis=&#34;1406px&#34;
+		data-flex-grow=&#34;175&#34;
+		data-flex-basis=&#34;420px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;对上面的内容，我们可以总结为：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;细粒度的视频内容分析非常重要，比如生成视频字幕，进行视频问答等；&lt;/li&gt;
-&lt;li&gt;但是进行细粒度的视频内容分析并不容易，这主要是因为现存的数据集规模小，无法设计更好的模型；&lt;/li&gt;
-&lt;li&gt;而视频中目标的关系检测是很重要的部分，能够帮助进行视频内容分析。而要进行关系检测，需要考虑目标的外观、身份、动作和目标之间的交互，这是具有挑战性的，甚至连一个这样的大规模数据集都还没有。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;因此，本文的目的就是构建一个包含详细标注的目标和关系的更大规模数据集，视频均来源于网上以确保反映真实场景。标注信息通过边界框轨迹对目标进行时空定位，对关系进行时间定位。和类似的图片数据集相比，本文希望构建一个视频的benchmark，并且能够对动作和动态关系进行学习和推理。&lt;/p&gt;
-&lt;p&gt;但是构建这样的数据集代价高昂，假设平均一个视频150帧，10k个视频就需要标注1.5m张图片，这已经达到了当前一些图像数据集的规模。&lt;/p&gt;
-&lt;p&gt;如果假设相邻帧之间具有相似性，那么就可以在固定的间隔中进行手工标注，然后再进行插值。但这种方式只适合电影及监控视频这种连贯的视频类型。而由用户生成的视频内容则是完全自由的，质量一般不太高，视频的连续性也不强，所以不能简单的进行插值，而需要选择一种更好的策略进行关键帧的选取和人工标注。&lt;/p&gt;
-&lt;p&gt;此外，如何将标注任务划分为子任务也是比较复杂的问题。假设我们将标注视频中的目标和关系视为一个单一任务，那么标注者就需要接受相关的培训，花费大量的精力。因此，更好的选择是将标注任务变成更宏观的子任务，如判断目标的类型，确定是否有边框，边框是否正确等等。&lt;/p&gt;
-&lt;p&gt;为此，本文将设计一种新的pipeline方法，它适用于长度从几秒到几分钟不等的用户生成的视频。&lt;/p&gt;
-&lt;h4 id=&#34;rel-1&#34;&gt;Rel.&lt;/h4&gt;
-&lt;h5 id=&#34;video-annotation&#34;&gt;Video Annotation&lt;/h5&gt;
-&lt;p&gt;当前的时序标注大致可以分为两类，一类是通过标注目标在视频中的开始和结束帧进行时序的定位，因此需要标注者仔细地浏览整个视频；另一类方法是在较短的视频片段钟标记目标是否存在，然后自动合并各片段的结果以实现时间定位，这种方法相对节省时间，但可能产生粗粒度的标注结果。&lt;/p&gt;
-&lt;p&gt;在本文的方法中，通过为不同的关系仔细挑选合适的方法，从而结合了两类方法的优点。&lt;/p&gt;
-&lt;h5 id=&#34;video-datasets&#34;&gt;Video Datasets&lt;/h5&gt;
-&lt;p&gt;视频数据集按照标注程度来划分。一种是按照整个视频级别来进行标注，如CCV、Kinetics和MSR-VTT，他们都是用于事件识别，动作识别和视频字幕任务的典型benchmark；第二类是片段级别的标注，比如THUMOS、MultiTHUMOS和ActivityNet Caption，他们一般用于动作、活动和事件的时序定位的评测；第三类是目标级别的标注，TrackingNet就是其中一个大规模的标注了目标边框轨迹的目标追踪数据集。ImageNet-VID是一个超过30类目标的目标检测数据集。AVA则是一个时空活动定位的视觉动作数据集；最后则是关系级别的标注，VidVRD是基于ImageNet-VID构建的当前唯一一个提供目标和关系的视频数据集，但是该数据集相对较小，并且标注的比较稀疏。&lt;/p&gt;
-&lt;h4 id=&#34;stat&#34;&gt;Stat.&lt;/h4&gt;
-&lt;h5 id=&#34;annotation-pipeline&#34;&gt;Annotation Pipeline&lt;/h5&gt;
-&lt;p&gt;为了更好地进行标注，本文提出了如图1-2所示的包含目标和关系标注的流水线标注方案。为了完成标注任务，标注者需要完成三个子任务：浏览视频以发现新的目标；绘制这些目标的边框；将被遮挡或者离开镜头外的目标的帧标注为不可见。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/vidor_2.png&#34;
-	width=&#34;2018&#34;
-	height=&#34;777&#34;
+&lt;p&gt;图1-2则是对修改后的数据集的关系类别进行了统计，可以看到关系类别的标签还是存在很明显的不平衡问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/fig1-2.png&#34;
+	width=&#34;884&#34;
+	height=&#34;602&#34;
 	
 	loading=&#34;lazy&#34;
 	
@@ -142,53 +88,69 @@
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;259&#34;
-		data-flex-basis=&#34;623px&#34;
+		data-flex-grow=&#34;146&#34;
+		data-flex-basis=&#34;352px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;多是数据集的描述和统计，后续将简要总结出来。&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;vrd-gcn&#34;&gt;VRD-GCN&lt;/h2&gt;
-&lt;p&gt;Video Relation Detection with Spatio-Temporal Graph. (ACM MM 2019)&lt;/p&gt;
-&lt;h3 id=&#34;abs--int-2&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
-&lt;p&gt;理解视觉信息是计算机视觉的核心目标。视觉关系检测就是其中很有挑战的一项任务，因为我们从视觉内容中获取的信息不仅仅是目标的集合，还包括它们之间的交互关系，也就是需要捕获细粒度的视觉线索，包括目标的位置以及它们之间如何进行交互。&lt;/p&gt;
-&lt;p&gt;视频中目标之间的关系是深入理解动态视觉内容的重要组成部分，它对很多高层次的视觉任务，如视觉问答、视觉字幕生成等有更精确的促进作用，但视频中的关系检测和推理却很少被探索。&lt;/p&gt;
-&lt;p&gt;目前已经有很多针对静态图片的关系检测方法，并取得了非常好的结果。一种自然的方法是直接使用它们的方法来进行视频的关系检测，然而由于视频和图像的本质区别：增加了时序维度，使得这些方法在视频任务上并不能获得理想的结果，因为时间通道的视频信息使得很多动态关系要和时序与空间进行关联，这使得在视频中进行关系预测变得更为复杂。&lt;/p&gt;
-&lt;p&gt;如果我们能够利用时间和空间信息，如在空间维度上，知道了&lt;code&gt;&amp;lt;bicycle, move_right, car&amp;gt;&lt;/code&gt;，就能够帮助检测&lt;code&gt;&amp;lt;person, right, car&amp;gt;&lt;/code&gt;，在时间维度上，知道&lt;code&gt;&amp;lt;car, faster, bicycle&amp;gt;&lt;/code&gt;，就有助于检测到后续的&lt;code&gt;&amp;lt;car, move_past, bicycle&amp;gt;&lt;/code&gt;（如图2-1）。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/p2-1.png&#34;
-	width=&#34;918&#34;
-	height=&#34;450&#34;
+&lt;h3 id=&#34;任务与方法&#34;&gt;任务与方法&lt;/h3&gt;
+&lt;p&gt;任务定义非常简单，与文本不同的在于，给定的输入还多了与文本相关联的图片：&lt;/p&gt;
+&lt;p&gt;$F(e_1, e_2, S, V) \rightarrow Y$，既给定句子$S = (w_1, w_2, &amp;hellip;, w_n)$，句子中的实体$e_1, e_2$，以及与句子相关联的视觉内容$V = (v_1, v_2, &amp;hellip;, v_n)$，然后预测出实体$e_1,e_2$之间的关系类别$Y$。（注意，虽然定义中给出的是视觉内容集合，但实际数据集中基本上是一个句子对应一张图像，即使有多个关联情况，数据集也是将其划分为多个样本的）&lt;/p&gt;
+&lt;p&gt;为了构建baseline以做对比，&lt;code&gt;MNRE&lt;/code&gt;论文分别测试了三类方法：基于CNN的方法&lt;em&gt;Glove+CNN&lt;/em&gt;、基于预训练语言模型的方法&lt;em&gt;BertNER&lt;/em&gt;、远程监督的方法&lt;em&gt;PCNN&lt;/em&gt;，此外，论文还将CNN与PLM结合了一下，即&lt;em&gt;Bert+CNN&lt;/em&gt;的方法。而&lt;code&gt;MEGA&lt;/code&gt;保留了&lt;em&gt;Glove+CNN&lt;/em&gt;和&lt;em&gt;PCNN&lt;/em&gt;的方法，并有专门面向关系抽的预训练Bert模型&lt;em&gt;MTB&lt;/em&gt; (Matching the Blanks)、BERT结合场景图的方法&lt;em&gt;Bert+SG&lt;/em&gt;、以及额外增加了注意力机制的方法&lt;em&gt;Bert+SG+Att&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;MEGA的方法如图1-3所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/fig1-3.png&#34;
+	width=&#34;2008&#34;
+	height=&#34;798&#34;
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;figure 2-1&#34;
+		alt=&#34;figure 1-3&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;204&#34;
-		data-flex-basis=&#34;489px&#34;
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;603px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;本文将视频抽象为全连接的空间-时间图，通过在这种3D图中利用图卷积网络传递信息和推理，从而提出了新的方法：VRD-GCN。简单来说，本文通过空间-时间内容更好地完成动态关系的预测，并利用孪生网络的在线关联方法更准确地完成关系实例&lt;code&gt;&amp;lt;subject, predicate, object&amp;gt;&lt;/code&gt;的关联。本文在ImageNet-VidVRD数据集上进行了实验，达到了当时的SOTA。&lt;/p&gt;
-&lt;h3 id=&#34;method-1&#34;&gt;Method.&lt;/h3&gt;
-&lt;p&gt;视频视觉关系检测任务的定义是：给定目标集合$O$，关系（谓语）集合$P$，任意长度的视频，利用主语和宾语的轨迹$T_s, T_o$（即主语和宾语目标在不同帧的目标框序列），需要该任务从中检测出所有&lt;code&gt;&amp;lt;subject, predicate, object&amp;gt;&lt;/code&gt;$\in O \times P \times O$的关系实例。如图2-2所示，我们可以将任务分解为三个独立的部分：多目标追踪、关系预测和关系实例关联。&lt;/p&gt;
-&lt;p&gt;简单来讲，首先将视频切分为片段，并从片段中提取出轨迹段（Trajectory proposals），然后利用本文的方法VRD-GCN来预测所有目标对的关联；最后，利用孪生网络的在线关联方法来关联所有检测到的短期关系实例，形成最终的视频关系实例。需要注意的是，这里的轨迹信息和预处理方法直接使用&lt;!-- raw HTML omitted --&gt;Dataset-VidVRD(ImageNet-VidVRD)&lt;!-- raw HTML omitted --&gt;的结果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-video-visual-relation-detection/p2-2.png&#34;
-	width=&#34;1837&#34;
-	height=&#34;402&#34;
+&lt;p&gt;根据方法图，MEGA的方法大致可以分为三部分：结构化特征表示、多模态特征对齐和实体表示与关系预测。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;结构化特征表示：&lt;/p&gt;
+&lt;p&gt;文本结构：依存句法树，MEGA使用ELMo提取给定文本得句法，构建出对应的句法树；&lt;/p&gt;
+&lt;p&gt;图像结构：场景图生成(SGG)，MEGA使用场景图生成模型得到针对图像的graph结构信息（场景图就是从图像中抽取出的以 object-relation-object结构为主的Graph）&lt;/p&gt;
+&lt;p&gt;从模型结构中可以看到，句法树其实就是文本的图结构，场景图就是图像中物体关系的结构，并且该方法额外还是用了文本的表示，也就是$BERT(Text)$；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多模态特征对齐：&lt;/p&gt;
+&lt;p&gt;结构对齐：即对句法树和场景图进行对齐，通过邻接矩阵构建出各实体和目标之间的映射关系；&lt;/p&gt;
+&lt;p&gt;语义对齐：将场景图的信息和从BERT中出来的文本特征进行融合，简单来说就是一个注意力机制，其中Query和Value是文本特征，Key是图像特征；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关系预测：&lt;/p&gt;
+&lt;p&gt;这部分就是图1-3中的最右边的操作，简单来说，就是将之前结构、语义对齐的视觉特征融合，得到最终对齐的视觉语义特征；以及从BERT中出来的文本特征中得到头、尾实体的特征，将他们做个简单的拼接操作，也就是实体$E_{entity} = [head;tail]$，与对齐的视觉特征$E_{visual}$ 做拼接$z = [E_{entity};E_{visual}]$，然后直接全连接预测关系$output = MLP(z)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;结果分析&#34;&gt;结果分析&lt;/h3&gt;
+&lt;p&gt;MEGA的实验结果如表1-3所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcse.cn/p/paper-notes-for-multi-modal-relation-extraction/tab1-3.png&#34;
+	width=&#34;858&#34;
+	height=&#34;355&#34;
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;figure 2-2&#34;
+		alt=&#34;table 1-3&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;456&#34;
-		data-flex-basis=&#34;1096px&#34;
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;580px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;片段关系预测&#34;&gt;片段关系预测&lt;/h4&gt;
-&lt;p&gt;直接上来看，空间上相互接近的目标有比较强的关联，并且相邻时间段的目标也回保持强关联。因此，本文将视频抽象成全连接的时空图，参考图2-1所示，其中每个目标被视为连接到前一个、当前和下一个片段中所有其他节点的轨迹节点。而处理该图的方法则选用了图卷积神经网络。&lt;/p&gt;
+&lt;p&gt;可以看到MEGA是有效的。&lt;/p&gt;
+&lt;p&gt;直观上来看，MEGA处理多模态信息时，分别从&lt;code&gt;结构对齐&lt;/code&gt;和&lt;code&gt;语义对齐&lt;/code&gt;两个方向出发，并进行模态融合，这是常见且有效的一种方法。&lt;/p&gt;
+&lt;p&gt;然而，这种方法并非端到端的，场景图生成是有错误的，句法分析也是有错误的，除非MNRE数据集同时有这两个模型的强监督信号，并且在反向传播时也能更新他们的梯度，否则会由于错误积累导致后面模型性能存在不可能太高的上限。&lt;/p&gt;
+&lt;p&gt;实际上，哪怕直接利用&lt;code&gt;BERT+ViT&lt;/code&gt;的方式进行端到端学习，也能得到比当前结果高的多的性能，甚至不使用视觉信号，BERT也能发挥很好的效果，因此一定程度上需要验证该方法对齐方式的有效性（这也符合对错误累积问题的分析）&lt;/p&gt;
+&lt;p&gt;此外，其实数据集本身还存在问题，这些将在后续的论文更新中总结。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
 </description>
         </item>
         <item>
