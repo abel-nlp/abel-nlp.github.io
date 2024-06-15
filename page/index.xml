@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pages on abel&#39;s blog</title>
+        <link>http://localhost:1313/page/</link>
+        <description>Recent content in Pages on abel&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 26 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>About</title>
+        <link>http://localhost:1313/about/</link>
+        <pubDate>Fri, 26 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/about/</guid>
+        <description>&lt;p&gt;Hello!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I&amp;rsquo;m abel.&lt;/li&gt;
+&lt;li&gt;I&amp;rsquo;m a master&amp;rsquo;s student in Artificial Intelligence, Computer Science and Technology.&lt;/li&gt;
+&lt;li&gt;My research focuses on &lt;strong&gt;Multi-Modal Information Extraction&lt;/strong&gt;, like &lt;strong&gt;Visual Relation Detection&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;My research skill is still relatively poor now.😅&lt;/li&gt;
+&lt;li&gt;Thank you for visiting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Wanna know more?
+Contact me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/abel-nlp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:abel.nlp@outlook.com&#34; &gt;Email&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;教育背景-education&#34;&gt;教育背景 (Education)：&lt;/h2&gt;
+&lt;h3 id=&#34;master-student硕士&#34;&gt;Master Student（硕士）&lt;/h3&gt;
+&lt;p&gt;2022.09 - 2025.06&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;东北大学 (Northeastern University)&lt;/li&gt;
+&lt;li&gt;计算机科学与技术 (Computer Science)&lt;/li&gt;
+&lt;li&gt;GPA Top 4%&lt;/li&gt;
+&lt;li&gt;东北大学校长奖学金 (Presidential Scholarship)&lt;/li&gt;
+&lt;li&gt;东北大学一等奖学金 (First-class Scholarship)&lt;/li&gt;
+&lt;li&gt;东北大学优秀研究生 (Outstanding Graduate Student)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;undergraduate-本科&#34;&gt;Undergraduate (本科)&lt;/h3&gt;
+&lt;p&gt;2018.09 - 2022.06&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;东北大学 (Northeastern University)&lt;/li&gt;
+&lt;li&gt;物联网工程 (Internet of Things)&lt;/li&gt;
+&lt;li&gt;GPA Top 6%&lt;/li&gt;
+&lt;li&gt;东北大学优秀毕业生 (Outstanding Undergraduate Graduates)&lt;/li&gt;
+&lt;li&gt;东北大学优秀学生干部 (Outstanding Student Leader)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;实习经历-internship&#34;&gt;实习经历 (Internship)：&lt;/h2&gt;
+&lt;h3 id=&#34;1&#34;&gt;#1&lt;/h3&gt;
+&lt;p&gt;2023.03 - 2023.06&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中国电信股份有限公司北京研究院 (China Telecom)&lt;/li&gt;
+&lt;li&gt;算法实习生 (NLP Intern)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2&#34;&gt;#2&lt;/h3&gt;
+&lt;p&gt;2023.07 - 2023.09&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;影石Insta360&lt;/li&gt;
+&lt;li&gt;深度学习算法实习生 (Deep Learning Intern)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;科研经历-research&#34;&gt;科研经历 (Research)&lt;/h2&gt;
+&lt;h3 id=&#34;techgpt&#34;&gt;TechGPT&lt;/h3&gt;
+&lt;p&gt;2023.04 - 2023.06&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TechGPT大模型 (LLM, Large Language Model)&lt;/li&gt;
+&lt;li&gt;主要开发者 (Key Developer)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://techgpt.neukg.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TechGPT Online&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/neukg/TechGPT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TechGPT (GitHub)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://huggingface.co/neukg/TechGPT-7B&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TechGPT (Hugging Face)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;paper&#34;&gt;Paper&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2404.19154&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RTF&lt;/a&gt;: Region-based Table Filling Method for Relational Triple Extraction. (2023, the Second Author)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2401.04507&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TechGPT2.0&lt;/a&gt;: A large language model project to solve the task of knowledge graph construction. (2024, the Co-first Author)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.abelcode.tech/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;QEOT&lt;/a&gt;: Query-based Transformer Model for Multimodal Entity-Object Relational Triple Extraction. (2024, the First Author, Under Rereview)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>http://localhost:1313/archives/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Links</title>
+        <link>http://localhost:1313/links/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/links/</guid>
+        <description>&lt;p&gt;There are some links for my friends and the research mates.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>http://localhost:1313/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
