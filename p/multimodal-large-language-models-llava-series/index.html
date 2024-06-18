@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Notes for the LLaVA models.'>
 <title>Multimodal Large Language Models: LLaVA Series</title>
 
-<link rel='canonical' href='http://localhost:1313/p/multimodal-large-language-models-llava-series/'>
+<link rel='canonical' href='https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/'>
 
 <link rel="stylesheet" href="/scss/style.min.8113fc0702e9d6a0d9674053f9a6b06b0f023098371d52312e996de177dc1466.css"><meta property='og:title' content='Multimodal Large Language Models: LLaVA Series'>
 <meta property='og:description' content='Notes for the LLaVA models.'>
-<meta property='og:url' content='http://localhost:1313/p/multimodal-large-language-models-llava-series/'>
+<meta property='og:url' content='https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/'>
 <meta property='og:site_name' content='abel&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='paper-notes' /><meta property='article:tag' content='multi-modal' /><meta property='article:tag' content='collection' /><meta property='article:published_time' content='2024-06-15T21:36:11&#43;08:00'/><meta property='article:modified_time' content='2024-06-15T21:36:11&#43;08:00'/><meta property='og:image' content='http://localhost:1313/p/multimodal-large-language-models-llava-series/cover.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='paper-notes' /><meta property='article:tag' content='multi-modal' /><meta property='article:tag' content='collection' /><meta property='article:published_time' content='2024-06-15T21:36:11&#43;08:00'/><meta property='article:modified_time' content='2024-06-15T21:36:11&#43;08:00'/><meta property='og:image' content='https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/cover.jpg' />
 <meta name="twitter:title" content="Multimodal Large Language Models: LLaVA Series">
 <meta name="twitter:description" content="Notes for the LLaVA models."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/p/multimodal-large-language-models-llava-series/cover.jpg' />
+    <meta name="twitter:image" content='https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/cover.jpg' />
   
 
 
@@ -214,7 +214,7 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="http://localhost:1313/" selected>English</option>
+                            <option value="https://blog.abelcode.tech/" selected>English</option>
                         
                     </select>
                 </li>
@@ -270,6 +270,13 @@
     <li><a href="#llava">LLaVA</a>
       <ol>
         <li><a href="#背景与动机">背景与动机</a></li>
+        <li><a href="#数据集构建">数据集构建</a></li>
+        <li><a href="#任务与方法">任务与方法</a>
+          <ol>
+            <li><a href="#模型结构">模型结构</a></li>
+          </ol>
+        </li>
+        <li><a href="#结果分析">结果分析</a></li>
       </ol>
     </li>
   </ol>
@@ -340,7 +347,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    4 minute read
                 </time>
             </div>
         
@@ -357,10 +364,88 @@
     
     <h2 id="llava">LLaVA</h2>
 <blockquote>
-<p>Visual Instruction Tuning.  NeurIPS 2023.</p>
+<p><a class="link" href="https://doi.org/10.48550/arXiv.2304.08485"  target="_blank" rel="noopener"
+    >Visual Instruction Tuning</a>.  NeurIPS 2023.</p>
 </blockquote>
 <h3 id="背景与动机">背景与动机</h3>
-<p>我将尽快完成博客的重启工作</p>
+<p>在本文之前，无论是传统意义上的“大”模型，还是现在提及的大（语言）模型（LLM），都已经有了广泛的研究。</p>
+<p>例如多模态学习（MM）通过结合计算机视觉和自然语言处理知识在诸如图像-文本检索（Image-Text Retrieval）、图像描述（Image Captioning）和视觉问答（Visual Question Answering）等。</p>
+<p>在LLM出现之后，人们发现现有模型已经具备可观的指令遵循的能力（给定指令后，让LLM能够按照指令的描述完成特定任务），例如训练指令遵循的Agent去完成一系列任务和指令微调后让LLM能够在特定领域按照人类的要求完成任务。</p>
+<p>然而，结合LLM和MM的研究相对还较少，一是因为目前的LLM还是以文本为核心的模型，如何将视觉信息嵌入进语言模型中还有较大的研究空间；二是视觉语言指令微调数据集（Vision-Language）还较缺乏，因为与<a class="link" href="https://doi.org/10.48550/arXiv.2103.00020"  target="_blank" rel="noopener"
+    >CLIP</a>这种图像-文本对的收集方式不同，要得到可信的指令微调数据集是有难度的。</p>
+<p>为此，本文的工作可以简单总结为以下两个：</p>
+<ul>
+<li>通过<a class="link" href="https://openai.com/index/chatgpt/"  target="_blank" rel="noopener"
+    >ChatGPT</a>和<a class="link" href="https://openai.com/index/gpt-4/"  target="_blank" rel="noopener"
+    >GPT4</a>构建了一个具备一定规模的<strong>多模态指令微调数据集</strong>。具体构建方式见后文，但可以预想的是，文本之所以选择这两个模型辅助数据集的构建，一是纯人工的构建必然花费大量的成本，二是这两个模型经过很好的人工反馈强化学习（如<a class="link" href="https://doi.org/10.48550/arXiv.2203.02155"  target="_blank" rel="noopener"
+    >InstructGPT</a>）的训练，给出的回复一定程度上更贴近人类的偏好。</li>
+<li>利用CLIP作为视觉特征的编码器，利用一个包含大量ChatGPT回复的数据集上微调的LLaMA模型<a class="link" href="https://lmsys.org/blog/2023-03-30-vicuna/"  target="_blank" rel="noopener"
+    >Vicuna</a>作为LLM，从而形成了一个多模态大模型：LLaVA。</li>
+</ul>
+<h3 id="数据集构建">数据集构建</h3>
+<p>LLaVA数据集构建的核心是利用GPT辅助生成视觉指令数据。</p>
+<p>传统的多模态数据缺乏指令相关的内容，以文本内容较为丰富的image caption相关的数据集为例，其数据构成一般是$X_v: X_c$，既对于每一个图像样本$X_v$而言，都有对应地描述图像内容的文本$X_c$。</p>
+<p>在本文中，为了得到指令数据集，作者则利用GPT-4，针对上述提到的$X_c$，让GPT提出可能的问题，也就是假设已经有答案的情况下，让GPT问出符合该答案的问题。假设问题的表示为$X_q$，那么就可以创造出如下格式的指令数据： $X_qX_v$<code>&lt;STOP&gt; Assistant: </code>$X_c$<code>&lt;STOP&gt;</code>。具体的设计方式如图1所示，即给定GPT要求后，收集其产生的回复，从而拼接成固定格式的指令数据。</p>
+<p><img src="/p/multimodal-large-language-models-llava-series/fig1.png"
+	width="896"
+	height="603"
+	
+	loading="lazy"
+	
+		alt="figure 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="356px"
+	
+></p>
+<p>然而，仅仅使用这种方式产生的指令数据不仅缺乏多样性，还无法提供更复杂和深层次的逻辑推理信息。因此，本文以人工标注的具备高质量目标检测和描述信息的多模态数据集<a class="link" href="https://doi.org/10.48550/arXiv.1405.0312"  target="_blank" rel="noopener"
+    >COCO</a>为基础，充分使用数据集中的描述信息<code>captions</code>和目标位置信息<code>bounding boxes</code>来完成多模态指令数据的生成。</p>
+<p>具体来说，本文希望GPT基于这两类注释和对应的图像，生成三类核心指令数据：</p>
+<ol>
+<li>对话数据：设计一个助手和人对话的场景，产生出助手在看图片，并回答人提出的问题，其实就是我们直观能够理解的多模态对话场景；</li>
+<li>详细描述：为了包含对图像全面和丰富的描述，本文创建了和该类问题相关的一系列问题，并通过询问GPT来产生详细的回复（简单理解就是让GPT对<code>captions</code>进行扩充）</li>
+<li>复杂推理：上面两类数据重点在描述图像内容本身，为了促进模型的推理能力，本文还创建了很多具备推理要求的问题，从而获得推理指令数据（其实也就是让GPT根据问题生成带推理信息的回复）</li>
+</ol>
+<p>基于COCO两类注释得到三类指令数据的大致方式可以见图2：</p>
+<p><img src="/p/multimodal-large-language-models-llava-series/fig2.png"
+	width="855"
+	height="923"
+	
+	loading="lazy"
+	
+		alt="figure 2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="92"
+		data-flex-basis="222px"
+	
+></p>
+<p>简单来讲，本文就是基于COCO的图像描述和目标位置信息，针对对话、描述和推理三类任务，人工先设计了多个对应的问题（作为few-shot）来询问GPT，从而让GPT完成对应的回复，以及自行产生问题和回复。</p>
+<p>最后，本文收集了158K的不同的语言-图像指令数据集，其中包括58K的对话数据，23K的详细描述数据和77K的复杂推理数据。本文还发现，使用GPT-4产生的数据质量比ChatGPT要好，比如空间推理问题。</p>
+<h3 id="任务与方法">任务与方法</h3>
+<p>本文要解决的任务就是在给定图像的情况下，模型能够根据用户给出的文本指令，准确地进行回复。当然并非必须问和图像相关的问题，毕竟模型核心还是语言模型，但该任务重点强调的是在用户询问和图像内容相关的问题时，模型可以理解并生成对应的回复。这在传统的语言模型、多模态模型和纯文本的LLM上是难以做到的。</p>
+<h4 id="模型结构">模型结构</h4>
+<p>LLM本身不是问题，因为现有的开源大模型以及在不同数据集上微调过的大模型都种类繁多，因此本文模型结构的设计重点就在于如何将图像信息提供给大模型。</p>
+<p><img src="/p/multimodal-large-language-models-llava-series/fig3.png"
+	width="688"
+	height="205"
+	
+	loading="lazy"
+	
+		alt="figure 3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="335"
+		data-flex-basis="805px"
+	
+></p>
+<h3 id="结果分析">结果分析</h3>
+<p>etc.</p>
+<!-- raw HTML omitted -->
 
 </section>
 

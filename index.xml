@@ -2,31 +2,109 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>abel&#39;s blog</title>
-        <link>http://localhost:1313/</link>
+        <link>https://blog.abelcode.tech/</link>
         <description>Recent content on abel&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sat, 15 Jun 2024 21:36:11 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 15 Jun 2024 21:36:11 +0800</lastBuildDate><atom:link href="https://blog.abelcode.tech/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Multimodal Large Language Models: LLaVA Series</title>
-        <link>http://localhost:1313/p/multimodal-large-language-models-llava-series/</link>
+        <link>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</link>
         <pubDate>Sat, 15 Jun 2024 21:36:11 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/multimodal-large-language-models-llava-series/</guid>
-        <description>&lt;img src="http://localhost:1313/p/multimodal-large-language-models-llava-series/cover.jpg" alt="Featured image of post Multimodal Large Language Models: LLaVA Series" /&gt;&lt;h2 id=&#34;llava&#34;&gt;LLaVA&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/cover.jpg" alt="Featured image of post Multimodal Large Language Models: LLaVA Series" /&gt;&lt;h2 id=&#34;llava&#34;&gt;LLaVA&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Visual Instruction Tuning.  NeurIPS 2023.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2304.08485&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Visual Instruction Tuning&lt;/a&gt;.  NeurIPS 2023.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h3&gt;
-&lt;p&gt;我将尽快完成博客的重启工作&lt;/p&gt;
+&lt;p&gt;在本文之前，无论是传统意义上的“大”模型，还是现在提及的大（语言）模型（LLM），都已经有了广泛的研究。&lt;/p&gt;
+&lt;p&gt;例如多模态学习（MM）通过结合计算机视觉和自然语言处理知识在诸如图像-文本检索（Image-Text Retrieval）、图像描述（Image Captioning）和视觉问答（Visual Question Answering）等。&lt;/p&gt;
+&lt;p&gt;在LLM出现之后，人们发现现有模型已经具备可观的指令遵循的能力（给定指令后，让LLM能够按照指令的描述完成特定任务），例如训练指令遵循的Agent去完成一系列任务和指令微调后让LLM能够在特定领域按照人类的要求完成任务。&lt;/p&gt;
+&lt;p&gt;然而，结合LLM和MM的研究相对还较少，一是因为目前的LLM还是以文本为核心的模型，如何将视觉信息嵌入进语言模型中还有较大的研究空间；二是视觉语言指令微调数据集（Vision-Language）还较缺乏，因为与&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2103.00020&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CLIP&lt;/a&gt;这种图像-文本对的收集方式不同，要得到可信的指令微调数据集是有难度的。&lt;/p&gt;
+&lt;p&gt;为此，本文的工作可以简单总结为以下两个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过&lt;a class=&#34;link&#34; href=&#34;https://openai.com/index/chatgpt/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ChatGPT&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://openai.com/index/gpt-4/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GPT4&lt;/a&gt;构建了一个具备一定规模的&lt;strong&gt;多模态指令微调数据集&lt;/strong&gt;。具体构建方式见后文，但可以预想的是，文本之所以选择这两个模型辅助数据集的构建，一是纯人工的构建必然花费大量的成本，二是这两个模型经过很好的人工反馈强化学习（如&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2203.02155&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;InstructGPT&lt;/a&gt;）的训练，给出的回复一定程度上更贴近人类的偏好。&lt;/li&gt;
+&lt;li&gt;利用CLIP作为视觉特征的编码器，利用一个包含大量ChatGPT回复的数据集上微调的LLaMA模型&lt;a class=&#34;link&#34; href=&#34;https://lmsys.org/blog/2023-03-30-vicuna/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Vicuna&lt;/a&gt;作为LLM，从而形成了一个多模态大模型：LLaVA。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;数据集构建&#34;&gt;数据集构建&lt;/h3&gt;
+&lt;p&gt;LLaVA数据集构建的核心是利用GPT辅助生成视觉指令数据。&lt;/p&gt;
+&lt;p&gt;传统的多模态数据缺乏指令相关的内容，以文本内容较为丰富的image caption相关的数据集为例，其数据构成一般是$X_v: X_c$，既对于每一个图像样本$X_v$而言，都有对应地描述图像内容的文本$X_c$。&lt;/p&gt;
+&lt;p&gt;在本文中，为了得到指令数据集，作者则利用GPT-4，针对上述提到的$X_c$，让GPT提出可能的问题，也就是假设已经有答案的情况下，让GPT问出符合该答案的问题。假设问题的表示为$X_q$，那么就可以创造出如下格式的指令数据： $X_qX_v$&lt;code&gt;&amp;lt;STOP&amp;gt; Assistant: &lt;/code&gt;$X_c$&lt;code&gt;&amp;lt;STOP&amp;gt;&lt;/code&gt;。具体的设计方式如图1所示，即给定GPT要求后，收集其产生的回复，从而拼接成固定格式的指令数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig1.png&#34;
+	width=&#34;896&#34;
+	height=&#34;603&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;figure 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;148&#34;
+		data-flex-basis=&#34;356px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然而，仅仅使用这种方式产生的指令数据不仅缺乏多样性，还无法提供更复杂和深层次的逻辑推理信息。因此，本文以人工标注的具备高质量目标检测和描述信息的多模态数据集&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.1405.0312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;COCO&lt;/a&gt;为基础，充分使用数据集中的描述信息&lt;code&gt;captions&lt;/code&gt;和目标位置信息&lt;code&gt;bounding boxes&lt;/code&gt;来完成多模态指令数据的生成。&lt;/p&gt;
+&lt;p&gt;具体来说，本文希望GPT基于这两类注释和对应的图像，生成三类核心指令数据：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对话数据：设计一个助手和人对话的场景，产生出助手在看图片，并回答人提出的问题，其实就是我们直观能够理解的多模态对话场景；&lt;/li&gt;
+&lt;li&gt;详细描述：为了包含对图像全面和丰富的描述，本文创建了和该类问题相关的一系列问题，并通过询问GPT来产生详细的回复（简单理解就是让GPT对&lt;code&gt;captions&lt;/code&gt;进行扩充）&lt;/li&gt;
+&lt;li&gt;复杂推理：上面两类数据重点在描述图像内容本身，为了促进模型的推理能力，本文还创建了很多具备推理要求的问题，从而获得推理指令数据（其实也就是让GPT根据问题生成带推理信息的回复）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于COCO两类注释得到三类指令数据的大致方式可以见图2：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig2.png&#34;
+	width=&#34;855&#34;
+	height=&#34;923&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;figure 2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;92&#34;
+		data-flex-basis=&#34;222px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;简单来讲，本文就是基于COCO的图像描述和目标位置信息，针对对话、描述和推理三类任务，人工先设计了多个对应的问题（作为few-shot）来询问GPT，从而让GPT完成对应的回复，以及自行产生问题和回复。&lt;/p&gt;
+&lt;p&gt;最后，本文收集了158K的不同的语言-图像指令数据集，其中包括58K的对话数据，23K的详细描述数据和77K的复杂推理数据。本文还发现，使用GPT-4产生的数据质量比ChatGPT要好，比如空间推理问题。&lt;/p&gt;
+&lt;h3 id=&#34;任务与方法&#34;&gt;任务与方法&lt;/h3&gt;
+&lt;p&gt;本文要解决的任务就是在给定图像的情况下，模型能够根据用户给出的文本指令，准确地进行回复。当然并非必须问和图像相关的问题，毕竟模型核心还是语言模型，但该任务重点强调的是在用户询问和图像内容相关的问题时，模型可以理解并生成对应的回复。这在传统的语言模型、多模态模型和纯文本的LLM上是难以做到的。&lt;/p&gt;
+&lt;h4 id=&#34;模型结构&#34;&gt;模型结构&lt;/h4&gt;
+&lt;p&gt;LLM本身不是问题，因为现有的开源大模型以及在不同数据集上微调过的大模型都种类繁多，因此本文模型结构的设计重点就在于如何将图像信息提供给大模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig3.png&#34;
+	width=&#34;688&#34;
+	height=&#34;205&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;figure 3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;335&#34;
+		data-flex-basis=&#34;805px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;结果分析&#34;&gt;结果分析&lt;/h3&gt;
+&lt;p&gt;etc.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
 </description>
         </item>
         <item>
         <title>Paper Notes for Multimodal Relation Extraction</title>
-        <link>http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/</link>
+        <link>https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/</link>
         <pubDate>Mon, 25 Mar 2024 15:37:28 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/</guid>
-        <description>&lt;img src="http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/cover.jpg" alt="Featured image of post Paper Notes for Multimodal Relation Extraction" /&gt;&lt;h2 id=&#34;mnre&#34;&gt;MNRE&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/cover.jpg" alt="Featured image of post Paper Notes for Multimodal Relation Extraction" /&gt;&lt;h2 id=&#34;mnre&#34;&gt;MNRE&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;MNRE: A CHALLENGE MULTIMODAL DATASET FOR NEURAL RELATION EXTRACTION WITH VISUAL EVIDENCE IN SOCIAL MEDIA POSTS. (ICME 2021) (后续简称为 MNRE)&lt;/p&gt;
@@ -39,7 +117,7 @@
 &lt;p&gt;关系抽取任务，就是给定文本和实体后，抽取出实体之间的关系。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;MNRE&lt;/strong&gt;这篇论文认为，现有的关系抽取任务都主要基于新闻类的数据，这些数据组织良好，形式正规，相对来说更容易建模。&lt;/p&gt;
 &lt;p&gt;但对于社交媒体类的数据，这些方法会出现较大的性能下降。这是因为社交媒体的文本内容本身就可能不完整，人们往往会配合图片一起发文，所以在进行关系抽取时，还需要额外对图像的内容进行理解。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig1-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig1-1.png&#34;
 	width=&#34;809&#34;
 	height=&#34;854&#34;
 	
@@ -62,7 +140,7 @@
 &lt;p&gt;数据集涵盖：没有特意挑选具体的领域，比如运动、社会事件，而是尽可能确保实体的多样性，并且去除了非英语以及实体数量低于两个的句子；&lt;/p&gt;
 &lt;p&gt;标注方法：源数据、预训练好的NER标注工具、人工标注；&lt;/p&gt;
 &lt;p&gt;具体情况见表1-1所示，其中&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/tab1-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/tab1-1.png&#34;
 	width=&#34;1617&#34;
 	height=&#34;375&#34;
 	
@@ -77,7 +155,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;第2篇论文对此做了改进，新的数据信息见表1-2和图1-2。由于后续的大量研究都是基于新数据集的，所以&lt;code&gt;MNRE&lt;/code&gt;论文后续的方法和内容将不再介绍，而是以第2篇论文&lt;code&gt;MEGA&lt;/code&gt;为主。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/tab1-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/tab1-2.png&#34;
 	width=&#34;617&#34;
 	height=&#34;352&#34;
 	
@@ -92,7 +170,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;图1-2则是对修改后的数据集的关系类别进行了统计，可以看到关系类别的标签还是存在很明显的不平衡问题。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig1-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig1-2.png&#34;
 	width=&#34;884&#34;
 	height=&#34;602&#34;
 	
@@ -111,7 +189,7 @@
 &lt;p&gt;$F(e_1, e_2, S, V) \rightarrow Y$，既给定句子$S = (w_1, w_2, &amp;hellip;, w_n)$，句子中的实体$e_1, e_2$，以及与句子相关联的视觉内容$V = (v_1, v_2, &amp;hellip;, v_n)$，然后预测出实体$e_1,e_2$之间的关系类别$Y$。（注意，虽然定义中给出的是视觉内容集合，但实际数据集中基本上是一个句子对应一张图像，即使有多个关联情况，数据集也是将其划分为多个样本的）&lt;/p&gt;
 &lt;p&gt;为了构建baseline以做对比，&lt;code&gt;MNRE&lt;/code&gt;论文分别测试了三类方法：基于CNN的方法&lt;em&gt;Glove+CNN&lt;/em&gt;、基于预训练语言模型的方法&lt;em&gt;BertNER&lt;/em&gt;、远程监督的方法&lt;em&gt;PCNN&lt;/em&gt;，此外，论文还将CNN与PLM结合了一下，即&lt;em&gt;Bert+CNN&lt;/em&gt;的方法。而&lt;code&gt;MEGA&lt;/code&gt;保留了&lt;em&gt;Glove+CNN&lt;/em&gt;和&lt;em&gt;PCNN&lt;/em&gt;的方法，并有专门面向关系抽的预训练Bert模型&lt;em&gt;MTB&lt;/em&gt; (Matching the Blanks)、BERT结合场景图的方法&lt;em&gt;Bert+SG&lt;/em&gt;、以及额外增加了注意力机制的方法&lt;em&gt;Bert+SG+Att&lt;/em&gt;。&lt;/p&gt;
 &lt;p&gt;MEGA的方法如图1-3所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig1-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig1-3.png&#34;
 	width=&#34;2008&#34;
 	height=&#34;798&#34;
 	
@@ -145,7 +223,7 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;结果分析&#34;&gt;结果分析&lt;/h3&gt;
 &lt;p&gt;MEGA的实验结果如表1-3所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/tab1-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/tab1-3.png&#34;
 	width=&#34;858&#34;
 	height=&#34;355&#34;
 	
@@ -171,7 +249,7 @@
 &lt;p&gt;前面MNRE数据集率先提出了多模态关系抽取任务（MRE｜MMRE），其任务目标是给定文本、对应图片和文本中的实体对后，预测出实体对的关系信息。该任务定义有几个比较强的假设，一是图像-文本是匹配的，也就是图像信息能帮助对应文本的内容理解，二是实体都出现在文本中，虽然不排除图像信息有与之对应的内容，但必须确保文本中含有两个及以上的实体。&lt;/p&gt;
 &lt;p&gt;对于第一点，对多模态任务而言是非常合理的，但对数据集的质量有要求。&lt;/p&gt;
 &lt;p&gt;针对第二点，本文则认为相对来说是不合理的，多模态的关系三元组构成元素很多都来自于不同的模态，比如某个实体来源于文本，而另一个则是图像中的物体。为此，本文就设计了新的多模态关系抽取任务形式，即给定文本和对应图像，需要对来源于 文本中的实体 和 图像中的物体 所构成的&lt;code&gt;Object-Entity Pair&lt;/code&gt;预测关系，具体如图2-1所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig2-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig2-1.png&#34;
 	width=&#34;896&#34;
 	height=&#34;832&#34;
 	
@@ -195,7 +273,7 @@
 &lt;li&gt;关系过滤，也就是确保只有需要同时根据文本和图像才能得到的关系（过滤掉单独从文本或者单独从图像就能推测出关系的样本）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;最终的数据集概要如表2-1:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/tab2-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/tab2-1.png&#34;
 	width=&#34;1110&#34;
 	height=&#34;296&#34;
 	
@@ -211,7 +289,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;可以看到该数据集也与MNRE数据集做了对比，相比之下，MORE的样本数量变少了，但是关系三元组变多了，并且因为新增的Object任务模式（平均每张图有3.8个object，此外，平均每个文本1.5个entity），MORE数据集更难。进一步地，MORE数据集有22.2%的关系Fact是只包含1个实体和1个物体的，而77.8%的关系Fact含有多个实体和物体，所以对MMRE模型有更大的挑战性。&lt;/p&gt;
 &lt;p&gt;在关系类别的分布上，大致涵盖了生活、位置等领域，但也呈现标签分布不均衡的问题，具体如图2-2所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig2-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig2-2.png&#34;
 	width=&#34;1068&#34;
 	height=&#34;788&#34;
 	
@@ -229,7 +307,7 @@
 &lt;p&gt;与MNRE的任务定义类似，MORE定义的任务形式为：$F = (e, o, S, V) \rightarrow R$，其中$e \in S, o \in V$。&lt;/p&gt;
 &lt;p&gt;因为是23年的论文，因此除了较为简单的baseline外，本文还用了一些VLP的模型，后续会列出其性能的比较。&lt;/p&gt;
 &lt;p&gt;本文提出的方法为&lt;code&gt;MOREformer&lt;/code&gt;，模型结构如图2-3所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig2-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig2-3.png&#34;
 	width=&#34;2220&#34;
 	height=&#34;1382&#34;
 	
@@ -244,7 +322,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;论文提到自己的方法主要是基于MKGformer而设计的，因此先介绍MKGformer的基本方法：其使用的文本编码器是BERT，图像编码器是ViT，对于得到的特征，需要进行融合：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fom2-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fom2-1.png&#34;
 	width=&#34;834&#34;
 	height=&#34;196&#34;
 	
@@ -265,7 +343,7 @@
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;属性相关的文本编码器（Attribute-Aware Textual Encoder）：这里不需要看公式，根据图2-3可知，就是一个图像描述生成任务的利用，先利用ClipCap生成图像的文本描述，再将该文本描述作为样本中的文本的辅助信息。这样做也是非常常见的一种方法，因为生成的文本本身就是对图像大致内容的描述，分析该文本有助于模型更好地理解图像信息（当然Image Caption模型的好坏会制约生成文本的作用）；具体使用时，本方法则是将整个描述文本当作object来用。也就是说：对于文本$S$和其中的实体$e$，得到BERT分词后的token序列，并将图像生成的描述$caption$拼接上去，之后就是正常通过BERT得到嵌入表示了，即：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fom2-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fom2-2.png&#34;
 	width=&#34;858&#34;
 	height=&#34;228&#34;
 	
@@ -289,7 +367,7 @@
 &lt;/ol&gt;
 &lt;h3 id=&#34;结果分析-1&#34;&gt;结果分析&lt;/h3&gt;
 &lt;p&gt;本文在实验上做的还是比较充分的，主要的实验结果以及针对本文方法的消融实验分别如图2-4和图2-5所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig2-4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig2-4.png&#34;
 	width=&#34;1144&#34;
 	height=&#34;510&#34;
 	
@@ -303,7 +381,7 @@
 		data-flex-basis=&#34;538px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/fig2-5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/fig2-5.png&#34;
 	width=&#34;748&#34;
 	height=&#34;582&#34;
 	
@@ -324,11 +402,11 @@
         </item>
         <item>
         <title>Paper Notes for Visual Language Models</title>
-        <link>http://localhost:1313/p/paper-notes-for-visual-language-models/</link>
+        <link>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</link>
         <pubDate>Thu, 06 Jul 2023 20:25:59 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/paper-notes-for-visual-language-models/</guid>
-        <description>&lt;img src="http://localhost:1313/p/paper-notes-for-visual-language-models/vit.png" alt="Featured image of post Paper Notes for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit.png" alt="Featured image of post Paper Notes for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
 &lt;p&gt;An Image is worth 16x16 Words: Transformers for Image Recognition at Scale. (ICLR 2021)&lt;/p&gt;
 &lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
 &lt;ul&gt;
@@ -396,7 +474,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过代码可知，利用16x16的卷积核，将原图打成14x14个patch，每个patch的通道维度从3变为768，再Flatten并变维为$(B, N, C)$。具体可看下图的图片输入及Linear Projection部分。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-visual-language-models/vit.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit.png&#34;
 	width=&#34;934&#34;
 	height=&#34;461&#34;
 	
@@ -415,7 +493,7 @@
 &lt;p&gt;接着就是具体Transformer Encoder部分，经过LayerNorm之后，shape依旧是$(197, 768)$，在MSA部分，先将输入映射到QKV，假设有12个头，则QKV的shape为$(197, 64)$，输出后再拼接成$(197, 768)$，再经过一层LayerNorm，然后送入MLP。这里MLP的操作也比较简单，完成了：$(197, 768) \rightarrow (197, 3072) \rightarrow (197, 768)$的操作。当然，在每次送入LN层前有一个残差$x + f(x)$的操作。&lt;/p&gt;
 &lt;p&gt;因为每个block的输入和输出都是$(197, 768)$，因此可以堆叠多个block，最后输出CLS作为分类任务的依据。&lt;/p&gt;
 &lt;p&gt;具体流程也可以参考下面的公式：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-visual-language-models/vit_eq.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_eq.png&#34;
 	width=&#34;1148&#34;
 	height=&#34;171&#34;
 	
@@ -464,7 +542,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;模型变体上，base和large和BERT一样，但是ViT扩展了Huge的版本：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-visual-language-models/vit_model.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_model.png&#34;
 	width=&#34;690&#34;
 	height=&#34;163&#34;
 	
@@ -482,7 +560,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;比较的baseline主要是两个：BiT(Big Transfer，ResNet-based)和Noisy Student(semi-supervised, EfficientNet-based)，他们是下面数据集的SOTA，其中Noisy Student是ImageNet的SOTA，BiT是其他几个的SOTA；具体实验参数是：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/paper-notes-for-visual-language-models/vit_exp_1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_exp_1.png&#34;
 	width=&#34;953&#34;
 	height=&#34;308&#34;
 	
@@ -526,11 +604,11 @@
         </item>
         <item>
         <title>Server Management Notes</title>
-        <link>http://localhost:1313/p/server-management-notes/</link>
+        <link>https://blog.abelcode.tech/p/server-management-notes/</link>
         <pubDate>Thu, 11 May 2023 09:23:59 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/server-management-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/p/server-management-notes/cover.jpg" alt="Featured image of post Server Management Notes" /&gt;&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/server-management-notes/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/server-management-notes/cover.jpg" alt="Featured image of post Server Management Notes" /&gt;&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
 &lt;h3 id=&#34;nvidia-smi和驱动通信失败&#34;&gt;nvidia-smi和驱动通信失败&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1133,11 +1211,11 @@
         </item>
         <item>
         <title>DeepLearning Environment Setting</title>
-        <link>http://localhost:1313/p/deeplearning-environment-setting/</link>
+        <link>https://blog.abelcode.tech/p/deeplearning-environment-setting/</link>
         <pubDate>Mon, 01 May 2023 19:38:22 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/deeplearning-environment-setting/</guid>
-        <description>&lt;img src="http://localhost:1313/p/deeplearning-environment-setting/jpy.png" alt="Featured image of post DeepLearning Environment Setting" /&gt;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/deeplearning-environment-setting/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/deeplearning-environment-setting/jpy.png" alt="Featured image of post DeepLearning Environment Setting" /&gt;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)；&lt;/li&gt;
 &lt;li&gt;自己在服务器的账号引入了conda和cuda的环境变量&lt;/li&gt;
@@ -1213,7 +1291,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在新建项目处，&lt;code&gt;Location&lt;/code&gt;处是本地的项目路径。 选择&lt;code&gt;Preciously&lt;/code&gt;的解释器，并点击&lt;code&gt;Add Interpreter&lt;/code&gt;，选择&lt;code&gt;SSH&lt;/code&gt;;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/create.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/create.png&#34;
 	width=&#34;796&#34;
 	height=&#34;415&#34;
 	
@@ -1230,7 +1308,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果本地已经在某个服务器上已经创建过解释器，则直接在&lt;code&gt;Existing&lt;/code&gt;处选择即可，否则，依旧点此处，再点击&lt;code&gt;...&lt;/code&gt;处进入&lt;code&gt;SSH Configurations&lt;/code&gt;页面；点击&lt;code&gt;+&lt;/code&gt;，输入服务器地址、用户名和密码，之后再&lt;code&gt;OK&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;Next&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/add.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/add.png&#34;
 	width=&#34;1468&#34;
 	height=&#34;654&#34;
 	
@@ -1247,7 +1325,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果是第一次添加，则可能出现下图的情况，直接点击&lt;code&gt;Move&lt;/code&gt;，再点&lt;code&gt;Next&lt;/code&gt;按照提示操作&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/move.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/move.png&#34;
 	width=&#34;572&#34;
 	height=&#34;110&#34;
 	
@@ -1264,7 +1342,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如下图，选择&lt;code&gt;Existing&lt;/code&gt;，点击&lt;code&gt;...&lt;/code&gt;，之后会出现一个选择路径的选项框，按照自己账户所存在的根目录(如&lt;code&gt;home或者data&lt;/code&gt;)，在自己账号下面，逐步点击&lt;code&gt;.conda&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;envs&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;需要的虚拟环境&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;bin&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;python3&lt;/code&gt;即可，选择&lt;code&gt;OK&lt;/code&gt;和&lt;code&gt;Create&lt;/code&gt;，按照提示进入项目中。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/conda.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/conda.png&#34;
 	width=&#34;854&#34;
 	height=&#34;611&#34;
 	
@@ -1287,7 +1365,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果有需要排除同步的路径，例如模型本身或者较大的数据集，则可以在&lt;code&gt;Excluded Paths&lt;/code&gt;中选好本地及服务器不同步的路径；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/deployment.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/deployment.png&#34;
 	width=&#34;793&#34;
 	height=&#34;262&#34;
 	
@@ -1307,7 +1385,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;之后，在PyCharm的右下角，将&lt;code&gt;&amp;lt;no default server&amp;gt;&lt;/code&gt;改成上面配置好的&lt;code&gt;SFTP&lt;/code&gt;；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/footer.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/footer.png&#34;
 	width=&#34;392&#34;
 	height=&#34;71&#34;
 	
@@ -1520,7 +1598,7 @@
 &lt;li&gt;
 &lt;p&gt;在PyCharm中使用jupyter：&lt;/p&gt;
 &lt;p&gt;在项目中新建一个&lt;code&gt;jupyter&lt;/code&gt;文件，打开后右上角设置其&lt;code&gt;configuration&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/jupyter.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/jupyter.png&#34;
 	width=&#34;720&#34;
 	height=&#34;244&#34;
 	
@@ -1545,11 +1623,11 @@
         </item>
         <item>
         <title>Hello World</title>
-        <link>http://localhost:1313/p/hello-world/</link>
+        <link>https://blog.abelcode.tech/p/hello-world/</link>
         <pubDate>Mon, 01 May 2023 15:12:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/hello-world/</guid>
-        <description>&lt;img src="http://localhost:1313/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/hello-world/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;h2 id=&#34;hexo-demo&#34;&gt;Hexo Demo&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;此处以Hexo创建GitHub Pages静态页面为例，作为后续技术总结的参考。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;创建github-repo&#34;&gt;创建Github Repo:&lt;/h3&gt;
 &lt;ul&gt;
@@ -2032,10 +2110,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>About</title>
-        <link>http://localhost:1313/about/</link>
+        <link>https://blog.abelcode.tech/about/</link>
         <pubDate>Fri, 26 Aug 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/about/</guid>
+        <guid>https://blog.abelcode.tech/about/</guid>
         <description>&lt;p&gt;Hello!&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I&amp;rsquo;m abel.&lt;/li&gt;
@@ -2114,27 +2192,27 @@ Contact me:&lt;/p&gt;
         </item>
         <item>
         <title>Archives</title>
-        <link>http://localhost:1313/archives/</link>
+        <link>https://blog.abelcode.tech/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/archives/</guid>
+        <guid>https://blog.abelcode.tech/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>http://localhost:1313/links/</link>
+        <link>https://blog.abelcode.tech/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/links/</guid>
+        <guid>https://blog.abelcode.tech/links/</guid>
         <description>&lt;p&gt;There are some links for my friends and the research mates.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Search</title>
-        <link>http://localhost:1313/search/</link>
+        <link>https://blog.abelcode.tech/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/search/</guid>
+        <guid>https://blog.abelcode.tech/search/</guid>
         <description></description>
         </item>
         

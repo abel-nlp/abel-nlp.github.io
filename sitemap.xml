@@ -2,72 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://blog.abelcode.tech/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://blog.abelcode.tech/categories/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/collection/</loc>
+    <loc>https://blog.abelcode.tech/tags/collection/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/multi-modal/</loc>
+    <loc>https://blog.abelcode.tech/tags/multi-modal/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/multimodal-large-language-models-llava-series/</loc>
+    <loc>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/paper/</loc>
+    <loc>https://blog.abelcode.tech/categories/paper/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/paper-notes/</loc>
+    <loc>https://blog.abelcode.tech/tags/paper-notes/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://blog.abelcode.tech/post/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://blog.abelcode.tech/tags/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/paper-notes-for-multimodal-relation-extraction/</loc>
+    <loc>https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/</loc>
     <lastmod>2024-03-25T15:37:28+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/paper-notes-for-visual-language-models/</loc>
+    <loc>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</loc>
     <lastmod>2023-07-06T20:25:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/server-management-notes/</loc>
+    <loc>https://blog.abelcode.tech/p/server-management-notes/</loc>
     <lastmod>2023-05-11T09:23:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tech/</loc>
+    <loc>https://blog.abelcode.tech/categories/tech/</loc>
     <lastmod>2023-05-11T09:23:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tech-notes/</loc>
+    <loc>https://blog.abelcode.tech/tags/tech-notes/</loc>
     <lastmod>2023-05-11T09:23:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/deeplearning-environment-setting/</loc>
+    <loc>https://blog.abelcode.tech/p/deeplearning-environment-setting/</loc>
     <lastmod>2023-05-01T19:38:22+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/hello-world/</loc>
+    <loc>https://blog.abelcode.tech/p/hello-world/</loc>
     <lastmod>2023-05-01T15:12:54+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/official/</loc>
+    <loc>https://blog.abelcode.tech/tags/official/</loc>
     <lastmod>2023-05-01T15:12:54+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://blog.abelcode.tech/about/</loc>
     <lastmod>2022-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/page/</loc>
+    <loc>https://blog.abelcode.tech/page/</loc>
     <lastmod>2022-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://blog.abelcode.tech/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/links/</loc>
+    <loc>https://blog.abelcode.tech/links/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/muse/</loc>
+    <loc>https://blog.abelcode.tech/categories/muse/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/other/</loc>
+    <loc>https://blog.abelcode.tech/categories/other/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://blog.abelcode.tech/search/</loc>
   </url>
 </urlset>

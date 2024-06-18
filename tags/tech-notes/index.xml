@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tech-Notes on abel&#39;s blog</title>
-        <link>http://localhost:1313/tags/tech-notes/</link>
+        <link>https://blog.abelcode.tech/tags/tech-notes/</link>
         <description>Recent content in Tech-Notes on abel&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 11 May 2023 09:23:59 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/tech-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 11 May 2023 09:23:59 +0800</lastBuildDate><atom:link href="https://blog.abelcode.tech/tags/tech-notes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Server Management Notes</title>
-        <link>http://localhost:1313/p/server-management-notes/</link>
+        <link>https://blog.abelcode.tech/p/server-management-notes/</link>
         <pubDate>Thu, 11 May 2023 09:23:59 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/server-management-notes/</guid>
-        <description>&lt;img src="http://localhost:1313/p/server-management-notes/cover.jpg" alt="Featured image of post Server Management Notes" /&gt;&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/server-management-notes/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/server-management-notes/cover.jpg" alt="Featured image of post Server Management Notes" /&gt;&lt;h2 id=&#34;linux-cuda配置&#34;&gt;Linux CUDA配置&lt;/h2&gt;
 &lt;h3 id=&#34;nvidia-smi和驱动通信失败&#34;&gt;nvidia-smi和驱动通信失败&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -615,11 +615,11 @@
         </item>
         <item>
         <title>DeepLearning Environment Setting</title>
-        <link>http://localhost:1313/p/deeplearning-environment-setting/</link>
+        <link>https://blog.abelcode.tech/p/deeplearning-environment-setting/</link>
         <pubDate>Mon, 01 May 2023 19:38:22 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/deeplearning-environment-setting/</guid>
-        <description>&lt;img src="http://localhost:1313/p/deeplearning-environment-setting/jpy.png" alt="Featured image of post DeepLearning Environment Setting" /&gt;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/deeplearning-environment-setting/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/deeplearning-environment-setting/jpy.png" alt="Featured image of post DeepLearning Environment Setting" /&gt;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;搭载了显卡和conda环境的服务器，服务器可以联网(能conda、pip及wget)；&lt;/li&gt;
 &lt;li&gt;自己在服务器的账号引入了conda和cuda的环境变量&lt;/li&gt;
@@ -695,7 +695,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在新建项目处，&lt;code&gt;Location&lt;/code&gt;处是本地的项目路径。 选择&lt;code&gt;Preciously&lt;/code&gt;的解释器，并点击&lt;code&gt;Add Interpreter&lt;/code&gt;，选择&lt;code&gt;SSH&lt;/code&gt;;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/create.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/create.png&#34;
 	width=&#34;796&#34;
 	height=&#34;415&#34;
 	
@@ -712,7 +712,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果本地已经在某个服务器上已经创建过解释器，则直接在&lt;code&gt;Existing&lt;/code&gt;处选择即可，否则，依旧点此处，再点击&lt;code&gt;...&lt;/code&gt;处进入&lt;code&gt;SSH Configurations&lt;/code&gt;页面；点击&lt;code&gt;+&lt;/code&gt;，输入服务器地址、用户名和密码，之后再&lt;code&gt;OK&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;Next&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/add.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/add.png&#34;
 	width=&#34;1468&#34;
 	height=&#34;654&#34;
 	
@@ -729,7 +729,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果是第一次添加，则可能出现下图的情况，直接点击&lt;code&gt;Move&lt;/code&gt;，再点&lt;code&gt;Next&lt;/code&gt;按照提示操作&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/move.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/move.png&#34;
 	width=&#34;572&#34;
 	height=&#34;110&#34;
 	
@@ -746,7 +746,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如下图，选择&lt;code&gt;Existing&lt;/code&gt;，点击&lt;code&gt;...&lt;/code&gt;，之后会出现一个选择路径的选项框，按照自己账户所存在的根目录(如&lt;code&gt;home或者data&lt;/code&gt;)，在自己账号下面，逐步点击&lt;code&gt;.conda&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;envs&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;需要的虚拟环境&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;bin&lt;/code&gt;&amp;ndash;&amp;gt;&lt;code&gt;python3&lt;/code&gt;即可，选择&lt;code&gt;OK&lt;/code&gt;和&lt;code&gt;Create&lt;/code&gt;，按照提示进入项目中。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/conda.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/conda.png&#34;
 	width=&#34;854&#34;
 	height=&#34;611&#34;
 	
@@ -769,7 +769,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果有需要排除同步的路径，例如模型本身或者较大的数据集，则可以在&lt;code&gt;Excluded Paths&lt;/code&gt;中选好本地及服务器不同步的路径；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/deployment.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/deployment.png&#34;
 	width=&#34;793&#34;
 	height=&#34;262&#34;
 	
@@ -789,7 +789,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;之后，在PyCharm的右下角，将&lt;code&gt;&amp;lt;no default server&amp;gt;&lt;/code&gt;改成上面配置好的&lt;code&gt;SFTP&lt;/code&gt;；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/footer.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/footer.png&#34;
 	width=&#34;392&#34;
 	height=&#34;71&#34;
 	
@@ -1002,7 +1002,7 @@
 &lt;li&gt;
 &lt;p&gt;在PyCharm中使用jupyter：&lt;/p&gt;
 &lt;p&gt;在项目中新建一个&lt;code&gt;jupyter&lt;/code&gt;文件，打开后右上角设置其&lt;code&gt;configuration&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/deeplearning-environment-setting/jupyter.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/deeplearning-environment-setting/jupyter.png&#34;
 	width=&#34;720&#34;
 	height=&#34;244&#34;
 	
