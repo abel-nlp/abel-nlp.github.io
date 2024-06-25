@@ -15,7 +15,7 @@
         <description>&lt;img src="https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/cover.jpg" alt="Featured image of post Multimodal Large Language Models: LLaVA Series" /&gt;&lt;h2 id=&#34;llava&#34;&gt;LLaVA&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2304.08485&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Visual Instruction Tuning&lt;/a&gt;.  NeurIPS 2023.&lt;/p&gt;
+    &gt;Visual Instruction Tuning&lt;/a&gt;.  (NeurIPS 2023)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h3&gt;
 &lt;p&gt;在本文之前，无论是传统意义上的“大”模型，还是现在提及的大（语言）模型（LLM），都已经有了广泛的研究。&lt;/p&gt;
@@ -135,6 +135,102 @@
 &lt;h3 id=&#34;结果分析&#34;&gt;结果分析&lt;/h3&gt;
 &lt;p&gt;模型在8张A100显卡上进行训练，超参数设置和Vicuna(v0)一致。在第一阶段中，设置为&lt;em&gt;epoch=1,  lr=2e-3, batch_size=128&lt;/em&gt;，第二阶段微调时，&lt;em&gt;epoch=3, lr=2e-5, batch_size=32&lt;/em&gt;。具体评估分为两类：多模态对话和ScienceQA。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;多模态对话&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;设计这种对话评估的方式（Multimodal Chatbot）是为了更直观地展示和检查LLaVA理解多模态和上下文指令遵循的能力。如图5所示，本文采用了训练集中没有，但GPT-4技术报告中有提到的一个例子来展现其模态理解和指令遵循的能力。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig5.png&#34;
+	width=&#34;891&#34;
+	height=&#34;853&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Figure 5&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;104&#34;
+		data-flex-basis=&#34;250px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从图5可以观察到，LLaVA无论是多模态理解还是根据用户指令回到对应问题上，都和GPT-4接近，相反的&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2301.12597&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;BLIP-2&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2308.01390&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OpenFlamingo&lt;/a&gt;则仅仅完成了图像的描述而已，并没有遵循用户提出的指令。&lt;/p&gt;
+&lt;p&gt;当然，没有具体的量化指标，光看一张图是难以服众的。因此本文为多模态对话设计了一系列的实验，具体来说，就是分别调用不同的GPT-4对话API，一个API负责生成回复$R_r$，和LLaVA等模型生成的回复$R_p$进行对比，另一个API（也就是另一个GPT-4调用）负责对给定的$(R_r, R_p)$进行打分，打分主要从有用性、相关性、准确性和详细程度进行回复（helpfulness, relevance, accuracy, detail of the responses）。&lt;/p&gt;
+&lt;p&gt;具体来说，分别有两个评估数据：&lt;strong&gt;LLaVA-Bench (COCO)&lt;/strong&gt;：从COCO-Val-2014中随机选择了30个图像， 并生成三种类型的问题共90道题；以及&lt;strong&gt;LLaVA-Bench (In the Wild)&lt;/strong&gt;：收集了一组不同的24张图像，共60个问题，重点在于多样性（包含了室内、室外、绘图和草图等）。&lt;/p&gt;
+&lt;p&gt;最终，在COCO的评估上，本文重点考虑了以相关性分数为参考的消融实验，如表1所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab1.png&#34;
+	width=&#34;840&#34;
+	height=&#34;158&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Table 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;531&#34;
+		data-flex-basis=&#34;1275px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;而In-the-Wild上则是对比了其他几个模型的相关性情况，如表2所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab2.png&#34;
+	width=&#34;747&#34;
+	height=&#34;143&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Table 2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;522&#34;
+		data-flex-basis=&#34;1253px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ScienceQA&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;该数据集包含了多个领域共21k的多模态数据（以多项选择题呈现）。为了对比，本文选取了三个主要的baselines，包括：GPT3.5 (&lt;code&gt;text-davinci-002&lt;/code&gt; 不使用&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2201.11903&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;COT&lt;/a&gt;方式)、&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2303.16199&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LLaMA-Adapter&lt;/a&gt;和多模态思维链&lt;a class=&#34;link&#34; href=&#34;https://export.arxiv.org/abs/2302.00923v5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MM-COT&lt;/a&gt;（当前的SOTA方法）。&lt;/p&gt;
+&lt;p&gt;具体评价结果时，本文采用了两种方式，第一种先使用GPT-4预测，当其无法正确回答时，就使用LLaVA来预测，论文发现这种方式和单独使用LLaVA的结果几乎是一致的，说明LLaVA的效果非常不错；第二种则是让GPT-4作为判断标准，当GPT-4和LLaVA得出的答案不一致时，会再次提示GPT-4，让其根据问题+两个不同的答案给出最终的回答。&lt;/p&gt;
+&lt;p&gt;所有提及到的baselines和不同的测试方法所得到的实验结果如表3所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab3.png&#34;
+	width=&#34;890&#34;
+	height=&#34;338&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Table 3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;263&#34;
+		data-flex-basis=&#34;631px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;消融实验：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这里简单提及消融实验中的重点内容：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用视觉特征时，用的是CLIP的倒数第二层，也就是没有用CLIP的最后一层特征作为视觉特征。在消融中，本文发现倒数第二层的视觉特征性能比直接使用CLIP最后一层的输出要高&lt;code&gt;0.96%&lt;/code&gt;。本文认为这是因为CLIP最后一层的输出更倾向与全局和抽象的图像特征，而前面的层更倾向于图像局部特征。（按照模型的设计，可以理解为让LLM充当全局理解的角色，而视觉编码器最好给出局部信息）；&lt;/li&gt;
+&lt;li&gt;COT的训练方式能够加速模型收敛，也就是加快训练速度，但最后的性能提升其实是有限的；&lt;/li&gt;
+&lt;li&gt;预训练是重要的。本文单独做了无预训练直接学习多模态的实验，结果比有预训练的版本要低&lt;code&gt;5.11%&lt;/code&gt;，说明预训练是非常重要的；（这里的预训练是指第一阶段的特征对齐，不是指LLM和视觉编码器的预训练）&lt;/li&gt;
+&lt;li&gt;最后，模型的规模也相对比较重要。本文发现13B的模型表现要稍好于7B的模型。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+&lt;p&gt;本文的贡献可以简单总结如下（个人理解）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;以非常简单的全连接层投影，完成了视觉-文本特征对齐和多模态任务，为后续的多模态大模型提供了更好的范例（简单有效的方法）；&lt;/li&gt;
+&lt;li&gt;利用GPT生成了良好可用的多模态指令数据集并公开；&lt;/li&gt;
+&lt;li&gt;充分的实验验证了本文方法的可用性，其两阶段训练的方式有效且符合认知。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;llava-15&#34;&gt;LLaVA 1.5&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2310.03744&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Improved Baselines with Visual Instrction Tuning.&lt;/a&gt; (CVPR 2024)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;背景与动机-1&#34;&gt;背景与动机&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;待续&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
         </item>
