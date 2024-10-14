@@ -3,36 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.abelcode.tech/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/categories/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/tags/collection/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/tags/multi-modal/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/categories/paper/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.abelcode.tech/p/paper-notes-for-llava-1.5/</loc>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/tags/paper-notes/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/post/</loc>
-    <lastmod>2024-06-15T21:36:11+08:00</lastmod>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/tags/</loc>
+    <lastmod>2024-10-14T10:27:09+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/</loc>
     <lastmod>2024-06-15T21:36:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/p/paper-notes-for-multimodal-relation-extraction/</loc>
     <lastmod>2024-03-25T15:37:28+08:00</lastmod>
   </url><url>
-    <loc>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</loc>
+    <loc>https://blog.abelcode.tech/p/paper-notes-for-vit/</loc>
     <lastmod>2023-07-06T20:25:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.abelcode.tech/p/server-management-notes/</loc>

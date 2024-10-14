@@ -6,18 +6,34 @@
         <description>Recent content in Paper-Notes on abel&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sat, 15 Jun 2024 21:36:11 +0800</lastBuildDate><atom:link href="https://blog.abelcode.tech/tags/paper-notes/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Multimodal Large Language Models: LLaVA Series</title>
-        <link>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</link>
+        <lastBuildDate>Mon, 14 Oct 2024 10:27:09 +0800</lastBuildDate><atom:link href="https://blog.abelcode.tech/tags/paper-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Paper Notes For LLaVA 1.5</title>
+        <link>https://blog.abelcode.tech/p/paper-notes-for-llava-1.5/</link>
+        <pubDate>Mon, 14 Oct 2024 10:27:09 +0800</pubDate>
+        
+        <guid>https://blog.abelcode.tech/p/paper-notes-for-llava-1.5/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-llava-1.5/cover.jpg" alt="Featured image of post Paper Notes For LLaVA 1.5" /&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2310.03744&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Improved Baselines with Visual Instrction Tuning.&lt;/a&gt; (CVPR 2024)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        <item>
+        <title>Paper Notes For LLaVA 1.0</title>
+        <link>https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/</link>
         <pubDate>Sat, 15 Jun 2024 21:36:11 +0800</pubDate>
         
-        <guid>https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/</guid>
-        <description>&lt;img src="https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/cover.jpg" alt="Featured image of post Multimodal Large Language Models: LLaVA Series" /&gt;&lt;h2 id=&#34;llava&#34;&gt;LLaVA&lt;/h2&gt;
-&lt;blockquote&gt;
+        <guid>https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/cover.jpg" alt="Featured image of post Paper Notes For LLaVA 1.0" /&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2304.08485&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Visual Instruction Tuning&lt;/a&gt;.  (NeurIPS 2023)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h3&gt;
+&lt;h2 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h2&gt;
 &lt;p&gt;在本文之前，无论是传统意义上的“大”模型，还是现在提及的大（语言）模型（LLM），都已经有了广泛的研究。&lt;/p&gt;
 &lt;p&gt;例如多模态学习（MM）通过结合计算机视觉和自然语言处理知识在诸如图像-文本检索（Image-Text Retrieval）、图像描述（Image Captioning）和视觉问答（Visual Question Answering）等。&lt;/p&gt;
 &lt;p&gt;在LLM出现之后，人们发现现有模型已经具备可观的指令遵循的能力（给定指令后，让LLM能够按照指令的描述完成特定任务），例如训练指令遵循的Agent去完成一系列任务和指令微调后让LLM能够在特定领域按照人类的要求完成任务。&lt;/p&gt;
@@ -32,11 +48,11 @@
 &lt;li&gt;利用CLIP作为视觉特征的编码器，利用一个包含大量ChatGPT回复的数据集上微调的LLaMA模型&lt;a class=&#34;link&#34; href=&#34;https://lmsys.org/blog/2023-03-30-vicuna/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Vicuna&lt;/a&gt;作为LLM，从而形成了一个多模态大模型：LLaVA。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;数据集构建&#34;&gt;数据集构建&lt;/h3&gt;
+&lt;h2 id=&#34;数据集构建&#34;&gt;数据集构建&lt;/h2&gt;
 &lt;p&gt;LLaVA数据集构建的核心是利用GPT辅助生成视觉指令数据。&lt;/p&gt;
 &lt;p&gt;传统的多模态数据缺乏指令相关的内容，以文本内容较为丰富的image caption相关的数据集为例，其数据构成一般是$X_v: X_c$，既对于每一个图像样本$X_v$而言，都有对应地描述图像内容的文本$X_c$。&lt;/p&gt;
 &lt;p&gt;在本文中，为了得到指令数据集，作者则利用GPT-4，针对上述提到的$X_c$，让GPT提出可能的问题，也就是假设已经有答案的情况下，让GPT问出符合该答案的问题。假设问题的表示为$X_q$，那么就可以创造出如下格式的指令数据： $X_qX_v$&lt;code&gt;&amp;lt;STOP&amp;gt; Assistant: &lt;/code&gt;$X_c$&lt;code&gt;&amp;lt;STOP&amp;gt;&lt;/code&gt;。具体的设计方式如图1所示，即给定GPT要求后，收集其产生的回复，从而拼接成固定格式的指令数据。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/fig1.png&#34;
 	width=&#34;902&#34;
 	height=&#34;610&#34;
 	
@@ -59,7 +75,7 @@
 &lt;li&gt;复杂推理：上面两类数据重点在描述图像内容本身，为了促进模型的推理能力，本文还创建了很多具备推理要求的问题，从而获得推理指令数据（其实也就是让GPT根据问题生成带推理信息的回复）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;基于COCO两类注释得到三类指令数据的大致方式可以见图2：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/fig2.png&#34;
 	width=&#34;927&#34;
 	height=&#34;944&#34;
 	
@@ -75,12 +91,12 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;简单来讲，本文就是基于COCO的图像描述和目标位置信息，针对对话、描述和推理三类任务，人工先设计了多个对应的问题（作为few-shot）来询问GPT，从而让GPT完成对应的回复，以及自行产生问题和回复。&lt;/p&gt;
 &lt;p&gt;最后，本文收集了158K的不同的语言-图像指令数据集，其中包括58K的对话数据，23K的详细描述数据和77K的复杂推理数据。本文还发现，使用GPT-4产生的数据质量比ChatGPT要好，比如空间推理问题。&lt;/p&gt;
-&lt;h3 id=&#34;任务与方法&#34;&gt;任务与方法&lt;/h3&gt;
+&lt;h2 id=&#34;任务与方法&#34;&gt;任务与方法&lt;/h2&gt;
 &lt;p&gt;本文要解决的任务就是在给定图像的情况下，模型能够根据用户给出的文本指令，准确地进行回复。当然并非必须问和图像相关的问题，毕竟模型核心还是语言模型，但该任务重点强调的是在用户询问和图像内容相关的问题时，模型可以理解并生成对应的回复。这在传统的语言模型、多模态模型和纯文本的LLM上是难以做到的。&lt;/p&gt;
-&lt;h4 id=&#34;模型结构&#34;&gt;模型结构&lt;/h4&gt;
+&lt;h3 id=&#34;模型结构&#34;&gt;模型结构&lt;/h3&gt;
 &lt;p&gt;LLM本身不是问题，因为现有的开源大模型以及在不同数据集上微调过的大模型都种类繁多，因此本文模型结构的设计重点就在于如何将图像信息提供给大模型。本文使用Vicuna为LLM，既图3中的$\oint$，而图像编码是CLIP（使用ViT-L/14）。&lt;/p&gt;
 &lt;p&gt;总的步骤是：对于提供的图像$X_v$，使用CLIP编码成为$Z_v = CLIP(X_v)$，之后再使用一个简单的线性层将其投影到和文本特征$H_q	$一致的维度上，即：$H_v = W\cdot Z_v$，之后将两者拼接起来输入给大模型$H = [H_v;H_q]$。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/fig3.png&#34;
 	width=&#34;688&#34;
 	height=&#34;205&#34;
 	
@@ -95,9 +111,9 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;需要注意的是，图像特征并没有直接使用CLIP的输出，而是分别验证了CLIP最后一层Transformer Layer之前和之后的特征；以及所谓线性层也确实非常简单，就是一个维度的变换而已。&lt;/p&gt;
-&lt;h4 id=&#34;模型训练&#34;&gt;模型训练&lt;/h4&gt;
+&lt;h3 id=&#34;模型训练&#34;&gt;模型训练&lt;/h3&gt;
 &lt;p&gt;为了有效地完成多模态的训练，论文采取了两阶段的训练策略。在正式训练之前，对于每张图像$X_v$，会以多轮对话的形式产生训练数据：$(X_q^1, X_a^1, &amp;hellip;, X_q^T, X_a^T)$，$T$是总的对话轮次数。简单来说，就是对每个多轮对话的指令$X_{inst}^t$而言，如果是多轮对话中的第一轮，就随机从$[X_q^1, X_v]$或者$[X_v, X_q^1]$中选一个当第一个样本，而之后的轮次则选择依次选择$X_q^t$。看起来略微有点复杂，其实就是刚提问时的指令为问题+图像的组合，而后的指令就是普通问题，根据图4可知，就是针对某个图像做的多次问答而已。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/fig4.png&#34;
 	width=&#34;904&#34;
 	height=&#34;139&#34;
 	
@@ -132,11 +148,11 @@
 &lt;li&gt;此外，为了证明模型和方法的有效性，论文还在&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2209.09513&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ScienceQA&lt;/a&gt;数据集上做了评估。ScienceQA本身就是一个具备图文信息的科学问答数据集。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;结果分析&#34;&gt;结果分析&lt;/h3&gt;
+&lt;h2 id=&#34;结果分析&#34;&gt;结果分析&lt;/h2&gt;
 &lt;p&gt;模型在8张A100显卡上进行训练，超参数设置和Vicuna(v0)一致。在第一阶段中，设置为&lt;em&gt;epoch=1,  lr=2e-3, batch_size=128&lt;/em&gt;，第二阶段微调时，&lt;em&gt;epoch=3, lr=2e-5, batch_size=32&lt;/em&gt;。具体评估分为两类：多模态对话和ScienceQA。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;多模态对话&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;设计这种对话评估的方式（Multimodal Chatbot）是为了更直观地展示和检查LLaVA理解多模态和上下文指令遵循的能力。如图5所示，本文采用了训练集中没有，但GPT-4技术报告中有提到的一个例子来展现其模态理解和指令遵循的能力。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/fig5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/fig5.png&#34;
 	width=&#34;891&#34;
 	height=&#34;853&#34;
 	
@@ -156,7 +172,7 @@
 &lt;p&gt;当然，没有具体的量化指标，光看一张图是难以服众的。因此本文为多模态对话设计了一系列的实验，具体来说，就是分别调用不同的GPT-4对话API，一个API负责生成回复$R_r$，和LLaVA等模型生成的回复$R_p$进行对比，另一个API（也就是另一个GPT-4调用）负责对给定的$(R_r, R_p)$进行打分，打分主要从有用性、相关性、准确性和详细程度进行回复（helpfulness, relevance, accuracy, detail of the responses）。&lt;/p&gt;
 &lt;p&gt;具体来说，分别有两个评估数据：&lt;strong&gt;LLaVA-Bench (COCO)&lt;/strong&gt;：从COCO-Val-2014中随机选择了30个图像， 并生成三种类型的问题共90道题；以及&lt;strong&gt;LLaVA-Bench (In the Wild)&lt;/strong&gt;：收集了一组不同的24张图像，共60个问题，重点在于多样性（包含了室内、室外、绘图和草图等）。&lt;/p&gt;
 &lt;p&gt;最终，在COCO的评估上，本文重点考虑了以相关性分数为参考的消融实验，如表1所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/tab1.png&#34;
 	width=&#34;840&#34;
 	height=&#34;158&#34;
 	
@@ -171,7 +187,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;而In-the-Wild上则是对比了其他几个模型的相关性情况，如表2所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/tab2.png&#34;
 	width=&#34;747&#34;
 	height=&#34;143&#34;
 	
@@ -192,7 +208,7 @@
     &gt;MM-COT&lt;/a&gt;（当前的SOTA方法）。&lt;/p&gt;
 &lt;p&gt;具体评价结果时，本文采用了两种方式，第一种先使用GPT-4预测，当其无法正确回答时，就使用LLaVA来预测，论文发现这种方式和单独使用LLaVA的结果几乎是一致的，说明LLaVA的效果非常不错；第二种则是让GPT-4作为判断标准，当GPT-4和LLaVA得出的答案不一致时，会再次提示GPT-4，让其根据问题+两个不同的答案给出最终的回答。&lt;/p&gt;
 &lt;p&gt;所有提及到的baselines和不同的测试方法所得到的实验结果如表3所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/multimodal-large-language-models-llava-series/tab3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-llava-1.0/tab3.png&#34;
 	width=&#34;890&#34;
 	height=&#34;338&#34;
 	
@@ -214,23 +230,13 @@
 &lt;li&gt;预训练是重要的。本文单独做了无预训练直接学习多模态的实验，结果比有预训练的版本要低&lt;code&gt;5.11%&lt;/code&gt;，说明预训练是非常重要的；（这里的预训练是指第一阶段的特征对齐，不是指LLM和视觉编码器的预训练）&lt;/li&gt;
 &lt;li&gt;最后，模型的规模也相对比较重要。本文发现13B的模型表现要稍好于7B的模型。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;本文的贡献可以简单总结如下（个人理解）：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;以非常简单的全连接层投影，完成了视觉-文本特征对齐和多模态任务，为后续的多模态大模型提供了更好的范例（简单有效的方法）；&lt;/li&gt;
 &lt;li&gt;利用GPT生成了良好可用的多模态指令数据集并公开；&lt;/li&gt;
 &lt;li&gt;充分的实验验证了本文方法的可用性，其两阶段训练的方式有效且符合认知。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;llava-15&#34;&gt;LLaVA 1.5&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.48550/arXiv.2310.03744&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Improved Baselines with Visual Instrction Tuning.&lt;/a&gt; (CVPR 2024)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;背景与动机-1&#34;&gt;背景与动机&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;待续&lt;/li&gt;
-&lt;/ul&gt;
 &lt;!-- raw HTML omitted --&gt;
 </description>
         </item>
@@ -537,14 +543,15 @@
 </description>
         </item>
         <item>
-        <title>Paper Notes for Visual Language Models</title>
-        <link>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</link>
+        <title>Paper Notes For ViT</title>
+        <link>https://blog.abelcode.tech/p/paper-notes-for-vit/</link>
         <pubDate>Thu, 06 Jul 2023 20:25:59 +0800</pubDate>
         
-        <guid>https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/</guid>
-        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit.png" alt="Featured image of post Paper Notes for Visual Language Models" /&gt;&lt;h2 id=&#34;vit&#34;&gt;ViT&lt;/h2&gt;
+        <guid>https://blog.abelcode.tech/p/paper-notes-for-vit/</guid>
+        <description>&lt;img src="https://blog.abelcode.tech/p/paper-notes-for-vit/vit.png" alt="Featured image of post Paper Notes For ViT" /&gt;&lt;blockquote&gt;
 &lt;p&gt;An Image is worth 16x16 Words: Transformers for Image Recognition at Scale. (ICLR 2021)&lt;/p&gt;
-&lt;h3 id=&#34;abs--int&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;首先，Transformer在NLP已经很普遍了，并且得到了很大的进步(无论是数据还是模型参数)，而CV这边尝试的大多是让自注意力和CNN进行配合；&lt;/p&gt;
@@ -564,7 +571,7 @@
 &lt;p&gt;但在继续增大训练数据的规模后（从14M扩大到300M），Visual-Transformer的性能在逐步增加，并实现SOTA&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;model&#34;&gt;Model.&lt;/h3&gt;
+&lt;h2 id=&#34;方法与模型&#34;&gt;方法与模型&lt;/h2&gt;
 &lt;p&gt;文本的Transformer处理的是一维的序列，因此ViT需要先将2D的图像输入也变成类似的。对于一张图片$X \in R^{H \times W \times C}$，其中$(H, W)$为图片的高和宽，而$C$为图像的通道，首先将其展成2D的patch，每个patch的大小为$X_p\in R^{N \times (P^2 · C)}$，这里的$(P, P)$为patch的高和宽，$N$为patch的数量，不难得到$N = HW/P^2$。&lt;/p&gt;
 &lt;p&gt;根据上面的表示，对于一个224x224x3的图，如果需要patch为16x16x3的分辨率，那么将得到$224^2 / 16^2$，也就是14x14个（共196个）patch。当然，这样来讲也并不容易让人理解，所以直接看部分核心代码的实现（为直观起见，省略并修改了部分代码）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -610,7 +617,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过代码可知，利用16x16的卷积核，将原图打成14x14个patch，每个patch的通道维度从3变为768，再Flatten并变维为$(B, N, C)$。具体可看下图的图片输入及Linear Projection部分。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-vit/vit.png&#34;
 	width=&#34;934&#34;
 	height=&#34;461&#34;
 	
@@ -629,7 +636,7 @@
 &lt;p&gt;接着就是具体Transformer Encoder部分，经过LayerNorm之后，shape依旧是$(197, 768)$，在MSA部分，先将输入映射到QKV，假设有12个头，则QKV的shape为$(197, 64)$，输出后再拼接成$(197, 768)$，再经过一层LayerNorm，然后送入MLP。这里MLP的操作也比较简单，完成了：$(197, 768) \rightarrow (197, 3072) \rightarrow (197, 768)$的操作。当然，在每次送入LN层前有一个残差$x + f(x)$的操作。&lt;/p&gt;
 &lt;p&gt;因为每个block的输入和输出都是$(197, 768)$，因此可以堆叠多个block，最后输出CLS作为分类任务的依据。&lt;/p&gt;
 &lt;p&gt;具体流程也可以参考下面的公式：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_eq.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-vit/vit_eq.png&#34;
 	width=&#34;1148&#34;
 	height=&#34;171&#34;
 	
@@ -671,14 +678,14 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;exp&#34;&gt;Exp.&lt;/h3&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;数据集上，模型主要用了：ImageNet (1K class, 1.3M image)、ImageNet-21K (21k class, 14M image)和JFT (18k class, 303M 高分辨率image)做预训练，用了CIFAR-10等多个数据集做测试(包括微调和few-shot的方式)；&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;模型变体上，base和large和BERT一样，但是ViT扩展了Huge的版本：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_model.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-vit/vit_model.png&#34;
 	width=&#34;690&#34;
 	height=&#34;163&#34;
 	
@@ -696,7 +703,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;比较的baseline主要是两个：BiT(Big Transfer，ResNet-based)和Noisy Student(semi-supervised, EfficientNet-based)，他们是下面数据集的SOTA，其中Noisy Student是ImageNet的SOTA，BiT是其他几个的SOTA；具体实验参数是：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-visual-language-models/vit_exp_1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.abelcode.tech/p/paper-notes-for-vit/vit_exp_1.png&#34;
 	width=&#34;953&#34;
 	height=&#34;308&#34;
 	
@@ -719,23 +726,13 @@
 &lt;p&gt;ViT的训练时间也变少了（相对两个baseline来说）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;conclu&#34;&gt;Conclu.&lt;/h3&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;ViT适合用在数据集较大的视觉预训练任务上，如果数据集较小，使用ResNet更合适；&lt;/li&gt;
 &lt;li&gt;ViT相对CNN-based的方法，训练更省时间，但预训练的成本依旧是一般机构无法承担的；&lt;/li&gt;
 &lt;li&gt;混合结构Hybrid，即上面代码中利用卷积的方式，而非直接按照图片像素切分成patch，在小模型上表现更好，但随着模型变大，就不如直接切分了（原文中也比较疑惑，因为混合结构应该是兼具二者长处的，&lt;em&gt;个人认为可能是模型大了后，Transformer不再需要inductive bias的帮助，甚至它可能会影响SA的学习，因此模型越大，纯SA的Transformer就更好&lt;/em&gt;）&lt;/li&gt;
 &lt;li&gt;当前的ViT主要用在分类任务上，那么还有很多的，如目标检测、分割等任务需要进一步的研究&lt;/li&gt;
 &lt;/ol&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;clip&#34;&gt;CLIP&lt;/h2&gt;
-&lt;p&gt;Learning Transferable Visual Models From Natural Language Supervision. (ICML 2021 CCF-A)&lt;/p&gt;
-&lt;h3 id=&#34;abs--int-1&#34;&gt;Abs. &amp;amp; Int.&lt;/h3&gt;
-&lt;p&gt;先前用于分类的SOTA模型，需要通过对预定义好的类别进行学习，这种方式使得这类模型的通用性和扩展性不好，因此一旦需要预测新的类别时，就需要额外的标注数据进行训练。那么，通过直接从文本中学习图像也许可以是一种更节省更直观的替代方案。&lt;/p&gt;
-&lt;p&gt;在NLP任务中，以GPT3为例，通过利用大规模语料进行学习的预训练模型，即使不增加额外数据或只使用很少的数据微调，也能够很好地应用于下游任务。这种利用大量网络语料的方法所产生的效果已经比高质量人工标注数据带来的性能提升更强了。&lt;/p&gt;
-&lt;p&gt;但是在CV这边，却主要还是依靠人工标注的数据，那么能不能借箭NLP这种方法，使用来自于网络的文本和图像，而不再依靠手工标注的数据呢？&lt;/p&gt;
-&lt;p&gt;事实上，以前也有很多工作采取了这种方式，但他们依旧不如全监督的模型。这主要的原因在于这些方法所使用的数据的规模太少。&lt;/p&gt;
-&lt;h3 id=&#34;model-1&#34;&gt;Model.&lt;/h3&gt;
-&lt;h4 id=&#34;dataset&#34;&gt;Dataset.&lt;/h4&gt;
 </description>
         </item>
         
