@@ -1,0 +1,86 @@
+{"0": {
+    "doc": "About",
+    "title": "About",
+    "content": "about me . Hello 👋! . | I’m abel. I am a research engineer at Insta360. | Include: Multimodal, Large Language Model and Natural Language Processing. | Previously, I received my bachelor’s and master’s degree from Northeastern University, China. | . | You might come across my work by searching keywords like TechGPT or Multimodal Relation Extraction. However, these projects are still in progress and haven’t reached significant milestones yet (please bear with me on this). | Thank you for visiting. | . Contact me: . | 🐱Github | 📬Email | . ",
+    "url": "/about/",
+    
+    "relUrl": "/about/"
+  },"1": {
+    "doc": "Hello",
+    "title": "1. Create a New Jekyll Project",
+    "content": "Use the following command to generate a new Jekyll site: . bundle exec jekyll new myblog . This creates a new directory named myblog with the default Jekyll structure. ",
+    "url": "/docs/hello-world.html#1-create-a-new-jekyll-project",
+    
+    "relUrl": "/docs/hello-world.html#1-create-a-new-jekyll-project"
+  },"2": {
+    "doc": "Hello",
+    "title": "Start a Local Server",
+    "content": "Navigate to your project directory and start the development server: . bundle exec jekyll serve . By default, the site will be available at http://localhost:4000. You can customize the server settings if needed: . bundle exec jekyll serve --port 8080 . ",
+    "url": "/docs/hello-world.html#start-a-local-server",
+    
+    "relUrl": "/docs/hello-world.html#start-a-local-server"
+  },"3": {
+    "doc": "Hello",
+    "title": "Build the Static Site",
+    "content": "To generate the static files in the _site directory, run: . bundle exec jekyll build . The contents of _site can then be deployed to your web server or hosting platform. ",
+    "url": "/docs/hello-world.html#build-the-static-site",
+    
+    "relUrl": "/docs/hello-world.html#build-the-static-site"
+  },"4": {
+    "doc": "Hello",
+    "title": "Hello",
+    "content": "official . This guide covers the basic steps to quickly set up and run a Jekyll project. ",
+    "url": "/docs/hello-world.html",
+    
+    "relUrl": "/docs/hello-world.html"
+  },"5": {
+    "doc": "Ideas",
+    "title": "Ideas",
+    "content": " ",
+    "url": "/docs/idea/",
+    
+    "relUrl": "/docs/idea/"
+  },"6": {
+    "doc": "Server Management Notes",
+    "title": "Linux CUDA Configuration",
+    "content": " ",
+    "url": "/docs/tech/server/#linux-cuda-configuration",
+    
+    "relUrl": "/docs/tech/server/#linux-cuda-configuration"
+  },"7": {
+    "doc": "Server Management Notes",
+    "title": "Server Management Notes",
+    "content": "tech notes . ",
+    "url": "/docs/tech/server/",
+    
+    "relUrl": "/docs/tech/server/"
+  },"8": {
+    "doc": "Tech",
+    "title": "Tech",
+    "content": " ",
+    "url": "/docs/tech/",
+    
+    "relUrl": "/docs/tech/"
+  },"9": {
+    "doc": "FramePack",
+    "title": "FramePack",
+    "content": "paper notes . Paper: Packing Input Frame Context in Next-Frame Prediction Models for Video Generation . Read The paper . ",
+    "url": "/docs/paper/framepack/",
+    
+    "relUrl": "/docs/paper/framepack/"
+  },"10": {
+    "doc": "Paper",
+    "title": "Paper",
+    "content": " ",
+    "url": "/docs/paper/",
+    
+    "relUrl": "/docs/paper/"
+  },"11": {
+    "doc": "Ideas 04/25",
+    "title": "Ideas 04/25",
+    "content": "ideas . A Collection of Various Thoughts from April 2025 . ",
+    "url": "/docs/idea/2504/",
+    
+    "relUrl": "/docs/idea/2504/"
+  }
+}
