@@ -28,54 +28,61 @@
     "relUrl": "/docs/hello-world.html#build-the-static-site"
   },"4": {
     "doc": "Hello",
+    "title": "initialize The Search",
+    "content": "initialize the search by running this rake command that comes with just-the-docs . bundle exec just-the-docs rake search:init . ",
+    "url": "/docs/hello-world.html#initialize-the-search",
+    
+    "relUrl": "/docs/hello-world.html#initialize-the-search"
+  },"5": {
+    "doc": "Hello",
     "title": "Hello",
-    "content": "official . This guide covers the basic steps to quickly set up and run a Jekyll project. ",
+    "content": "official . This is just a demo page . This guide covers the basic steps to quickly set up and run a Jekyll project. ",
     "url": "/docs/hello-world.html",
     
     "relUrl": "/docs/hello-world.html"
-  },"5": {
+  },"6": {
     "doc": "Ideas",
     "title": "Ideas",
     "content": " ",
     "url": "/docs/idea/",
     
     "relUrl": "/docs/idea/"
-  },"6": {
+  },"7": {
     "doc": "Server Management Notes",
     "title": "Linux CUDA Configuration",
     "content": " ",
     "url": "/docs/tech/server/#linux-cuda-configuration",
     
     "relUrl": "/docs/tech/server/#linux-cuda-configuration"
-  },"7": {
+  },"8": {
     "doc": "Server Management Notes",
     "title": "Server Management Notes",
     "content": "tech notes . ",
     "url": "/docs/tech/server/",
     
     "relUrl": "/docs/tech/server/"
-  },"8": {
+  },"9": {
     "doc": "Tech",
     "title": "Tech",
     "content": " ",
     "url": "/docs/tech/",
     
     "relUrl": "/docs/tech/"
-  },"9": {
+  },"10": {
     "doc": "FramePack",
     "title": "FramePack",
     "content": "paper notes . Paper: Packing Input Frame Context in Next-Frame Prediction Models for Video Generation . Read The paper . ",
     "url": "/docs/paper/framepack/",
     
     "relUrl": "/docs/paper/framepack/"
-  },"10": {
+  },"11": {
     "doc": "Paper",
     "title": "Paper",
     "content": " ",
     "url": "/docs/paper/",
     
     "relUrl": "/docs/paper/"
-  },"11": {
+  },"12": {
     "doc": "Ideas 04/25",
     "title": "Ideas 04/25",
     "content": "ideas . A Collection of Various Thoughts from April 2025 . ",
