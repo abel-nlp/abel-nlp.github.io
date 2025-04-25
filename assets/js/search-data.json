@@ -1,7 +1,7 @@
 {"0": {
     "doc": "About",
     "title": "About",
-    "content": "about me . Hello 👋! . | I’m abel. I am a research engineer at Insta360. | Include: Multimodal, Large Language Model and Natural Language Processing. | Previously, I received my bachelor’s and master’s degree from Northeastern University, China. | . | You might come across my work by searching keywords like TechGPT or Multimodal Relation Extraction. However, these projects are still in progress and haven’t reached significant milestones yet (please bear with me on this). | Thank you for visiting. | . Contact me: . | 🐱Github | 📬Email | . ",
+    "content": "about me . Hello 👋! . | I’m abel. I am a research engineer at Insta360. | Include: Multimodal, Large Language Model and Natural Language Processing. | Previously, I received my bachelor’s and master’s degree from Northeastern University, China. | . | You might come across my work by searching keywords like TechGPT or Multimodal Relation Extraction. However, these projects are still in progress and haven’t reached significant milestones yet (please bear with me on this). | Thank you for visiting. | . Contact me: . | 📬Email | 🐱Github | . ",
     "url": "/about/",
     
     "relUrl": "/about/"
@@ -43,46 +43,81 @@
   },"6": {
     "doc": "Ideas",
     "title": "Ideas",
-    "content": " ",
+    "content": "official . A space to capture spontaneous thoughts, random ideas, and moments of inspiration. ",
     "url": "/docs/idea/",
     
     "relUrl": "/docs/idea/"
   },"7": {
+    "doc": "Normalization and Attention",
+    "title": "Normalization",
+    "content": "LayerNorm: . \\[\\mu = \\frac{1}{H}\\sum^H_{i=1} x_i \\tag{1.1}\\] \\[\\sigma = \\sqrt{\\frac{1}{H} \\sum ^H _{i=1} (x_i - \\mu)^2 + \\epsilon} \\tag{1.2}\\] \\[\\text{LayerNorm}(x) = \\gamma \\frac{x - \\mu}{\\sigma} + \\beta \\tag{1.3}\\] RMSNorm (Root Mean Square Norm): . \\[\\text{RMS}(x) = \\sqrt{\\frac{1}{H} \\sum ^H _{i=1}x^2_i} \\tag{1.4}\\] \\[\\text{RMSNorm}(x) = \\gamma \\frac{x}{\\text{RMS}(x) + \\epsilon} \\tag{1.5}\\] F1-score: . | LayerNorm: 0.9585 . | RMSNorm: 0.9559 . | . training time: . | LayerNorm: 231.2874 seconds . | RMSNorm: 214.5342 seconds . | . ",
+    "url": "/docs/tech/minimind/base_model/#normalization",
+    
+    "relUrl": "/docs/tech/minimind/base_model/#normalization"
+  },"8": {
+    "doc": "Normalization and Attention",
+    "title": "Normalization and Attention",
+    "content": "tech notes . ",
+    "url": "/docs/tech/minimind/base_model/",
+    
+    "relUrl": "/docs/tech/minimind/base_model/"
+  },"9": {
+    "doc": "Build LLM from Scratch",
+    "title": "Build LLM from Scratch",
+    "content": "This blog aims to explain how pre-training and post-training actually work, and why they are designed that way, using a project called MiniMind as the foundation. ",
+    "url": "/docs/tech/minimind/#build-llm-from-scratch",
+    
+    "relUrl": "/docs/tech/minimind/#build-llm-from-scratch"
+  },"10": {
+    "doc": "Build LLM from Scratch",
+    "title": "Build LLM from Scratch",
+    "content": "tech notes . ",
+    "url": "/docs/tech/minimind/",
+    
+    "relUrl": "/docs/tech/minimind/"
+  },"11": {
     "doc": "Server Management Notes",
     "title": "Linux CUDA Configuration",
     "content": " ",
     "url": "/docs/tech/server/#linux-cuda-configuration",
     
     "relUrl": "/docs/tech/server/#linux-cuda-configuration"
-  },"8": {
+  },"12": {
     "doc": "Server Management Notes",
     "title": "Server Management Notes",
     "content": "tech notes . ",
     "url": "/docs/tech/server/",
     
     "relUrl": "/docs/tech/server/"
-  },"9": {
+  },"13": {
     "doc": "Tech",
     "title": "Tech",
-    "content": " ",
+    "content": "official . Engineering knowledge and tips gathered from writing code, debugging, and working through real-world technical challenges. A growing collection of hands-on learning. ",
     "url": "/docs/tech/",
     
     "relUrl": "/docs/tech/"
-  },"10": {
-    "doc": "FramePack",
-    "title": "FramePack",
-    "content": "paper notes . Paper: Packing Input Frame Context in Next-Frame Prediction Models for Video Generation . Read The paper . ",
-    "url": "/docs/paper/framepack/",
+  },"14": {
+    "doc": "Diffusion Models",
+    "title": "Diffusion Models",
+    "content": "paper notes . ",
+    "url": "/docs/paper/diffusion/",
     
-    "relUrl": "/docs/paper/framepack/"
-  },"11": {
+    "relUrl": "/docs/paper/diffusion/"
+  },"15": {
     "doc": "Paper",
     "title": "Paper",
-    "content": " ",
+    "content": "official . Notes and reflections from reading academic papers. This section organizes key points, insights, and personal takeaways to deepen understanding and spark further thinking. ",
     "url": "/docs/paper/",
     
     "relUrl": "/docs/paper/"
-  },"12": {
+  },"16": {
+    "doc": "Ideas 04/25",
+    "title": "17/04/2025",
+    "content": ". | Even though I’ve read many papers on large language models (LLMs) and written code to fine-tune them or call their APIs, I still don’t fully understand how the base models work — what each part of the code does, how pre-training and post-training actually function, and why they are designed that way. | So, I want to write a blog post that explores the fundamentals of LLMs. | Fortunately, I discovered a project called MiniMind — a tiny LLM with just a few hundred million parameters, yet it includes components like pre-training, SFT, RLHF, LoRA, and even DPO. My plan is to read, run, and modify this project to gain a deeper understanding and then document the process in a blog post about building an LLM from scratch. | Hopefully, this will be helpful for others too. these is a similar project called Build a Large Language Model (from Scratch) . | . ",
+    "url": "/docs/idea/2504/#17042025",
+    
+    "relUrl": "/docs/idea/2504/#17042025"
+  },"17": {
     "doc": "Ideas 04/25",
     "title": "Ideas 04/25",
     "content": "ideas . A Collection of Various Thoughts from April 2025 . ",
