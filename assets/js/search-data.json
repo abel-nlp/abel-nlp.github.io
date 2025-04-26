@@ -49,77 +49,105 @@
     "relUrl": "/docs/idea/"
   },"7": {
     "doc": "Normalization and Attention",
-    "title": "Normalization",
-    "content": "LayerNorm: . \\[\\mu = \\frac{1}{H}\\sum^H_{i=1} x_i \\tag{1.1}\\] \\[\\sigma = \\sqrt{\\frac{1}{H} \\sum ^H _{i=1} (x_i - \\mu)^2 + \\epsilon} \\tag{1.2}\\] \\[\\text{LayerNorm}(x) = \\gamma \\frac{x - \\mu}{\\sigma} + \\beta \\tag{1.3}\\] RMSNorm (Root Mean Square Norm): . \\[\\text{RMS}(x) = \\sqrt{\\frac{1}{H} \\sum ^H _{i=1}x^2_i} \\tag{1.4}\\] \\[\\text{RMSNorm}(x) = \\gamma \\frac{x}{\\text{RMS}(x) + \\epsilon} \\tag{1.5}\\] F1-score: . | LayerNorm: 0.9585 . | RMSNorm: 0.9559 . | . training time: . | LayerNorm: 231.2874 seconds . | RMSNorm: 214.5342 seconds . | . ",
-    "url": "/docs/tech/minimind/base_model/#normalization",
+    "title": "1 Normalization",
+    "content": "LayerNorm: . layerNorm是自然语言处理任务中最为常用的一种正则化函数，和BatchNorm不同的在于，它计算的是每个样本的隐藏层的正则。 . 对于输入\\(x \\in \\mathbb{R}^{B \\times L \\times H}\\)（其中B表示batch size，L表示序列长度，H表示特征维度），LayerNorm通过如下步骤完成对特征维度的正则化处理。 . | 按照公式（1.1）得到均值\\(\\mu\\)（一阶原点矩）： | . \\[\\mu = \\frac{1}{H}\\sum^H_{i=1} x_i \\tag{1.1}\\] . | 按照公式（1.2）得到方差\\(\\sigma^2\\)（二阶中心矩）： | . \\[\\sigma^2 = \\frac{1}{H} \\sum ^H _{i=1} (x_i - \\mu)^2 \\tag{1.2}\\] . | 最后再按照公式（1.3）得到正则化值： | . \\[\\text{LayerNorm}(x) = \\gamma \\frac{x - \\mu}{\\sqrt{\\sigma^2 + \\epsilon}} + \\beta \\tag{1.3}\\] 其中，\\(\\epsilon\\)是为了避免除零错误而引入的一个很小的数，\\(\\gamma\\)和\\(\\beta\\)分别表示可学习的缩放参数和偏置。 . 一个简单的实现如下： . import torch import torch.nn as nn class LayerNorm(nn.Module): def __init__(self, dim: int, eps=1e-5): super().__init__() self.eps = eps self.gamma = nn.Parameter(torch.ones(dim)) self.beta = nn.Parameter(torch.zeros(dim)) def forward(self): mean = x.mean(dim=-1, keepdim=True) var = x.var(dim=-1, keepdim=True, unbiased=False) x_norm = (x - mean) / torch.sqrt(var + self.eps) return self.gamma * x_norm + self.beta . 而在LLaMA等大模型中，用的更多的是RMSNorm（Root Mean Square Norm），具体计算如下： . RMSNorm: . | 类似的输入\\(x\\)，首先根据公式（1.4）计算出均方根（二阶原点矩开根号）： | . \\[\\text{RMS}(x) = \\sqrt{\\frac{1}{H} \\sum ^H _{i=1}x^2_i} \\tag{1.4}\\] . | 之后按公式（1.5）得到正则化的值： | . \\[\\text{RMSNorm}(x) = \\gamma \\frac{x}{\\text{RMS}(x) + \\epsilon} \\tag{1.5}\\] 其中\\(\\gamma\\)和\\(\\epsilon\\)分别是可学习的缩放参数和防止除零操作。 . 和LayerNorm做对比，RMSNorm的主要区别在于：直接计算二阶原点矩，而不是先计算二阶中心矩，因此少了求均值的操作（没有减均值的步骤，因此不需要求） . 正是因为少了一步操作，RMSNorm计算操作更少，因此速度更快，对于对计算量消耗巨大的大模型而言非常有益，何况实际验证发现RMSNorm与LayerNorm相比，性能上的损失并不大，而带来的速度增益更有益。 . 其简单的实现如下： . import torch import torch.nn as nn class RMSNorm(nn.Module): def __init__(self, dim: int, eps=1e-8): super().__init__() self.eps = eps self.gamma = nn.Parameter(torch.ones(dim)) def forward(self, x): rms = torch.sqrt(x.pow(2).mean(dim=-1, keepdim=True) + self.eps) x_norm = x / rms return self.gamma * x_norm . 这里做了一个（并不严谨）非常简单的小实验，在NYT24数据集上做分类（不求三元组，只求每个样本中可能存在的关系，即多标签分类） . | 模型方面，使用Bert的分词器和nn.Embedding构建了一个非常简单的模型，其参数量仅为7.92M | . Figure 1.1 LayerNorm和RMSNorm的F1值变化曲线 如图1.1所示，两个不同正则化函数的最好F1值分别为： . | LayerNorm: 0.9585 . | RMSNorm: 0.9559 . | . 可见二者的性能差别并不大。 . Figure 1.2 LayerNorm和RMSNorm的loss变化曲线 图1.2显示了两个正则函数的loss变化，虽然一开始RMSNorm有着略微大一些的loss，但并不影响RMSNorm的学习效率。 . 二者最终的训练时间分别为： . | LayerNorm: 231.2874秒 . | RMSNorm: 214.5342秒 . | . 可见RMSNorm确实有着更少的学习时间，所节省的时间在比7.92M大的多的模型上会更具优势。 . ",
+    "url": "/docs/tech/minimind/base_model/#1-normalization",
     
-    "relUrl": "/docs/tech/minimind/base_model/#normalization"
+    "relUrl": "/docs/tech/minimind/base_model/#1-normalization"
   },"8": {
     "doc": "Normalization and Attention",
+    "title": "2 Attention with RoPE",
+    "content": "从计算机图形学的视角来看，什么是旋转？ . 假设有二维向量\\(\\begin{bmatrix} x \\\\ y \\end{bmatrix}\\)，对他做二维平面旋转，旋转角度为\\(\\theta\\)，可以通过旋转矩阵实现。旋转矩阵的形式如式（2.1）所示。 . \\[R_{\\theta} = \\begin{bmatrix} \\cos\\theta &amp; -\\sin\\theta \\\\ \\sin \\theta &amp; \\cos \\theta \\\\ \\end{bmatrix} \\tag{2.1}\\] ",
+    "url": "/docs/tech/minimind/base_model/#2-attention-with-rope",
+    
+    "relUrl": "/docs/tech/minimind/base_model/#2-attention-with-rope"
+  },"9": {
+    "doc": "Normalization and Attention",
     "title": "Normalization and Attention",
-    "content": "tech notes . ",
+    "content": "tech notes . 本节将对大模型中常用的RMSNorm和基于旋转位置编码的注意力机制做介绍 . ",
     "url": "/docs/tech/minimind/base_model/",
     
     "relUrl": "/docs/tech/minimind/base_model/"
-  },"9": {
+  },"10": {
     "doc": "Build LLM from Scratch",
     "title": "Build LLM from Scratch",
     "content": "This blog aims to explain how pre-training and post-training actually work, and why they are designed that way, using a project called MiniMind as the foundation. ",
     "url": "/docs/tech/minimind/#build-llm-from-scratch",
     
     "relUrl": "/docs/tech/minimind/#build-llm-from-scratch"
-  },"10": {
+  },"11": {
     "doc": "Build LLM from Scratch",
     "title": "Build LLM from Scratch",
     "content": "tech notes . ",
     "url": "/docs/tech/minimind/",
     
     "relUrl": "/docs/tech/minimind/"
-  },"11": {
-    "doc": "Server Management Notes",
-    "title": "Linux CUDA Configuration",
-    "content": " ",
-    "url": "/docs/tech/server/#linux-cuda-configuration",
-    
-    "relUrl": "/docs/tech/server/#linux-cuda-configuration"
   },"12": {
+    "doc": "Server Management Notes",
+    "title": "Linux CUDA配置",
+    "content": "nvidia-smi和驱动通信失败 . | 当我重启服务器后，输入nvidia-smi命令后，出现报错： . | NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running. | . | 这个时候查询nvcc会发现其实驱动相关的东西其实是还在的： . nvcc -V # 输入命令后，出现： nvcc: NVIDIA (R) Cuda compiler driver Copyright (c) 2005-2022 NVIDIA Corporation Built on Tue_May__3_18:49:52_PDT_2022 Cuda compilation tools, release 11.7, V11.7.64 Build cuda_11.7.r11.7/compiler.31294372_0 . | 接着查询当前的驱动版本： . ls /usr/src | grep nvidia # 输入后出现： nvidia-515.43.04 . 记住上面的数字，自己是多少就是多少 . | 输入： . sudo apt-get install dkms # then sudo dkms install -m nvidia -v 515.43.04 . 等待安装完成即可 . | . ",
+    "url": "/docs/tech/server/#linux-cuda%E9%85%8D%E7%BD%AE",
+    
+    "relUrl": "/docs/tech/server/#linux-cuda配置"
+  },"13": {
+    "doc": "Server Management Notes",
+    "title": "Linux网络配置",
+    "content": "内网穿透 . 最近在实验室服务器上搭建了大模型在线体验服务，但仅限校园网用户可以访问，无法为校外用户提供服务，恰好我们有一台腾讯的云服务器，前期我们尝试在云服务器上配置校园网，但校园网的映射比较固定导致不仅没能成功，还停掉了外网的地址，不得不重启服务器。 . 之后我们发现了新的，更简单的免费方法，现记录如下： . | 拥有外网ip的服务器，假设其公网ip为：x.x.x.x . | 需要被映射的内网服务器，假设其内网ip为：y.y.y.y . | 假设公网被访问的端口为8888，内网需要被映射的端口为9999，则： . # 内网服务器输入以下命令，让外网服务器的8888端口可访问内网的9999端口 ssh -o ServerAliveInterval=60 -f -N -R 8888:y.y.y.y:9999 root@x.x.x.x # 回车后需要输入外网的账户密码，注意这里默认账户名是root，请根据实际情况进行修改 . | 在公网服务器上输入： . curl http://127.0.0.1:8888 # 一般会出现所映射到端口的信息，例如映射22，则出现SSH相关的信息 . | 之后，继续在公网服务器上输入： . sysctl -w net.ipv4.conf.eth0.route_localnet=1 # 允许127回环转发 iptables -t nat -A PREROUTING -p tcp --dport 8888 -j DNAT --to-destination 127.0.0.1:8888 # 表示让公网服务器允许将8888端口的请求转发到127回路上 . | 最后，按照请求内网服务器一样请求外网服务器即可，如：x.x.x.x:8888 . | . 端口防火墙 . | 打开某个端口的防火墙 . sudo firewall-cmd --zone=public --add-port=4399/tcp --permanent sudo firewall-cmd --reload . | 查看所有打开的端口 . sudo firewall-cmd --zone=public --list-ports # 或者限定端口的开放协议 如tcp sudo firewall-cmd --zone=public --list-ports tcp . | . 配置ipv6： . 参考: asimok’s blog . | 检查是否已经启用ipv6支持 . sudo cat /proc/net/if_inet6 . 如果结果不为空，直接下一步，否则： . sudo vim /etc/sysctl.conf # 添加以下内容: net.ipv6.conf.all.disable_ipv6 = 0 net.ipv6.conf.default.disable_ipv6 = 0 # 之后，执行： sudo sysctl -p # 检查是否启用： sudo cat /proc/net/if_inet6 . | 先找一个比较快的ipv6的DNS，比如清华源等； . | 修改配置文件，添加DNS: . sudo vim /etc/systemd/resolved.conf # 添加DNS，比如： DNS=2001:67c:2b0::6 2001:67c:2b0::4 . | 重启DNS服务： . sudo systemctl restart systemd-resolved sudo systemctl enable systemd-resolved . | 启动配置文件： . sudo mv /etc/resolv.conf /etc/resolv.conf.bak # 先将原来的文件备份 sudo ln -s /run/systemd/resolve/resolv.conf /etc/ . | 检查是否启用成功： . sudo cat /etc/resolv.conf . | . 开机进入紧急模式 . | 机器开机后，出现: welcome to emergency mode，这可能是因为写入的自动挂载脚本问题导致的，输入： . vim /etc/fstab . 查看一下当初挂载了哪些磁盘，尤其是有的磁盘可能会发生变化，从而导致自检不通过 . | 返回命令行，输入： . df -h . 发现原本写在fstab中的有一项磁盘路径没出现在这里，我这里没出现的磁盘叫作data2，那么： . # 则最简单的办法是：注释或删除 vim /etc/fstab ## 将data2对应的UUID注释掉，返回再重启即可 # 其他办法是：利用lsblk 和 fdisk等命令，查看未挂载磁盘的UUID信息，重新修改，具体请自信检索 . | . ",
+    "url": "/docs/tech/server/#linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE",
+    
+    "relUrl": "/docs/tech/server/#linux网络配置"
+  },"14": {
+    "doc": "Server Management Notes",
+    "title": "Linux账户配置",
+    "content": "root . Ubuntu默认是没有root的，而是以sudo用户来代替，这种方式在绝大多数时候是安全可用的，但当sudo用户有操作不当时，会导致系统出现无法修复的问题，因此在有这种需要时，可以提前设置root用户。 . 在具有sudo权限的用户下进行操作； . | 设置root账户密码： . passwd root . | 编辑配置文件： . sudo vim /etc/ssh/sshd_config # 然后输入以下命令： PermitRootLogin yes PasswordAuthentication yes . | 重启ssh服务： . systemctl restart ssh . | . 需要注意，root用户具有完全权限，比一般的sudo用户更高，使用时务必小心。 . sudo . 在某个管理员账户下，给某个用户分配sudo权限，一种简单的方式是将其添加到sudo的组里面； . | 查看sudo用户： . # 查看sudo用户有哪些 # 先安装一个包 sudo apt-get install members # 再查看 members sudo # 或者在某个用户的终端下输入groups groups # 以查看该用户当前所属的组 . | 将用户添加到sudo组： . sudo usermod -aG sudo username # 将username替换为用户账户名 . | 将用户从sudo组移除： . sudo deluser username sudo . | 禁止用户登录： . sudo passwd -l username # or sudo usermod -L username . | 恢复用户登录： . sudo passwd -u username # or sudo usermod -U username . | . ",
+    "url": "/docs/tech/server/#linux%E8%B4%A6%E6%88%B7%E9%85%8D%E7%BD%AE",
+    
+    "relUrl": "/docs/tech/server/#linux账户配置"
+  },"15": {
+    "doc": "Server Management Notes",
+    "title": "其他",
+    "content": "利用Docker配置私人网盘 . | 首先拉取docker： . docker pull cloudreve/cloudreve . | 接着创建必要的文件： . mkdir -vp cloudreve/{uploads,avatar} \\ &amp;&amp; touch cloudreve/conf.ini \\ &amp;&amp; touch cloudreve/cloudreve.db . | 然后启动docker： . | 先获取刚刚创建文件的路径：pwd，假设返回的路径是: /data0/driver . | 然后配置文件，并启动： . sudo docker run -d \\ --name docker-image-name \\ -p 5212:5212 \\ --mount type=bind,source=/data0/driver/cloudreve/conf.ini,target=/cloudreve/conf.ini \\ --mount type=bind,source=/data0/driver/cloudreve/cloudreve.db,target=/cloudreve/cloudreve.db \\ -v /data0/driver/cloudreve/uploads:/cloudreve/uploads \\ -v /data0/driver/cloudreve/avatar:/cloudreve/avatar \\ -e TZ=\"Asia/Shanghai\" \\ cloudreve/cloudreve:latest . | . | 在新版的cloudreve中，查看docker日志是没有初始管理员密码的，因此要进入docker里面重置： . docker exec -it docker-image-name ./cloudreve --database-script ResetAdminPassword . 即可查看到到新的初始密码，初始账户为: admin@cloudreve.org . | 常用docker命令： . docker ps # 查看运行中容器 docker stop xxxx docker rm -f xxxx docker restart xxxx . | . ",
+    "url": "/docs/tech/server/#%E5%85%B6%E4%BB%96",
+    
+    "relUrl": "/docs/tech/server/#其他"
+  },"16": {
     "doc": "Server Management Notes",
     "title": "Server Management Notes",
     "content": "tech notes . ",
     "url": "/docs/tech/server/",
     
     "relUrl": "/docs/tech/server/"
-  },"13": {
+  },"17": {
     "doc": "Tech",
     "title": "Tech",
     "content": "official . Engineering knowledge and tips gathered from writing code, debugging, and working through real-world technical challenges. A growing collection of hands-on learning. ",
     "url": "/docs/tech/",
     
     "relUrl": "/docs/tech/"
-  },"14": {
+  },"18": {
     "doc": "Diffusion Models",
     "title": "Diffusion Models",
     "content": "paper notes . ",
     "url": "/docs/paper/diffusion/",
     
     "relUrl": "/docs/paper/diffusion/"
-  },"15": {
+  },"19": {
     "doc": "Paper",
     "title": "Paper",
     "content": "official . Notes and reflections from reading academic papers. This section organizes key points, insights, and personal takeaways to deepen understanding and spark further thinking. ",
     "url": "/docs/paper/",
     
     "relUrl": "/docs/paper/"
-  },"16": {
-    "doc": "Ideas 04/25",
+  },"20": {
+    "doc": "Ideas April/25",
     "title": "17/04/2025",
     "content": ". | Even though I’ve read many papers on large language models (LLMs) and written code to fine-tune them or call their APIs, I still don’t fully understand how the base models work — what each part of the code does, how pre-training and post-training actually function, and why they are designed that way. | So, I want to write a blog post that explores the fundamentals of LLMs. | Fortunately, I discovered a project called MiniMind — a tiny LLM with just a few hundred million parameters, yet it includes components like pre-training, SFT, RLHF, LoRA, and even DPO. My plan is to read, run, and modify this project to gain a deeper understanding and then document the process in a blog post about building an LLM from scratch. | Hopefully, this will be helpful for others too. these is a similar project called Build a Large Language Model (from Scratch) . | . ",
     "url": "/docs/idea/2504/#17042025",
     
     "relUrl": "/docs/idea/2504/#17042025"
-  },"17": {
-    "doc": "Ideas 04/25",
-    "title": "Ideas 04/25",
+  },"21": {
+    "doc": "Ideas April/25",
+    "title": "Ideas April/25",
     "content": "ideas . A Collection of Various Thoughts from April 2025 . ",
     "url": "/docs/idea/2504/",
     
