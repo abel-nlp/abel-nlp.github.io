@@ -57,7 +57,7 @@
   },"8": {
     "doc": "Normalization and Attention",
     "title": "2 Attention with RoPE",
-    "content": "旋转位置编码的来源和详细介绍可以参见： . | RoFormer: Enhanced Transformer with Rotary Position Embedding | Transformer升级之路：2、博采众长的旋转式位置编码 | . RoFormer的提出动机非常简单，苏剑林在博客中自称是通过\\(e^{im\\theta}\\bar{e^{in\\theta}} = e^{i(m-n)\\theta}\\)发现可以构建出一种实际上是相对，表达上又是绝对形式的位置编码。 . 在介绍具体含义前，先引入两个前置知识： . 2.1 前置知识 . 2.1.1 二维平面的旋转 . 从计算机图形学的视角来看，什么是旋转？ . 假设有二维向量\\(v = \\begin{bmatrix} x \\\\ y \\end{bmatrix}\\)，对他做二维平面旋转，旋转角度为\\(\\theta\\)，可以通过旋转矩阵实现。旋转矩阵的形式如公式（2.1）所示。 \\(R_{\\theta} = \\begin{bmatrix} \\cos\\theta &amp; -\\sin\\theta \\\\ \\sin \\theta &amp; \\cos \\theta \\\\ \\end{bmatrix} \\tag{2.1}\\) . 因此旋转后的向量如公式（2.2）所示。 . \\[v' = R_{\\theta} \\cdot v \\tag{2.2}\\] 这个操作在计算机图像学中表示“将图像绕原点旋转\\(\\theta\\)度”（在实现时需要先计算出图像的原点坐标）。 . 2.1.2 二维复平面的旋转 . 复数\\(e^{i\\theta}\\)表示了一个沿着单元圆逆时针旋转角度为\\(\\theta\\)的点的位置（欧拉公式），即\\(e^{i\\theta} = \\cos\\theta + i \\sin \\theta\\)，其中\\(\\cos\\theta\\)是水平方向的坐标（实部），\\(\\sin\\theta\\)是竖直方向的坐标（虚部）。 . 而两个点\\(z_1 = e^{im\\theta}\\)和\\(z_2 = e^{in\\theta}\\)之间的乘积如公式（2.3）表示： . \\[\\begin{equation} \\begin{aligned} z_1 \\times z_2 &amp;= e^{im\\theta} \\times e^{in\\theta}\\\\ &amp; = \\cos m\\theta \\cos n\\theta + i^2 \\sin m \\theta \\sin n \\theta + i (\\cos m \\theta \\sin n \\theta + \\sin m \\theta \\cos n \\theta) \\\\ &amp; = \\cos (m+n)\\theta + i \\sin (m+n)\\theta \\\\ &amp; = e ^ {i (m+n) \\theta} \\end{aligned} \\tag{2.3} \\end{equation}\\] 也就是说，二者的乘积实际上表示了两个点在复平面上的角度之和。 . 如果用\\(z_2\\)的共轭\\(\\bar{z_2} = e^{-i n \\theta}\\)，就变成了公式（2.4）所示的角度之差： . \\[z_1 \\times \\bar{z_2} = e^{i (m-n)\\theta} \\tag{2.4}\\] 因此就能够建模出两个复数之间的相对性。 . 2.2 旋转位置编码 . 根据前置知识，假设二维平面上有一个点为\\((x, y)\\)，则它旋转\\(\\theta\\)后的坐标如公式（2.5）所示： . \\[\\begin{bmatrix} \\cos \\theta &amp; - \\sin \\theta \\\\ \\sin \\theta &amp; \\cos \\theta \\end{bmatrix} \\begin{bmatrix} x \\\\ y \\end{bmatrix} = \\begin{bmatrix} x \\cos \\theta - y \\sin \\theta \\\\ x \\sin \\theta + y \\cos \\theta \\end{bmatrix} \\tag{2.5}\\] 同理，假设二维复平面有 \\(z = x + i y\\)，则乘上旋转角度的复数变化\\(e ^ {i\\theta}\\)后的复数如公式（2.6）所示： . \\[\\begin{equation} \\begin{aligned} e^{i\\theta} \\cdot z &amp; = (\\cos \\theta + i \\sin \\theta)(x + i y) \\\\ &amp; = (x \\cos \\theta - y \\sin \\theta) + i (x \\sin \\theta + y \\cos \\theta) \\end{aligned} \\tag{2.6} \\end{equation}\\] 可见，公式（2.6）变化后的实部和虚部恰好和与公式（2.5）旋转后的坐标相对应，所以本质上一个复数乘以\\(e^{i \\theta}\\)，就是乘了一个旋转矩阵。 . ",
+    "content": "下文需要先了解绝对位置编码和相对位置编码，可参见： . | Attention Is All You Need | 让研究人员绞尽脑汁的Transformer位置编码 | . 旋转位置编码的来源和详细介绍可以参见： . | RoFormer: Enhanced Transformer with Rotary Position Embedding | Transformer升级之路：2、博采众长的旋转式位置编码 | . RoFormer的提出动机非常简单，苏剑林在博客中自称是通过\\(e^{im\\theta}\\bar{e^{in\\theta}} = e^{i(m-n)\\theta}\\)发现可以构建出一种实际上是相对，表达上又是绝对形式的位置编码。 . 在介绍具体含义前，先引入两个前置知识： . 2.1 前置知识 . 2.1.1 二维平面的旋转 . 从计算机图形学的视角来看，什么是旋转？ . 假设有二维向量\\(v = \\begin{bmatrix} x \\\\ y \\end{bmatrix}\\)，对他做二维平面旋转，旋转角度为\\(\\theta\\)，可以通过旋转矩阵实现。旋转矩阵的形式如公式（2.1）所示。 . \\[R_{\\theta} = \\begin{bmatrix} \\cos\\theta &amp; -\\sin\\theta \\\\ \\sin \\theta &amp; \\cos \\theta \\\\ \\end{bmatrix} \\tag{2.1}\\] 因此旋转后的向量如公式（2.2）所示。 . \\[v' = R_{\\theta} \\cdot v \\tag{2.2}\\] 这个操作在计算机图像学中表示“将图像绕原点旋转\\(\\theta\\)度”（在实现时需要先计算出图像的原点坐标）。 . 2.1.2 二维复平面的旋转 . 复数\\(e^{i\\theta}\\)表示了一个沿着单元圆逆时针旋转角度为\\(\\theta\\)的点的位置（欧拉公式），即\\(e^{i\\theta} = \\cos\\theta + i \\sin \\theta\\)，其中\\(\\cos\\theta\\)是水平方向的坐标（实部），\\(\\sin\\theta\\)是竖直方向的坐标（虚部）。 . 而两个点\\(z_1 = e^{im\\theta}\\)和\\(z_2 = e^{in\\theta}\\)之间的乘积如公式（2.3）表示： . \\[\\begin{equation} \\begin{aligned} z_1 \\times z_2 &amp;= e^{im\\theta} \\times e^{in\\theta}\\\\ &amp; = \\cos m\\theta \\cos n\\theta + i^2 \\sin m \\theta \\sin n \\theta + i (\\cos m \\theta \\sin n \\theta + \\sin m \\theta \\cos n \\theta) \\\\ &amp; = \\cos (m+n)\\theta + i \\sin (m+n)\\theta \\\\ &amp; = e ^ {i (m+n) \\theta} \\end{aligned} \\tag{2.3} \\end{equation}\\] 也就是说，二者的乘积实际上表示了两个点在复平面上的角度之和。 . 如果用\\(z_2\\)的共轭\\(\\bar{z_2} = e^{-i n \\theta}\\)，就变成了公式（2.4）所示的角度之差： . \\[z_1 \\times \\bar{z_2} = e^{i (m-n)\\theta} \\tag{2.4}\\] 因此就能够建模出两个复数之间的相对性。 . 根据前置知识，假设二维平面上有一个点为\\((x, y)\\)，则它旋转\\(\\theta\\)后的坐标如公式（2.5）所示： . \\[\\begin{bmatrix} \\cos \\theta &amp; - \\sin \\theta \\\\ \\sin \\theta &amp; \\cos \\theta \\end{bmatrix} \\begin{bmatrix} x \\\\ y \\end{bmatrix} = \\begin{bmatrix} x \\cos \\theta - y \\sin \\theta \\\\ x \\sin \\theta + y \\cos \\theta \\end{bmatrix} \\tag{2.5}\\] 同理，假设二维复平面有 \\(z = x + i y\\)，则乘上旋转角度的复数变化\\(e ^ {i\\theta}\\)后的复数如公式（2.6）所示： . \\[\\begin{equation} \\begin{aligned} e^{i\\theta} \\cdot z &amp; = (\\cos \\theta + i \\sin \\theta)(x + i y) \\\\ &amp; = (x \\cos \\theta - y \\sin \\theta) + i (x \\sin \\theta + y \\cos \\theta) \\end{aligned} \\tag{2.6} \\end{equation}\\] 可见，公式（2.6）变化后的实部和虚部恰好和与公式（2.5）旋转后的坐标相对应，所以本质上一个复数乘以\\(e^{i \\theta}\\)，就是乘了一个旋转矩阵。 . 2.2 旋转位置编码 . 本来想写不少的，但发现已经有不少优秀的博客做了解释，可以直接参考，如： . | 十分钟读懂旋转编码（RoPE） | . 简单来说，旋转位置编码就是实现了使每个token的位置可以直接被计算出来，就像绝对位置编码那样，同时又能在注意力计算时建模出token之间的相对位置关系。 . 在实际计算时，对于位置为\\(i\\)的token，将其特征向量分组（按照奇偶进行分组），从而有公式（2.7）所示的转换。 . \\[\\text{RoPE}(x_i) = (x_i^{even} \\cos i\\theta - x_i^{odd} \\sin i\\theta) \\oplus (x_i^{even} \\sin i\\theta + x_i ^{odd}\\cos i\\theta) \\tag{2.7}\\] 因此，当计算注意力相关性分数\\(q_m^Tk_n\\)时，可以得到含有相对位置信息\\((m-n)\\)的特征。 . 也就是说，RoPE将每个token的特征向量都看作是由若干个二维子空间组成的向量，然后对于每个二维子空间上都根据token所在位置\\(i\\)旋转角度\\(i\\theta\\)。 . 而在计算相关性分数时，由于复数的性质（或者说旋转矩阵的特点），自然的就会得到任意两个token之间的位置信息，相当于把任意两个token看作是一个旋转了\\((i-j)\\theta\\)度。 . ",
     "url": "/docs/tech/minimind/norm-and-attn/#2-attention-with-rope",
     
     "relUrl": "/docs/tech/minimind/norm-and-attn/#2-attention-with-rope"
@@ -71,7 +71,7 @@
   },"10": {
     "doc": "Build LLM from Scratch",
     "title": "Build LLM from Scratch",
-    "content": "This blog aims to explain how pre-training and post-training actually work, and why they are designed that way, using a project called MiniMind as the foundation. ",
+    "content": "这部分内容旨在借助开源项目MiniMind，从理论和代码入手，分析大模型的预训练和后训练的步骤，解释各核心部分的工作原理。 . 所写内容不一定正确，如有错误还望指正。 . ",
     "url": "/docs/tech/minimind/#build-llm-from-scratch",
     
     "relUrl": "/docs/tech/minimind/#build-llm-from-scratch"
@@ -139,18 +139,32 @@
     
     "relUrl": "/docs/paper/"
   },"20": {
-    "doc": "Ideas April/25",
-    "title": "17/04/2025",
-    "content": ". | Even though I’ve read many papers on large language models (LLMs) and written code to fine-tune them or call their APIs, I still don’t fully understand how the base models work — what each part of the code does, how pre-training and post-training actually function, and why they are designed that way. | So, I want to write a blog post that explores the fundamentals of LLMs. | Fortunately, I discovered a project called MiniMind — a tiny LLM with just a few hundred million parameters, yet it includes components like pre-training, SFT, RLHF, LoRA, and even DPO. My plan is to read, run, and modify this project to gain a deeper understanding and then document the process in a blog post about building an LLM from scratch. | Hopefully, this will be helpful for others too. these is a similar project called Build a Large Language Model (from Scratch) . | . ",
-    "url": "/docs/idea/2504/#17042025",
+    "doc": "Ideas 2025",
+    "title": "10/May/2025",
+    "content": ". | 多模态作为我的研究方向和入职后的主要算法工作，是我必须紧跟前沿甚至创造前沿的重要阵地 | 所以打算在博客中增加相关工作的占比，包括论文、项目收集和阅读笔记 | . ",
+    "url": "/docs/idea/2025/#10may2025",
     
-    "relUrl": "/docs/idea/2504/#17042025"
+    "relUrl": "/docs/idea/2025/#10may2025"
   },"21": {
-    "doc": "Ideas April/25",
-    "title": "Ideas April/25",
-    "content": "ideas . A Collection of Various Thoughts from April 2025 . ",
-    "url": "/docs/idea/2504/",
+    "doc": "Ideas 2025",
+    "title": "09/May/2025",
+    "content": ". | 最近的毕业季给我造成了不小的创伤，因为实际的结果和我的预期差别实在太大 | 我以为有多篇论文加顶会在审，有专利，有若干谷歌学术cite，三个创新点都是SOTA的情况下，一定比只有软著专利的同学们强吧，以及应该能拿到类似内审高度评价般的外审结果吧 | 但事实并非如此，思来想去很多次，一度怀疑自己命中和科研无缘。但究其原因，还是自己看得多但写得少；想的多但做的少；宽容他人但忽略了别人不会宽容自己的问题 | 这些事情让我彻底认清自己的缺陷，希望引以为戒 | . ",
+    "url": "/docs/idea/2025/#09may2025",
     
-    "relUrl": "/docs/idea/2504/"
+    "relUrl": "/docs/idea/2025/#09may2025"
+  },"22": {
+    "doc": "Ideas 2025",
+    "title": "17/Apr/2025",
+    "content": ". | 尽管我读了不少关于大模型的论文，也曾在23年初参与了大模型的训练工作，但这个领域发展的太快，导致我对最新的，甚至可以说标准化的大模型模块很生疏 | 因此，我决定从大模型的架构代码入手，了解各模块被采用的深层次原因，并以此发散来回顾和学习近两年大模型的大致情况 | 我将基于开源的项目MiniMind来实现上述想法 | . ",
+    "url": "/docs/idea/2025/#17apr2025",
+    
+    "relUrl": "/docs/idea/2025/#17apr2025"
+  },"23": {
+    "doc": "Ideas 2025",
+    "title": "Ideas 2025",
+    "content": "ideas . A Collection of Various Thoughts on 2025 . ",
+    "url": "/docs/idea/2025/",
+    
+    "relUrl": "/docs/idea/2025/"
   }
 }
