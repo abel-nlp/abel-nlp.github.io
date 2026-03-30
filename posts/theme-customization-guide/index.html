@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en-us" class="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>主题自定义指南 | abel&#39;s blog</title>
+<meta name="description" content="一份完整的 Modern Archivist 主题自定义指南。列出修改不同内容时，应当编辑哪个文件的哪个位置。" />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\\\(',right:'\\\\)',display:false},{left:'\\\\[',right:'\\\\]',display:true}],throwOnError:false});"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "inverse-primary": "#c4ebfc",
+        "surface-dim": "#d3dbe3",
+        "error-container": "#fe8983",
+        "secondary-container": "#e1e3e4",
+        "error": "#9f403d",
+        "inverse-on-surface": "#9c9d9f",
+        "surface-container": "#ebeef3",
+        "on-tertiary": "#f6f9ff",
+        "secondary-fixed": "#e1e3e4",
+        "on-tertiary-fixed": "#2d4154",
+        "inverse-surface": "#0c0e10",
+        "background": "#f9f9fc",
+        "surface-container-highest": "#dde3ea",
+        "on-surface-variant": "#596066",
+        "on-primary": "#eef9ff",
+        "surface-variant": "#dde3ea",
+        "tertiary-fixed": "#cfe5fd",
+        "secondary-fixed-dim": "#d3d5d6",
+        "on-secondary-fixed-variant": "#595c5d",
+        "tertiary-container": "#cfe5fd",
+        "outline-variant": "#acb3b9",
+        "on-background": "#2d3339",
+        "primary": "#3e6471",
+        "primary-dim": "#325765",
+        "outline": "#757b82",
+        "surface-bright": "#f9f9fc",
+        "tertiary": "#4d6175",
+        "on-tertiary-container": "#3f5467",
+        "primary-container": "#c2e9f9",
+        "on-secondary": "#f8f9fb",
+        "tertiary-fixed-dim": "#c1d7ee",
+        "on-primary-fixed-variant": "#3b616e",
+        "on-surface": "#2d3339",
+        "surface-container-low": "#f2f3f7",
+        "on-secondary-fixed": "#3d4041",
+        "tertiary-dim": "#415569",
+        "secondary": "#5d5f61",
+        "on-tertiary-fixed-variant": "#495e71",
+        "on-primary-fixed": "#1d4451",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#315764",
+        "surface-container-high": "#e4e8ee",
+        "on-error": "#fff7f6",
+        "primary-fixed-dim": "#b4daea",
+        "secondary-dim": "#515355",
+        "on-secondary-container": "#4f5254",
+        "surface-tint": "#3e6471",
+        "error-dim": "#4e0309",
+        "on-error-container": "#752121",
+        "surface": "#f9f9fc",
+        "primary-fixed": "#c2e9f9"
+      },
+      fontFamily: {
+        headline: ["Noto Serif", "serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"]
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      }
+    }
+  }
+};
+</script>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+  } else {
+    document.documentElement.classList.add('light');
+    document.documentElement.classList.remove('dark');
+  }
+})();
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Noto Serif', serif; }
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+ 
+.prose h1 {
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.prose h2 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dde3ea;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3e6471;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose h4 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #596066;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  color: #596066;
+}
+.prose > ul, .prose > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.35rem;
+  line-height: 1.7;
+  color: #596066;
+}
+.prose blockquote {
+  border-left: 3px solid #3e6471;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: #f2f3f7;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.prose blockquote p {
+  color: #4d6175;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid #dde3ea;
+  margin: 2.5rem 0;
+}
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  margin: 1.5rem 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+.prose thead th {
+  background: #f2f3f7;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2d3339;
+  border-bottom: 2px solid #dde3ea;
+}
+.prose tbody td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #ebeef3;
+  color: #596066;
+}
+.prose tbody tr:hover { background: #f9f9fc; }
+.prose code:not(pre code) {
+  background: #24283b;
+  color: #7aa2f7;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.prose .highlight {
+  margin: 1.5rem 0;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+}
+.prose pre {
+  background: #24283b;
+  color: #a9b1d6;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.625rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  line-height: 1.75;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.prose pre::-webkit-scrollbar { height: 6px; }
+.prose pre::-webkit-scrollbar-track { background: #1a1b26; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb { background: #3b4261; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb:hover { background: #565f89; }
+.prose .highlight pre {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+}
+.prose a {
+  color: #3e6471;
+  text-decoration: underline;
+  text-decoration-color: rgba(62,100,113,0.3);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s;
+}
+.prose a:hover {
+  text-decoration-color: #3e6471;
+}
+html.dark .prose a {
+  color: #67e8e9;
+  text-decoration-color: rgba(103,232,233,0.3);
+}
+html.dark .prose a:hover {
+  text-decoration-color: #67e8e9;
+}
+.prose strong {
+  color: #2d3339;
+  font-weight: 600;
+}
+html.dark .prose strong { color: #f1f5f9; }
+.prose em { color: inherit; }
+.prose del { color: #94a3b8; }
+.prose input[type="checkbox"] {
+  accent-color: #3e6471;
+  margin-right: 0.5rem;
+}
+.prose .footnotes {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dde3ea;
+  font-size: 0.85rem;
+}
+html.dark .prose .footnotes {
+  border-top-color: #334155;
+}
+
+ 
+html.dark .prose h1 { color: #f1f5f9; }
+html.dark .prose h2 { color: #f1f5f9; border-bottom-color: #334155; }
+html.dark .prose h3 { color: #67e8e9; }
+html.dark .prose h4 { color: #94a3b8; }
+html.dark .prose p, html.dark .prose li { color: #94a3b8; }
+html.dark .prose blockquote { background: #0f172a; border-left-color: #0e7490; }
+html.dark .prose blockquote p { color: #67e8e9; }
+html.dark .prose hr { border-top-color: #334155; }
+html.dark .prose thead th { background: #1e293b; color: #e2e8f0; border-bottom-color: #334155; }
+html.dark .prose tbody td { border-bottom-color: #1e293b; color: #94a3b8; }
+html.dark .prose tbody tr:hover { background: #0f172a; }
+html.dark .prose code:not(pre code) { background: #1a1b26; color: #7aa2f7; }
+html.dark .prose pre { background: #1a1b26; color: #a9b1d6; }
+html.dark .prose .highlight { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+ 
+.bg { color:#a9b1d6; background-color:#24283b }
+.chroma { color:#a9b1d6; background-color:#24283b }
+.chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
+.chroma .lntd { vertical-align:top;padding:0;margin:0;border:0 }
+.chroma .lntable { border-spacing:0;padding:0;margin:0;border:0 }
+.chroma .hl { background-color:#292e42 }
+.chroma .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .line { display:flex }
+.chroma .k { color:#bb9af7 }
+.chroma .kc { color:#ff9e64 }
+.chroma .kd { color:#bb9af7 }
+.chroma .kn { color:#7dcfff }
+.chroma .kp { color:#bb9af7 }
+.chroma .kr { color:#bb9af7 }
+.chroma .kt { color:#2ac3de }
+.chroma .na { color:#73daca }
+.chroma .nb { color:#2ac3de }
+.chroma .bp { color:#565f89 }
+.chroma .nc { color:#7aa2f7 }
+.chroma .no { color:#ff9e64 }
+.chroma .nd { color:#e0af68 }
+.chroma .ni { color:#c0caf5 }
+.chroma .ne { color:#f7768e }
+.chroma .nf { color:#7aa2f7 }
+.chroma .fm { color:#7aa2f7 }
+.chroma .nl { color:#73daca }
+.chroma .nn { color:#7dcfff }
+.chroma .nx { color:#c0caf5 }
+.chroma .nt { color:#f7768e }
+.chroma .nv { color:#c0caf5 }
+.chroma .vc { color:#c0caf5 }
+.chroma .vg { color:#c0caf5 }
+.chroma .vi { color:#c0caf5 }
+.chroma .vm { color:#c0caf5 }
+.chroma .s { color:#9ece6a }
+.chroma .sa { color:#9ece6a }
+.chroma .sb { color:#9ece6a }
+.chroma .sc { color:#9ece6a }
+.chroma .dl { color:#9ece6a }
+.chroma .sd { color:#565f89 }
+.chroma .s2 { color:#9ece6a }
+.chroma .se { color:#89ddff }
+.chroma .sh { color:#9ece6a }
+.chroma .si { color:#9ece6a }
+.chroma .sx { color:#9ece6a }
+.chroma .sr { color:#b4f9f8 }
+.chroma .s1 { color:#9ece6a }
+.chroma .ss { color:#9ece6a }
+.chroma .m { color:#ff9e64 }
+.chroma .mb { color:#ff9e64 }
+.chroma .mf { color:#ff9e64 }
+.chroma .mh { color:#ff9e64 }
+.chroma .mi { color:#ff9e64 }
+.chroma .il { color:#ff9e64 }
+.chroma .mo { color:#ff9e64 }
+.chroma .o { color:#89ddff }
+.chroma .ow { color:#bb9af7 }
+.chroma .p { color:#a9b1d6 }
+.chroma .c { color:#565f89;font-style:italic }
+.chroma .ch { color:#565f89;font-style:italic }
+.chroma .cm { color:#565f89;font-style:italic }
+.chroma .c1 { color:#565f89;font-style:italic }
+.chroma .cs { color:#565f89;font-style:italic }
+.chroma .cp { color:#565f89;font-style:italic }
+.chroma .cpf { color:#565f89;font-style:italic }
+.chroma .gd { color:#f7768e;background-color:rgba(247,118,142,0.1) }
+.chroma .gi { color:#9ece6a;background-color:rgba(158,206,106,0.1) }
+.chroma .ge { font-style:italic }
+.chroma .go { color:#565f89 }
+.chroma .err { color:#f7768e }
+
+ 
+html.dark .bg { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma .hl { background-color:#1e2030 }
+
+ 
+.prose .katex-display {
+  margin: 1.5rem 0;
+  overflow: visible;
+}
+.prose .katex-display > .katex {
+  overflow: visible;
+}
+.prose .katex-display > .katex > .katex-html {
+  overflow: visible;
+}
+
+.toc-link.active {
+  color: rgb(14 116 144);
+  font-weight: 700;
+  border-left-width: 2px;
+  border-color: rgb(14 116 144);
+}
+html.dark .toc-link.active {
+  color: rgb(103 232 249);
+  border-color: rgb(103 232 249);
+}
+
+#toc-nav #TableOfContents > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#toc-nav #TableOfContents > ul > li {
+  margin: 0;
+}
+#toc-nav #TableOfContents a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+#toc-nav #TableOfContents a:hover {
+  background-color: #f1f5f9;
+}
+html.dark #toc-nav #TableOfContents a {
+  border-color: #1e293b;
+  color: #94a3b8;
+}
+html.dark #toc-nav #TableOfContents a:hover {
+  background-color: #1e293b;
+}
+#toc-nav #TableOfContents a.active,
+#toc-nav #TableOfContents .toc-link.active {
+  color: #0e7490;
+  font-weight: 700;
+  border-left: 2px solid #0e7490;
+}
+html.dark #toc-nav #TableOfContents a.active {
+  color: #67e8e9;
+  border-color: #67e8e9;
+}
+#toc-nav #TableOfContents ul ul {
+  list-style: none;
+  padding: 0;
+}
+#toc-nav #TableOfContents ul ul a {
+  padding-left: 2rem;
+  font-size: 0.8125rem;
+}
+</style>
+</head>
+<body class="bg-background text-on-background dark:bg-slate-900 dark:text-slate-100 selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col"><nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="/" class="text-xl font-serif font-bold text-cyan-900 dark:text-cyan-100 italic tracking-tight hover:opacity-80 transition-opacity">
+      abel&#39;s blog
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      
+        
+        
+        
+          
+        
+        <a
+          href="/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Home</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/archives/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Archives</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/about/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >About</a>
+      
+      <button id="theme-toggle" class="material-symbols-outlined text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-300 scale-95 active:opacity-70 transition-all cursor-pointer" aria-label="Toggle dark mode">
+        dark_mode
+      </button>
+    </div>
+    
+    <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-slate-600 dark:text-slate-300 cursor-pointer" aria-label="Open menu">
+      menu
+    </button>
+  </div>
+  
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="flex flex-col px-8 py-4 gap-4">
+      
+        <a href="/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Home</a>
+      
+        <a href="/archives/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Archives</a>
+      
+        <a href="/about/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">About</a>
+      
+      <button id="theme-toggle-mobile" class="text-left text-slate-500 dark:text-slate-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-sm">dark_mode</span>
+        Toggle theme
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="flex-1">
+<div class="pt-32 pb-20 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+  
+  <aside class="hidden lg:flex flex-col w-64 gap-4 sticky top-24 h-fit rounded-lg bg-slate-50 dark:bg-slate-950 col-span-3">
+    <div class="p-6">
+      <p class="font-serif text-lg font-bold text-cyan-800 dark:text-cyan-200">Table of Contents</p>
+      <p class="text-xs uppercase tracking-widest text-on-surface-variant dark:text-slate-500 mt-1">Article Structure</p>
+    </div>
+    <nav class="flex flex-col gap-1 pb-6" id="toc-nav">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#站点全局配置">站点全局配置</a>
+      <ul>
+        <li><a href="#站点标题与描述">站点标题与描述</a></li>
+        <li><a href="#首页标题与副标题">首页标题与副标题</a></li>
+        <li><a href="#导航菜单">导航菜单</a></li>
+        <li><a href="#社交链接">社交链接</a></li>
+        <li><a href="#代码高亮主题">代码高亮主题</a></li>
+      </ul>
+    </li>
+    <li><a href="#字体">字体</a>
+      <ul>
+        <li><a href="#1-引入字体文件">1. 引入字体文件</a></li>
+        <li><a href="#2-指定字体族">2. 指定字体族</a></li>
+      </ul>
+    </li>
+    <li><a href="#配色方案">配色方案</a></li>
+    <li><a href="#正文排版样式">正文排版样式</a></li>
+    <li><a href="#页面布局模板">页面布局模板</a>
+      <ul>
+        <li><a href="#导航栏">导航栏</a></li>
+        <li><a href="#页脚">页脚</a></li>
+        <li><a href="#html-head">HTML <code>&lt;head&gt;</code></a></li>
+        <li><a href="#基础包装模板">基础包装模板</a></li>
+      </ul>
+    </li>
+    <li><a href="#各页面对应文件">各页面对应文件</a>
+      <ul>
+        <li><a href="#首页">首页</a></li>
+        <li><a href="#文章详情页">文章详情页</a></li>
+        <li><a href="#about-页">About 页</a></li>
+        <li><a href="#归档页">归档页</a></li>
+        <li><a href="#文章列表页如标签页分类页">文章列表页（如标签页、分类页）</a></li>
+      </ul>
+    </li>
+    <li><a href="#暗色模式">暗色模式</a></li>
+    <li><a href="#静态资源">静态资源</a></li>
+    <li><a href="#数学公式">数学公式</a></li>
+    <li><a href="#快速修改速查表">快速修改速查表</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  
+  <article class="lg:col-span-9 space-y-10">
+    
+    <header class="space-y-4">
+      <div class="flex items-center gap-4 text-[10px] font-label text-on-surface-variant dark:text-slate-500 uppercase tracking-widest">
+        <time datetime="2026-03-27">March 27, 2026</time>
+        <span>·</span>
+        <span>3 min read</span>
+        
+        <span>·</span>
+        
+        <span class="bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Guide</span>
+        
+        <span class="bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Theme</span>
+        
+        
+      </div>
+      <h1 class="text-3xl md:text-4xl font-headline font-bold text-on-background dark:text-white tracking-tight">主题自定义指南</h1>
+      
+      <p class="text-lg text-primary dark:text-cyan-400 italic leading-snug">一份完整的 Modern Archivist 主题自定义指南。列出修改不同内容时，应当编辑哪个文件的哪个位置。</p>
+      
+    </header>
+
+    
+    <div class="prose max-w-none">
+      <p>本文是主题 <strong>Modern Archivist</strong> 的自定义指南。当你需要修改站点的某个部分时，可以按照下方索引找到对应的文件。</p>
+<hr>
+<h2 id="站点全局配置">站点全局配置</h2>
+<p>所有站点级别的设置都在根目录的 <code>hugo.toml</code> 中。</p>
+<h3 id="站点标题与描述">站点标题与描述</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># hugo.toml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;The Modern Archivist&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">description</span> <span class="p">=</span> <span class="s1">&#39;站点描述，用于 SEO 和 meta 标签&#39;</span>
+</span></span></code></pre></div><h3 id="首页标题与副标题">首页标题与副标题</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># hugo.toml → [params]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">homeTitle</span> <span class="p">=</span> <span class="s1">&#39;显示在首页的大标题&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">homeSubtitle</span> <span class="p">=</span> <span class="s1">&#39;首页标题下方的介绍文字&#39;</span>
+</span></span></code></pre></div><h3 id="导航菜单">导航菜单</h3>
+<p>增减菜单项，修改 <code>hugo.toml</code> 中的 <code>[[menu.main]]</code> 块：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># hugo.toml</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Home&#39;</span>       <span class="c"># 显示的文字</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;/&#39;</span>            <span class="c"># 链接地址</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>           <span class="c"># 排序权重，越小越靠左</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Archives&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;/archives/&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;About&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;/about/&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span></code></pre></div><h3 id="社交链接">社交链接</h3>
+<p>页脚的社交链接由 <code>hugo.toml</code> 中的 <code>[params.social]</code> 控制：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># hugo.toml → [params.social]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">github</span> <span class="p">=</span> <span class="s1">&#39;https://github.com/your-username&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">scholar</span> <span class="p">=</span> <span class="s1">&#39;https://scholar.google.com/...&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">twitter</span> <span class="p">=</span> <span class="s1">&#39;https://twitter.com/...&#39;</span>
+</span></span></code></pre></div><h3 id="代码高亮主题">代码高亮主题</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># hugo.toml → [markup.highlight]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s1">&#39;dracula&#39;</span>    <span class="c"># 可选: monokai, github, solarized-dark, nord 等</span>
+</span></span></code></pre></div><p>完整的可用主题列表参见 <a href="https://xyproto.github.io/splash/docs/">Hugo Chroma Styles</a>。</p>
+<hr>
+<h2 id="字体">字体</h2>
+<p>字体配置在 <strong>两个位置</strong>：</p>
+<h3 id="1-引入字体文件">1. 引入字体文件</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/head.html
+</span></span></code></pre></div><p>找到 Google Fonts 的 <code>&lt;link&gt;</code> 标签，替换为你需要的字体：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://fonts.googleapis.com/css2?family=你的字体名&amp;display=swap&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></div><h3 id="2-指定字体族">2. 指定字体族</h3>
+<p>同一文件中的 Tailwind 配置和 <code>&lt;style&gt;</code> 块：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// head.html → tailwind.config → theme.extend.fontFamily
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fontFamily</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">headline</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Noto Serif&#34;</span><span class="p">,</span> <span class="s2">&#34;serif&#34;</span><span class="p">],</span>   <span class="c1">// 标题字体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">body</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Inter&#34;</span><span class="p">,</span> <span class="s2">&#34;sans-serif&#34;</span><span class="p">],</span>       <span class="c1">// 正文字体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">label</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;Inter&#34;</span><span class="p">,</span> <span class="s2">&#34;sans-serif&#34;</span><span class="p">]</span>       <span class="c1">// 标签/小字字体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="c">/* head.html → &lt;style&gt; */</span>
+</span></span><span class="line"><span class="cl"><span class="nt">body</span> <span class="p">{</span> <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Inter&#39;</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span> <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Noto Serif&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span> <span class="p">}</span>
+</span></span></code></pre></div><hr>
+<h2 id="配色方案">配色方案</h2>
+<p>所有颜色 token 定义在：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/head.html
+</span></span></code></pre></div><p>找到 <code>tailwind.config</code> 中的 <code>colors</code> 对象。主要颜色含义：</p>
+<table>
+  <thead>
+      <tr>
+          <th>Token</th>
+          <th>用途</th>
+          <th>当前值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>primary</code></td>
+          <td>主题色（链接、按钮、标签）</td>
+          <td><code>#3e6471</code></td>
+      </tr>
+      <tr>
+          <td><code>on-background</code></td>
+          <td>正文主色</td>
+          <td><code>#2d3339</code></td>
+      </tr>
+      <tr>
+          <td><code>on-surface-variant</code></td>
+          <td>次要文字（正文、标签）</td>
+          <td><code>#596066</code></td>
+      </tr>
+      <tr>
+          <td><code>background</code></td>
+          <td>页面背景</td>
+          <td><code>#f9f9fc</code></td>
+      </tr>
+      <tr>
+          <td><code>surface-container-low</code></td>
+          <td>卡片/区块背景</td>
+          <td><code>#f2f3f7</code></td>
+      </tr>
+      <tr>
+          <td><code>primary-container</code></td>
+          <td>选中文本背景</td>
+          <td><code>#c2e9f9</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>要修改主题色风格，只需替换 <code>primary</code> 及其相关 token 即可。</p>
+<hr>
+<h2 id="正文排版样式">正文排版样式</h2>
+<p>标题层级、段落间距、代码块、引用框、表格等所有正文排版样式在：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/head.html → &lt;style&gt; 块
+</span></span></code></pre></div><p>关键的 CSS 选择器对照表：</p>
+<table>
+  <thead>
+      <tr>
+          <th>要修改的元素</th>
+          <th>CSS 选择器</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>二级标题 (H2)</td>
+          <td><code>.prose h2</code></td>
+      </tr>
+      <tr>
+          <td>三级标题 (H3)</td>
+          <td><code>.prose h3</code></td>
+      </tr>
+      <tr>
+          <td>四级标题 (H4)</td>
+          <td><code>.prose h4</code></td>
+      </tr>
+      <tr>
+          <td>正文段落</td>
+          <td><code>.prose p</code></td>
+      </tr>
+      <tr>
+          <td>引用块</td>
+          <td><code>.prose blockquote</code></td>
+      </tr>
+      <tr>
+          <td>行内代码</td>
+          <td><code>.prose code:not(pre code)</code></td>
+      </tr>
+      <tr>
+          <td>代码块</td>
+          <td><code>.prose pre</code></td>
+      </tr>
+      <tr>
+          <td>表格头</td>
+          <td><code>.prose thead th</code></td>
+      </tr>
+      <tr>
+          <td>表格单元格</td>
+          <td><code>.prose tbody td</code></td>
+      </tr>
+      <tr>
+          <td>链接</td>
+          <td><code>.prose a</code></td>
+      </tr>
+      <tr>
+          <td>暗色模式覆盖</td>
+          <td><code>html.dark .prose h2</code> 等</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="页面布局模板">页面布局模板</h2>
+<h3 id="导航栏">导航栏</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/header.html
+</span></span></code></pre></div><p>包括：固定顶栏、Logo、桌面菜单、暗色模式按钮、移动端汉堡菜单。</p>
+<h3 id="页脚">页脚</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/footer.html
+</span></span></code></pre></div><p>包括：站点名称、版权文字、社交链接。</p>
+<h3 id="html-head">HTML <code>&lt;head&gt;</code></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/partials/head.html
+</span></span></code></pre></div><p>包括：CDN 引入、Tailwind 配置、颜色 token、字体、KaTeX、所有 CSS 样式。</p>
+<h3 id="基础包装模板">基础包装模板</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">themes/modern-archivist/layouts/_default/baseof.html
+</span></span></code></pre></div><p>所有页面共用的 HTML 骨架：<code>&lt;html&gt;</code> → <code>&lt;head&gt;</code> → <code>&lt;body&gt;</code> → header + main + footer + JS。</p>
+<hr>
+<h2 id="各页面对应文件">各页面对应文件</h2>
+<h3 id="首页">首页</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>内容</td>
+          <td><code>content/_index.md</code></td>
+      </tr>
+      <tr>
+          <td>模板</td>
+          <td><code>themes/modern-archivist/layouts/index.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="文章详情页">文章详情页</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>内容</td>
+          <td><code>content/posts/你的文章.md</code></td>
+      </tr>
+      <tr>
+          <td>模板</td>
+          <td><code>themes/modern-archivist/layouts/_default/single.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>模板中包含：侧边栏 TOC、文章头部（日期/阅读时间/标签）、正文 <code>.prose</code> 容器、上下篇导航。</p>
+<h3 id="about-页">About 页</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>内容 &amp; 数据</td>
+          <td><code>content/about.md</code>（front matter 中的结构化数据 + Markdown 正文）</td>
+      </tr>
+      <tr>
+          <td>模板</td>
+          <td><code>themes/modern-archivist/layouts/_default/about.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>About 页的 front matter 参数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;你的名字&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;你的头衔&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">avatar</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/images/avatar.jpg&#34;</span><span class="w">     </span><span class="c"># 图片放在 static/images/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;you@example.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">social</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">twitter</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://...&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">github</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://...&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">linkedin</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://...&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">research_interests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;兴趣 1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;兴趣 2&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">education</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">degree</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;学位名称&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">school</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;学校, 年份&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">publications</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2024&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;JOURNAL&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;论文标题&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;描述&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;Peer Reviewed&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cv_url</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://...&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">inquiries_text</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;联系说明文字&#34;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="归档页">归档页</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>内容</td>
+          <td><code>content/archives.md</code></td>
+      </tr>
+      <tr>
+          <td>模板</td>
+          <td><code>themes/modern-archivist/layouts/_default/archives.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="文章列表页如标签页分类页">文章列表页（如标签页、分类页）</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>模板</td>
+          <td><code>themes/modern-archivist/layouts/_default/list.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="暗色模式">暗色模式</h2>
+<p>暗色模式逻辑分布在两个文件中：</p>
+<table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>初始化（防闪烁）</td>
+          <td><code>head.html</code> 中的内联 <code>&lt;script&gt;</code></td>
+      </tr>
+      <tr>
+          <td>切换 &amp; 持久化</td>
+          <td><code>themes/modern-archivist/static/js/main.js</code></td>
+      </tr>
+      <tr>
+          <td>暗色模式 CSS</td>
+          <td><code>head.html</code> 中 <code>html.dark .prose ...</code> 等规则</td>
+      </tr>
+      <tr>
+          <td>Tailwind 暗色类</td>
+          <td>各模板中的 <code>dark:bg-slate-900</code> 等 class</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="静态资源">静态资源</h2>
+<table>
+  <thead>
+      <tr>
+          <th>资源</th>
+          <th>存放位置</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>头像图片</td>
+          <td><code>static/images/avatar.jpg</code></td>
+      </tr>
+      <tr>
+          <td>自定义 JS</td>
+          <td><code>themes/modern-archivist/static/js/main.js</code></td>
+      </tr>
+      <tr>
+          <td>其他图片</td>
+          <td><code>static/images/</code> 目录下，文章中用 <code>/images/xxx.png</code> 引用</td>
+      </tr>
+      <tr>
+          <td>favicon</td>
+          <td><code>static/favicon.ico</code>（需自行添加）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="数学公式">数学公式</h2>
+<p>数学渲染由 KaTeX 提供，CDN 引用在 <code>head.html</code> 中。支持的语法：</p>
+<ul>
+<li>行内公式：<code>$E = mc^2$</code> → $E = mc^2$</li>
+<li>块级公式：<code>$$..$$</code> 独占一行</li>
+</ul>
+<p>Hugo 已配置 <code>passthrough</code> 扩展（<code>hugo.toml</code>），确保 <code>$</code> 和 <code>$$</code> 内的内容不被 Markdown 解析器处理。</p>
+<hr>
+<h2 id="快速修改速查表">快速修改速查表</h2>
+<table>
+  <thead>
+      <tr>
+          <th>我想要…</th>
+          <th>修改文件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>改站点标题</td>
+          <td><code>hugo.toml</code> → <code>title</code></td>
+      </tr>
+      <tr>
+          <td>改导航菜单</td>
+          <td><code>hugo.toml</code> → <code>[[menu.main]]</code></td>
+      </tr>
+      <tr>
+          <td>改社交链接</td>
+          <td><code>hugo.toml</code> → <code>[params.social]</code></td>
+      </tr>
+      <tr>
+          <td>改主题色</td>
+          <td><code>head.html</code> → <code>tailwind.config.colors.primary</code></td>
+      </tr>
+      <tr>
+          <td>改字体</td>
+          <td><code>head.html</code> → Google Fonts <code>&lt;link&gt;</code> + <code>fontFamily</code> + <code>&lt;style&gt;</code></td>
+      </tr>
+      <tr>
+          <td>改标题/段落样式</td>
+          <td><code>head.html</code> → <code>.prose h2</code> / <code>.prose p</code> 等 CSS</td>
+      </tr>
+      <tr>
+          <td>改代码高亮配色</td>
+          <td><code>hugo.toml</code> → <code>markup.highlight.style</code></td>
+      </tr>
+      <tr>
+          <td>改导航栏样式</td>
+          <td><code>header.html</code></td>
+      </tr>
+      <tr>
+          <td>改页脚内容</td>
+          <td><code>footer.html</code></td>
+      </tr>
+      <tr>
+          <td>改首页布局</td>
+          <td><code>layouts/index.html</code></td>
+      </tr>
+      <tr>
+          <td>改文章页布局</td>
+          <td><code>layouts/_default/single.html</code></td>
+      </tr>
+      <tr>
+          <td>改 About 页信息</td>
+          <td><code>content/about.md</code> 的 front matter</td>
+      </tr>
+      <tr>
+          <td>改 About 页布局</td>
+          <td><code>layouts/_default/about.html</code></td>
+      </tr>
+      <tr>
+          <td>写新文章</td>
+          <td>在 <code>content/posts/</code> 下新建 <code>.md</code> 文件</td>
+      </tr>
+      <tr>
+          <td>添加头像</td>
+          <td>放入 <code>static/images/avatar.jpg</code></td>
+      </tr>
+  </tbody>
+</table>
+
+    </div>
+
+    
+    <nav class="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-surface-container-highest dark:border-slate-700">
+      
+      <a href="/posts/hugo-usage-guide/" class="group flex items-center gap-3 p-4 rounded-lg hover:bg-surface-container-lowest dark:hover:bg-slate-800 transition-all flex-1">
+        <span class="material-symbols-outlined text-on-surface-variant dark:text-slate-500 group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">arrow_back</span>
+        <div>
+          <p class="text-[9px] uppercase tracking-widest text-on-surface-variant dark:text-slate-500">Previous</p>
+          <p class="text-sm font-bold text-on-background dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">Hugo 使用指南：从零开始到日常写作</p>
+        </div>
+      </a>
+      
+      
+      <a href="/posts/markdown-rendering-test/" class="group flex items-center justify-end gap-3 p-4 rounded-lg hover:bg-surface-container-lowest dark:hover:bg-slate-800 transition-all flex-1 text-right">
+        <div>
+          <p class="text-[9px] uppercase tracking-widest text-on-surface-variant dark:text-slate-500">Next</p>
+          <p class="text-sm font-bold text-on-background dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">Markdown 渲染测试</p>
+        </div>
+        <span class="material-symbols-outlined text-on-surface-variant dark:text-slate-500 group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">arrow_forward</span>
+      </a>
+      
+    </nav>
+  </article>
+</div>
+
+  </main><footer class="w-full mt-20 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+  <div class="flex flex-col md:flex-row justify-between items-center px-12 py-12 max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0">
+      <a href="/" class="text-sm font-serif font-bold text-cyan-900 dark:text-cyan-100">abel&#39;s blog</a>
+      <p class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest mt-2">
+        &copy; 2026 abel&#39;s blog. All research curated for deep reading.
+      </p>
+    </div>
+    <div class="flex gap-8">
+      
+        
+          <a href="https://github.com/" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100" target="_blank" rel="noopener">GitHub</a>
+        
+        
+      
+      
+        <a href="http://localhost:1313/index.xml" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100">RSS Feed</a>
+      
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

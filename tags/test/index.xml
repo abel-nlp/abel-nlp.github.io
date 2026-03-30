@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test on abel&#39;s blog</title>
+    <link>https://example.org/tags/test/</link>
+    <description>Recent content in Test on abel&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown 渲染测试</title>
+      <link>https://example.org/posts/markdown-rendering-test/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/markdown-rendering-test/</guid>
+      <description>&lt;h2 id=&#34;标题层级展示&#34;&gt;标题层级展示&lt;/h2&gt;&#xA;&lt;p&gt;以下展示从 H2 到 H4 各级标题在正文中的视觉层次。&lt;/p&gt;&#xA;&lt;h3 id=&#34;这是三级标题-h3&#34;&gt;这是三级标题 H3&lt;/h3&gt;&#xA;&lt;p&gt;三级标题用于二级标题下的子章节划分，字号小于 H2，颜色带有主题色调。&lt;/p&gt;&#xA;&lt;h4 id=&#34;这是四级标题-h4&#34;&gt;这是四级标题 H4&lt;/h4&gt;&#xA;&lt;p&gt;四级标题用于更细的小节。正文段落紧跟其后，应可清晰区分标题与正文。&lt;/p&gt;&#xA;&lt;p&gt;这是一段普通正文。正文行距应当宽松舒适，适合长文阅读。段落之间应有明显的间距，不会让读者感到文字堆叠在一起。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;文本样式&#34;&gt;文本样式&lt;/h2&gt;&#xA;&lt;p&gt;这段文字包含 &lt;strong&gt;粗体&lt;/strong&gt;、&lt;em&gt;斜体&lt;/em&gt;、&lt;em&gt;&lt;strong&gt;粗斜体&lt;/strong&gt;&lt;/em&gt;、&lt;del&gt;删除线&lt;/del&gt;，以及行内代码 &lt;code&gt;const x = 42;&lt;/code&gt;。&lt;/p&gt;&#xA;&lt;p&gt;这里有一个 &lt;a href=&#34;https://example.com&#34;&gt;超链接示例&lt;/a&gt;，鼠标悬停应有视觉反馈。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;这是一段引用。引用块应当有明显的左侧边框和背景色，与正文区分开来。&lt;/p&gt;&#xA;&lt;p&gt;引用可以包含多段文字，内部也可以有 &lt;strong&gt;粗体&lt;/strong&gt; 和 &lt;em&gt;斜体&lt;/em&gt;。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;以下是一段嵌套引用：&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;外层引用&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;内层引用——应当有更深的缩进。&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;列表&#34;&gt;列表&lt;/h2&gt;&#xA;&lt;h3 id=&#34;无序列表&#34;&gt;无序列表&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;第一项&lt;/li&gt;&#xA;&lt;li&gt;第二项，包含 &lt;code&gt;行内代码&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;第三项，包含 &lt;strong&gt;粗体文本&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;嵌套子项 A&lt;/li&gt;&#xA;&lt;li&gt;嵌套子项 B&#xA;&lt;ul&gt;&#xA;&lt;li&gt;更深层嵌套&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;有序列表&#34;&gt;有序列表&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;安装依赖&lt;/li&gt;&#xA;&lt;li&gt;配置环境变量&lt;/li&gt;&#xA;&lt;li&gt;运行开发服务器&#xA;&lt;ol&gt;&#xA;&lt;li&gt;执行 &lt;code&gt;hugo server -D&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;打开浏览器访问 &lt;code&gt;localhost:1313&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;开始写作&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;任务列表&#34;&gt;任务列表&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 创建 Hugo 站点&lt;/li&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 安装主题&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 自定义配色&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 撰写第一篇文章&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;&#xA;&lt;h3 id=&#34;行内代码&#34;&gt;行内代码&lt;/h3&gt;&#xA;&lt;p&gt;在终端中运行 &lt;code&gt;hugo server --buildDrafts&lt;/code&gt; 以启动本地预览。变量 &lt;code&gt;$theme&lt;/code&gt; 的默认值为 &lt;code&gt;&amp;quot;modern-archivist&amp;quot;&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

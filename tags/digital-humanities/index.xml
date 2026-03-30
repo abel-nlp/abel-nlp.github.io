@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Digital Humanities on The Modern Archivist</title>
+    <link>http://localhost:1314/tags/digital-humanities/</link>
+    <description>Recent content in Digital Humanities on The Modern Archivist</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1314/tags/digital-humanities/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slow Reading in the Digital Age: A Manifesto for Deliberate Scholarship</title>
+      <link>http://localhost:1314/posts/slow-reading-digital-age/</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1314/posts/slow-reading-digital-age/</guid>
+      <description>&lt;h2 id=&#34;the-paradox-of-abundance&#34;&gt;The Paradox of Abundance&lt;/h2&gt;&#xA;&lt;p&gt;We live in an era of unprecedented access to information. The entire corpus of human knowledge sits within reach of a search query. Yet this abundance has paradoxically diminished our capacity for the deep, sustained engagement that scholarship requires.&lt;/p&gt;&#xA;&lt;p&gt;The slow reading movement is not a rejection of technology—it is an assertion that &lt;strong&gt;the tools of access must be complemented by the disciplines of attention&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-slow-reading-means&#34;&gt;What Slow Reading Means&lt;/h2&gt;&#xA;&lt;p&gt;Slow reading is a practice rooted in several principles:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

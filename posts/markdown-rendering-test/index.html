@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en-us" class="light">
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Markdown 渲染测试 | abel&#39;s blog</title>
+<meta name="description" content="一份渲染测试文档，后续将删除" />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\\\(',right:'\\\\)',display:false},{left:'\\\\[',right:'\\\\]',display:true}],throwOnError:false});"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "inverse-primary": "#c4ebfc",
+        "surface-dim": "#d3dbe3",
+        "error-container": "#fe8983",
+        "secondary-container": "#e1e3e4",
+        "error": "#9f403d",
+        "inverse-on-surface": "#9c9d9f",
+        "surface-container": "#ebeef3",
+        "on-tertiary": "#f6f9ff",
+        "secondary-fixed": "#e1e3e4",
+        "on-tertiary-fixed": "#2d4154",
+        "inverse-surface": "#0c0e10",
+        "background": "#f9f9fc",
+        "surface-container-highest": "#dde3ea",
+        "on-surface-variant": "#596066",
+        "on-primary": "#eef9ff",
+        "surface-variant": "#dde3ea",
+        "tertiary-fixed": "#cfe5fd",
+        "secondary-fixed-dim": "#d3d5d6",
+        "on-secondary-fixed-variant": "#595c5d",
+        "tertiary-container": "#cfe5fd",
+        "outline-variant": "#acb3b9",
+        "on-background": "#2d3339",
+        "primary": "#3e6471",
+        "primary-dim": "#325765",
+        "outline": "#757b82",
+        "surface-bright": "#f9f9fc",
+        "tertiary": "#4d6175",
+        "on-tertiary-container": "#3f5467",
+        "primary-container": "#c2e9f9",
+        "on-secondary": "#f8f9fb",
+        "tertiary-fixed-dim": "#c1d7ee",
+        "on-primary-fixed-variant": "#3b616e",
+        "on-surface": "#2d3339",
+        "surface-container-low": "#f2f3f7",
+        "on-secondary-fixed": "#3d4041",
+        "tertiary-dim": "#415569",
+        "secondary": "#5d5f61",
+        "on-tertiary-fixed-variant": "#495e71",
+        "on-primary-fixed": "#1d4451",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#315764",
+        "surface-container-high": "#e4e8ee",
+        "on-error": "#fff7f6",
+        "primary-fixed-dim": "#b4daea",
+        "secondary-dim": "#515355",
+        "on-secondary-container": "#4f5254",
+        "surface-tint": "#3e6471",
+        "error-dim": "#4e0309",
+        "on-error-container": "#752121",
+        "surface": "#f9f9fc",
+        "primary-fixed": "#c2e9f9"
+      },
+      fontFamily: {
+        headline: ["Noto Serif", "serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"]
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      }
+    }
+  }
+};
+</script>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+  } else {
+    document.documentElement.classList.add('light');
+    document.documentElement.classList.remove('dark');
+  }
+})();
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Noto Serif', serif; }
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+ 
+.prose h1 {
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.prose h2 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dde3ea;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3e6471;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose h4 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #596066;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  color: #596066;
+}
+.prose > ul, .prose > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.35rem;
+  line-height: 1.7;
+  color: #596066;
+}
+.prose blockquote {
+  border-left: 3px solid #3e6471;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: #f2f3f7;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.prose blockquote p {
+  color: #4d6175;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid #dde3ea;
+  margin: 2.5rem 0;
+}
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  margin: 1.5rem 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+.prose thead th {
+  background: #f2f3f7;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2d3339;
+  border-bottom: 2px solid #dde3ea;
+}
+.prose tbody td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #ebeef3;
+  color: #596066;
+}
+.prose tbody tr:hover { background: #f9f9fc; }
+.prose code:not(pre code) {
+  background: #24283b;
+  color: #7aa2f7;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.prose .highlight {
+  margin: 1.5rem 0;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+}
+.prose pre {
+  background: #24283b;
+  color: #a9b1d6;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.625rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  line-height: 1.75;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.prose pre::-webkit-scrollbar { height: 6px; }
+.prose pre::-webkit-scrollbar-track { background: #1a1b26; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb { background: #3b4261; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb:hover { background: #565f89; }
+.prose .highlight pre {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+}
+.prose a {
+  color: #3e6471;
+  text-decoration: underline;
+  text-decoration-color: rgba(62,100,113,0.3);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s;
+}
+.prose a:hover {
+  text-decoration-color: #3e6471;
+}
+html.dark .prose a {
+  color: #67e8e9;
+  text-decoration-color: rgba(103,232,233,0.3);
+}
+html.dark .prose a:hover {
+  text-decoration-color: #67e8e9;
+}
+.prose strong {
+  color: #2d3339;
+  font-weight: 600;
+}
+html.dark .prose strong { color: #f1f5f9; }
+.prose em { color: inherit; }
+.prose del { color: #94a3b8; }
+.prose input[type="checkbox"] {
+  accent-color: #3e6471;
+  margin-right: 0.5rem;
+}
+.prose .footnotes {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dde3ea;
+  font-size: 0.85rem;
+}
+html.dark .prose .footnotes {
+  border-top-color: #334155;
+}
+
+ 
+html.dark .prose h1 { color: #f1f5f9; }
+html.dark .prose h2 { color: #f1f5f9; border-bottom-color: #334155; }
+html.dark .prose h3 { color: #67e8e9; }
+html.dark .prose h4 { color: #94a3b8; }
+html.dark .prose p, html.dark .prose li { color: #94a3b8; }
+html.dark .prose blockquote { background: #0f172a; border-left-color: #0e7490; }
+html.dark .prose blockquote p { color: #67e8e9; }
+html.dark .prose hr { border-top-color: #334155; }
+html.dark .prose thead th { background: #1e293b; color: #e2e8f0; border-bottom-color: #334155; }
+html.dark .prose tbody td { border-bottom-color: #1e293b; color: #94a3b8; }
+html.dark .prose tbody tr:hover { background: #0f172a; }
+html.dark .prose code:not(pre code) { background: #1a1b26; color: #7aa2f7; }
+html.dark .prose pre { background: #1a1b26; color: #a9b1d6; }
+html.dark .prose .highlight { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+ 
+.bg { color:#a9b1d6; background-color:#24283b }
+.chroma { color:#a9b1d6; background-color:#24283b }
+.chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
+.chroma .lntd { vertical-align:top;padding:0;margin:0;border:0 }
+.chroma .lntable { border-spacing:0;padding:0;margin:0;border:0 }
+.chroma .hl { background-color:#292e42 }
+.chroma .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .line { display:flex }
+.chroma .k { color:#bb9af7 }
+.chroma .kc { color:#ff9e64 }
+.chroma .kd { color:#bb9af7 }
+.chroma .kn { color:#7dcfff }
+.chroma .kp { color:#bb9af7 }
+.chroma .kr { color:#bb9af7 }
+.chroma .kt { color:#2ac3de }
+.chroma .na { color:#73daca }
+.chroma .nb { color:#2ac3de }
+.chroma .bp { color:#565f89 }
+.chroma .nc { color:#7aa2f7 }
+.chroma .no { color:#ff9e64 }
+.chroma .nd { color:#e0af68 }
+.chroma .ni { color:#c0caf5 }
+.chroma .ne { color:#f7768e }
+.chroma .nf { color:#7aa2f7 }
+.chroma .fm { color:#7aa2f7 }
+.chroma .nl { color:#73daca }
+.chroma .nn { color:#7dcfff }
+.chroma .nx { color:#c0caf5 }
+.chroma .nt { color:#f7768e }
+.chroma .nv { color:#c0caf5 }
+.chroma .vc { color:#c0caf5 }
+.chroma .vg { color:#c0caf5 }
+.chroma .vi { color:#c0caf5 }
+.chroma .vm { color:#c0caf5 }
+.chroma .s { color:#9ece6a }
+.chroma .sa { color:#9ece6a }
+.chroma .sb { color:#9ece6a }
+.chroma .sc { color:#9ece6a }
+.chroma .dl { color:#9ece6a }
+.chroma .sd { color:#565f89 }
+.chroma .s2 { color:#9ece6a }
+.chroma .se { color:#89ddff }
+.chroma .sh { color:#9ece6a }
+.chroma .si { color:#9ece6a }
+.chroma .sx { color:#9ece6a }
+.chroma .sr { color:#b4f9f8 }
+.chroma .s1 { color:#9ece6a }
+.chroma .ss { color:#9ece6a }
+.chroma .m { color:#ff9e64 }
+.chroma .mb { color:#ff9e64 }
+.chroma .mf { color:#ff9e64 }
+.chroma .mh { color:#ff9e64 }
+.chroma .mi { color:#ff9e64 }
+.chroma .il { color:#ff9e64 }
+.chroma .mo { color:#ff9e64 }
+.chroma .o { color:#89ddff }
+.chroma .ow { color:#bb9af7 }
+.chroma .p { color:#a9b1d6 }
+.chroma .c { color:#565f89;font-style:italic }
+.chroma .ch { color:#565f89;font-style:italic }
+.chroma .cm { color:#565f89;font-style:italic }
+.chroma .c1 { color:#565f89;font-style:italic }
+.chroma .cs { color:#565f89;font-style:italic }
+.chroma .cp { color:#565f89;font-style:italic }
+.chroma .cpf { color:#565f89;font-style:italic }
+.chroma .gd { color:#f7768e;background-color:rgba(247,118,142,0.1) }
+.chroma .gi { color:#9ece6a;background-color:rgba(158,206,106,0.1) }
+.chroma .ge { font-style:italic }
+.chroma .go { color:#565f89 }
+.chroma .err { color:#f7768e }
+
+ 
+html.dark .bg { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma .hl { background-color:#1e2030 }
+
+ 
+.prose .katex-display {
+  margin: 1.5rem 0;
+  overflow: visible;
+}
+.prose .katex-display > .katex {
+  overflow: visible;
+}
+.prose .katex-display > .katex > .katex-html {
+  overflow: visible;
+}
+
+.toc-link.active {
+  color: rgb(14 116 144);
+  font-weight: 700;
+  border-left-width: 2px;
+  border-color: rgb(14 116 144);
+}
+html.dark .toc-link.active {
+  color: rgb(103 232 249);
+  border-color: rgb(103 232 249);
+}
+
+#toc-nav #TableOfContents > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#toc-nav #TableOfContents > ul > li {
+  margin: 0;
+}
+#toc-nav #TableOfContents a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+#toc-nav #TableOfContents a:hover {
+  background-color: #f1f5f9;
+}
+html.dark #toc-nav #TableOfContents a {
+  border-color: #1e293b;
+  color: #94a3b8;
+}
+html.dark #toc-nav #TableOfContents a:hover {
+  background-color: #1e293b;
+}
+#toc-nav #TableOfContents a.active,
+#toc-nav #TableOfContents .toc-link.active {
+  color: #0e7490;
+  font-weight: 700;
+  border-left: 2px solid #0e7490;
+}
+html.dark #toc-nav #TableOfContents a.active {
+  color: #67e8e9;
+  border-color: #67e8e9;
+}
+#toc-nav #TableOfContents ul ul {
+  list-style: none;
+  padding: 0;
+}
+#toc-nav #TableOfContents ul ul a {
+  padding-left: 2rem;
+  font-size: 0.8125rem;
+}
+</style>
+</head>
+<body class="bg-background text-on-background dark:bg-slate-900 dark:text-slate-100 selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col"><nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="/" class="text-xl font-serif font-bold text-cyan-900 dark:text-cyan-100 italic tracking-tight hover:opacity-80 transition-opacity">
+      abel&#39;s blog
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      
+        
+        
+        
+          
+        
+        <a
+          href="/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Home</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/archives/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Archives</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/about/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >About</a>
+      
+      <button id="theme-toggle" class="material-symbols-outlined text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-300 scale-95 active:opacity-70 transition-all cursor-pointer" aria-label="Toggle dark mode">
+        dark_mode
+      </button>
+    </div>
+    
+    <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-slate-600 dark:text-slate-300 cursor-pointer" aria-label="Open menu">
+      menu
+    </button>
+  </div>
+  
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="flex flex-col px-8 py-4 gap-4">
+      
+        <a href="/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Home</a>
+      
+        <a href="/archives/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Archives</a>
+      
+        <a href="/about/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">About</a>
+      
+      <button id="theme-toggle-mobile" class="text-left text-slate-500 dark:text-slate-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-sm">dark_mode</span>
+        Toggle theme
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="flex-1">
+<div class="pt-32 pb-20 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+  
+  <aside class="hidden lg:flex flex-col w-64 gap-4 sticky top-24 h-fit rounded-lg bg-slate-50 dark:bg-slate-950 col-span-3">
+    <div class="p-6">
+      <p class="font-serif text-lg font-bold text-cyan-800 dark:text-cyan-200">Table of Contents</p>
+      <p class="text-xs uppercase tracking-widest text-on-surface-variant dark:text-slate-500 mt-1">Article Structure</p>
+    </div>
+    <nav class="flex flex-col gap-1 pb-6" id="toc-nav">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#标题层级展示">标题层级展示</a>
+      <ul>
+        <li><a href="#这是三级标题-h3">这是三级标题 H3</a></li>
+      </ul>
+    </li>
+    <li><a href="#文本样式">文本样式</a></li>
+    <li><a href="#列表">列表</a>
+      <ul>
+        <li><a href="#无序列表">无序列表</a></li>
+        <li><a href="#有序列表">有序列表</a></li>
+        <li><a href="#任务列表">任务列表</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码">代码</a>
+      <ul>
+        <li><a href="#行内代码">行内代码</a></li>
+        <li><a href="#代码块go">代码块（Go）</a></li>
+        <li><a href="#代码块python">代码块（Python）</a></li>
+        <li><a href="#代码块javascript">代码块（JavaScript）</a></li>
+        <li><a href="#代码块shell">代码块（Shell）</a></li>
+      </ul>
+    </li>
+    <li><a href="#数学公式">数学公式</a>
+      <ul>
+        <li><a href="#行内公式">行内公式</a></li>
+        <li><a href="#块级公式">块级公式</a></li>
+      </ul>
+    </li>
+    <li><a href="#表格">表格</a>
+      <ul>
+        <li><a href="#简单表格">简单表格</a></li>
+        <li><a href="#对齐表格">对齐表格</a></li>
+      </ul>
+    </li>
+    <li><a href="#图片">图片</a></li>
+    <li><a href="#脚注">脚注</a></li>
+    <li><a href="#混合排版示例">混合排版示例</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  
+  <article class="lg:col-span-9 space-y-10">
+    
+    <header class="space-y-4">
+      <div class="flex items-center gap-4 text-[10px] font-label text-on-surface-variant dark:text-slate-500 uppercase tracking-widest">
+        <time datetime="2026-03-28">March 28, 2026</time>
+        <span>·</span>
+        <span>2 min read</span>
+        
+        <span>·</span>
+        
+        <span class="bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Test</span>
+        
+        <span class="bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Markdown</span>
+        
+        
+      </div>
+      <h1 class="text-3xl md:text-4xl font-headline font-bold text-on-background dark:text-white tracking-tight">Markdown 渲染测试</h1>
+      
+      <p class="text-lg text-primary dark:text-cyan-400 italic leading-snug">一份渲染测试文档，后续将删除</p>
+      
+    </header>
+
+    
+    <div class="prose max-w-none">
+      <h2 id="标题层级展示">标题层级展示</h2>
+<p>以下展示从 H2 到 H4 各级标题在正文中的视觉层次。</p>
+<h3 id="这是三级标题-h3">这是三级标题 H3</h3>
+<p>三级标题用于二级标题下的子章节划分，字号小于 H2，颜色带有主题色调。</p>
+<h4 id="这是四级标题-h4">这是四级标题 H4</h4>
+<p>四级标题用于更细的小节。正文段落紧跟其后，应可清晰区分标题与正文。</p>
+<p>这是一段普通正文。正文行距应当宽松舒适，适合长文阅读。段落之间应有明显的间距，不会让读者感到文字堆叠在一起。</p>
+<hr>
+<h2 id="文本样式">文本样式</h2>
+<p>这段文字包含 <strong>粗体</strong>、<em>斜体</em>、<em><strong>粗斜体</strong></em>、<del>删除线</del>，以及行内代码 <code>const x = 42;</code>。</p>
+<p>这里有一个 <a href="https://example.com">超链接示例</a>，鼠标悬停应有视觉反馈。</p>
+<blockquote>
+<p>这是一段引用。引用块应当有明显的左侧边框和背景色，与正文区分开来。</p>
+<p>引用可以包含多段文字，内部也可以有 <strong>粗体</strong> 和 <em>斜体</em>。</p></blockquote>
+<p>以下是一段嵌套引用：</p>
+<blockquote>
+<p>外层引用</p>
+<blockquote>
+<p>内层引用——应当有更深的缩进。</p></blockquote></blockquote>
+<hr>
+<h2 id="列表">列表</h2>
+<h3 id="无序列表">无序列表</h3>
+<ul>
+<li>第一项</li>
+<li>第二项，包含 <code>行内代码</code></li>
+<li>第三项，包含 <strong>粗体文本</strong>
+<ul>
+<li>嵌套子项 A</li>
+<li>嵌套子项 B
+<ul>
+<li>更深层嵌套</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="有序列表">有序列表</h3>
+<ol>
+<li>安装依赖</li>
+<li>配置环境变量</li>
+<li>运行开发服务器
+<ol>
+<li>执行 <code>hugo server -D</code></li>
+<li>打开浏览器访问 <code>localhost:1313</code></li>
+</ol>
+</li>
+<li>开始写作</li>
+</ol>
+<h3 id="任务列表">任务列表</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 创建 Hugo 站点</li>
+<li><input checked="" disabled="" type="checkbox"> 安装主题</li>
+<li><input disabled="" type="checkbox"> 自定义配色</li>
+<li><input disabled="" type="checkbox"> 撰写第一篇文章</li>
+</ul>
+<hr>
+<h2 id="代码">代码</h2>
+<h3 id="行内代码">行内代码</h3>
+<p>在终端中运行 <code>hugo server --buildDrafts</code> 以启动本地预览。变量 <code>$theme</code> 的默认值为 <code>&quot;modern-archivist&quot;</code>。</p>
+<h3 id="代码块go">代码块（Go）</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">seq</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">seq</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">seq</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">seq</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">result</span> <span class="o">:=</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Fibonacci:&#34;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="代码块python">代码块（Python）</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">,</span> <span class="n">grad_f</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;简单的梯度下降实现。&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">path</span>
+</span></span></code></pre></div><h3 id="代码块javascript">代码块（JavaScript）</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchPosts</span><span class="p">(</span><span class="nx">page</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/posts?page=</span><span class="si">${</span><span class="nx">page</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="sb">`HTTP </span><span class="si">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">total</span> <span class="p">}</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="nx">posts</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">hasMore</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">page</span> <span class="o">&lt;</span> <span class="nx">total</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="代码块shell">代码块（Shell）</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">echo</span> <span class="s2">&#34;Building site...&#34;</span>
+</span></span><span class="line"><span class="cl">hugo --minify --gc
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Deploying to server...&#34;</span>
+</span></span><span class="line"><span class="cl">rsync -avz --delete public/ user@server:/var/www/blog/
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Done!&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="数学公式">数学公式</h2>
+<h3 id="行内公式">行内公式</h3>
+<p>质能方程 $E = mc^2$ 是物理学中最著名的公式之一。欧拉公式 $e^{i\pi} + 1 = 0$ 连接了五个基本数学常数。对于正态分布，概率密度函数为 $f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$。</p>
+<h3 id="块级公式">块级公式</h3>
+<p>贝叶斯定理：</p>
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$<p>梯度下降更新规则：</p>
+$$\theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}(\theta_t)$$<p>多元高斯分布的概率密度函数：</p>
+$$f(\mathbf{x}) = \frac{1}{(2\pi)^{k/2} |\Sigma|^{1/2}} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T \Sigma^{-1} (\mathbf{x}-\boldsymbol{\mu})\right)$$<p>Softmax 函数：</p>
+$$\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} \quad \text{for } i = 1, \dots, K$$<p>交叉熵损失：</p>
+$$\mathcal{L} = -\sum_{i=1}^{N} \left[ y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i) \right]$$<hr>
+<h2 id="表格">表格</h2>
+<h3 id="简单表格">简单表格</h3>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>Hugo</th>
+          <th>Jekyll</th>
+          <th>Hexo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>语言</td>
+          <td>Go</td>
+          <td>Ruby</td>
+          <td>Node.js</td>
+      </tr>
+      <tr>
+          <td>构建速度</td>
+          <td>极快</td>
+          <td>慢</td>
+          <td>中等</td>
+      </tr>
+      <tr>
+          <td>模板引擎</td>
+          <td>Go Template</td>
+          <td>Liquid</td>
+          <td>EJS / Pug</td>
+      </tr>
+      <tr>
+          <td>学习曲线</td>
+          <td>中等</td>
+          <td>低</td>
+          <td>低</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="对齐表格">对齐表格</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">左对齐</th>
+          <th style="text-align: center">居中对齐</th>
+          <th style="text-align: right">右对齐</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">内容A</td>
+          <td style="text-align: center">内容B</td>
+          <td style="text-align: right">100</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">更长的内容</td>
+          <td style="text-align: center">短</td>
+          <td style="text-align: right">2,000</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">示例</td>
+          <td style="text-align: center">数据</td>
+          <td style="text-align: right">35,678</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="图片">图片</h2>
+<p>以下是一张网络图片测试（如无法加载，说明环境无网络）：</p>
+<p><img src="https://via.placeholder.com/800x300/ebeef3/3e6471?text=Image+Rendering+Test" alt="Placeholder Image"></p>
+<hr>
+<h2 id="脚注">脚注</h2>
+<p>这段文字包含一个脚注引用<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，以及另一个引用<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<hr>
+<h2 id="混合排版示例">混合排版示例</h2>
+<p>下面模拟一段真实的技术博客段落，综合使用多种元素：</p>
+<p>在训练 Transformer 模型时，<strong>注意力机制</strong>的核心公式为：</p>
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$<p>其中 $Q$、$K$、$V$ 分别是 Query、Key、Value 矩阵，$d_k$ 是 Key 的维度。实现代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">scaled_dot_product_attention</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d_k</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">d_k</span> <span class="o">**</span> <span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="n">weights</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>注意</strong>：在实际应用中，通常还会加入 Dropout 层以防止过拟合。详见 <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a>。</p></blockquote>
+<p>训练过程中各阶段的损失值参考：</p>
+<table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>Epoch</th>
+          <th>Loss</th>
+          <th>备注</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>预热</td>
+          <td>1-5</td>
+          <td>4.21 → 2.87</td>
+          <td>学习率线性增长</td>
+      </tr>
+      <tr>
+          <td>稳定训练</td>
+          <td>6-50</td>
+          <td>2.87 → 0.43</td>
+          <td>余弦退火</td>
+      </tr>
+      <tr>
+          <td>微调</td>
+          <td>51-60</td>
+          <td>0.43 → 0.31</td>
+          <td>降低学习率</td>
+      </tr>
+  </tbody>
+</table>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>这是第一个脚注的内容，会显示在页面底部。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>脚注也可以使用文字标识符而非数字。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+
+    
+    <nav class="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-surface-container-highest dark:border-slate-700">
+      
+      
+    </nav>
+  </article>
+</div>
+
+  </main><footer class="w-full mt-20 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+  <div class="flex flex-col md:flex-row justify-between items-center px-12 py-12 max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0">
+      <a href="/" class="text-sm font-serif font-bold text-cyan-900 dark:text-cyan-100">abel&#39;s blog</a>
+      <p class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest mt-2">
+        &copy; 2026 abel&#39;s blog. All research curated for deep reading.
+      </p>
+    </div>
+    <div class="flex gap-8">
+      
+        
+          <a href="https://github.com/" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100" target="_blank" rel="noopener">GitHub</a>
+        
+        
+      
+      
+        <a href="https://example.org/index.xml" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100">RSS Feed</a>
+      
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

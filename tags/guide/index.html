@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-us" class="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guide | abel&#39;s blog</title>
+<meta name="description" content="blog for computer science and flight simulation" />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\\\(',right:'\\\\)',display:false},{left:'\\\\[',right:'\\\\]',display:true}],throwOnError:false});"></script>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "inverse-primary": "#c4ebfc",
+        "surface-dim": "#d3dbe3",
+        "error-container": "#fe8983",
+        "secondary-container": "#e1e3e4",
+        "error": "#9f403d",
+        "inverse-on-surface": "#9c9d9f",
+        "surface-container": "#ebeef3",
+        "on-tertiary": "#f6f9ff",
+        "secondary-fixed": "#e1e3e4",
+        "on-tertiary-fixed": "#2d4154",
+        "inverse-surface": "#0c0e10",
+        "background": "#f9f9fc",
+        "surface-container-highest": "#dde3ea",
+        "on-surface-variant": "#596066",
+        "on-primary": "#eef9ff",
+        "surface-variant": "#dde3ea",
+        "tertiary-fixed": "#cfe5fd",
+        "secondary-fixed-dim": "#d3d5d6",
+        "on-secondary-fixed-variant": "#595c5d",
+        "tertiary-container": "#cfe5fd",
+        "outline-variant": "#acb3b9",
+        "on-background": "#2d3339",
+        "primary": "#3e6471",
+        "primary-dim": "#325765",
+        "outline": "#757b82",
+        "surface-bright": "#f9f9fc",
+        "tertiary": "#4d6175",
+        "on-tertiary-container": "#3f5467",
+        "primary-container": "#c2e9f9",
+        "on-secondary": "#f8f9fb",
+        "tertiary-fixed-dim": "#c1d7ee",
+        "on-primary-fixed-variant": "#3b616e",
+        "on-surface": "#2d3339",
+        "surface-container-low": "#f2f3f7",
+        "on-secondary-fixed": "#3d4041",
+        "tertiary-dim": "#415569",
+        "secondary": "#5d5f61",
+        "on-tertiary-fixed-variant": "#495e71",
+        "on-primary-fixed": "#1d4451",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#315764",
+        "surface-container-high": "#e4e8ee",
+        "on-error": "#fff7f6",
+        "primary-fixed-dim": "#b4daea",
+        "secondary-dim": "#515355",
+        "on-secondary-container": "#4f5254",
+        "surface-tint": "#3e6471",
+        "error-dim": "#4e0309",
+        "on-error-container": "#752121",
+        "surface": "#f9f9fc",
+        "primary-fixed": "#c2e9f9"
+      },
+      fontFamily: {
+        headline: ["Noto Serif", "serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"]
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      }
+    }
+  }
+};
+</script>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+  } else {
+    document.documentElement.classList.add('light');
+    document.documentElement.classList.remove('dark');
+  }
+})();
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Noto Serif', serif; }
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+ 
+.prose h1 {
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.prose h2 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3339;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dde3ea;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3e6471;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose h4 {
+  font-family: 'Noto Serif', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #596066;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  color: #596066;
+}
+.prose > ul, .prose > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.35rem;
+  line-height: 1.7;
+  color: #596066;
+}
+.prose blockquote {
+  border-left: 3px solid #3e6471;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: #f2f3f7;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.prose blockquote p {
+  color: #4d6175;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid #dde3ea;
+  margin: 2.5rem 0;
+}
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  margin: 1.5rem 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+.prose thead th {
+  background: #f2f3f7;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2d3339;
+  border-bottom: 2px solid #dde3ea;
+}
+.prose tbody td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #ebeef3;
+  color: #596066;
+}
+.prose tbody tr:hover { background: #f9f9fc; }
+.prose code:not(pre code) {
+  background: #24283b;
+  color: #7aa2f7;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.prose .highlight {
+  margin: 1.5rem 0;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+}
+.prose pre {
+  background: #24283b;
+  color: #a9b1d6;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.625rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  line-height: 1.75;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.prose pre::-webkit-scrollbar { height: 6px; }
+.prose pre::-webkit-scrollbar-track { background: #1a1b26; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb { background: #3b4261; border-radius: 3px; }
+.prose pre::-webkit-scrollbar-thumb:hover { background: #565f89; }
+.prose .highlight pre {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+}
+.prose a {
+  color: #3e6471;
+  text-decoration: underline;
+  text-decoration-color: rgba(62,100,113,0.3);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s;
+}
+.prose a:hover {
+  text-decoration-color: #3e6471;
+}
+html.dark .prose a {
+  color: #67e8e9;
+  text-decoration-color: rgba(103,232,233,0.3);
+}
+html.dark .prose a:hover {
+  text-decoration-color: #67e8e9;
+}
+.prose strong {
+  color: #2d3339;
+  font-weight: 600;
+}
+html.dark .prose strong { color: #f1f5f9; }
+.prose em { color: inherit; }
+.prose del { color: #94a3b8; }
+.prose input[type="checkbox"] {
+  accent-color: #3e6471;
+  margin-right: 0.5rem;
+}
+.prose .footnotes {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dde3ea;
+  font-size: 0.85rem;
+}
+html.dark .prose .footnotes {
+  border-top-color: #334155;
+}
+
+ 
+html.dark .prose h1 { color: #f1f5f9; }
+html.dark .prose h2 { color: #f1f5f9; border-bottom-color: #334155; }
+html.dark .prose h3 { color: #67e8e9; }
+html.dark .prose h4 { color: #94a3b8; }
+html.dark .prose p, html.dark .prose li { color: #94a3b8; }
+html.dark .prose blockquote { background: #0f172a; border-left-color: #0e7490; }
+html.dark .prose blockquote p { color: #67e8e9; }
+html.dark .prose hr { border-top-color: #334155; }
+html.dark .prose thead th { background: #1e293b; color: #e2e8f0; border-bottom-color: #334155; }
+html.dark .prose tbody td { border-bottom-color: #1e293b; color: #94a3b8; }
+html.dark .prose tbody tr:hover { background: #0f172a; }
+html.dark .prose code:not(pre code) { background: #1a1b26; color: #7aa2f7; }
+html.dark .prose pre { background: #1a1b26; color: #a9b1d6; }
+html.dark .prose .highlight { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+ 
+.bg { color:#a9b1d6; background-color:#24283b }
+.chroma { color:#a9b1d6; background-color:#24283b }
+.chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
+.chroma .lntd { vertical-align:top;padding:0;margin:0;border:0 }
+.chroma .lntable { border-spacing:0;padding:0;margin:0;border:0 }
+.chroma .hl { background-color:#292e42 }
+.chroma .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em;color:#3b4261 }
+.chroma .line { display:flex }
+.chroma .k { color:#bb9af7 }
+.chroma .kc { color:#ff9e64 }
+.chroma .kd { color:#bb9af7 }
+.chroma .kn { color:#7dcfff }
+.chroma .kp { color:#bb9af7 }
+.chroma .kr { color:#bb9af7 }
+.chroma .kt { color:#2ac3de }
+.chroma .na { color:#73daca }
+.chroma .nb { color:#2ac3de }
+.chroma .bp { color:#565f89 }
+.chroma .nc { color:#7aa2f7 }
+.chroma .no { color:#ff9e64 }
+.chroma .nd { color:#e0af68 }
+.chroma .ni { color:#c0caf5 }
+.chroma .ne { color:#f7768e }
+.chroma .nf { color:#7aa2f7 }
+.chroma .fm { color:#7aa2f7 }
+.chroma .nl { color:#73daca }
+.chroma .nn { color:#7dcfff }
+.chroma .nx { color:#c0caf5 }
+.chroma .nt { color:#f7768e }
+.chroma .nv { color:#c0caf5 }
+.chroma .vc { color:#c0caf5 }
+.chroma .vg { color:#c0caf5 }
+.chroma .vi { color:#c0caf5 }
+.chroma .vm { color:#c0caf5 }
+.chroma .s { color:#9ece6a }
+.chroma .sa { color:#9ece6a }
+.chroma .sb { color:#9ece6a }
+.chroma .sc { color:#9ece6a }
+.chroma .dl { color:#9ece6a }
+.chroma .sd { color:#565f89 }
+.chroma .s2 { color:#9ece6a }
+.chroma .se { color:#89ddff }
+.chroma .sh { color:#9ece6a }
+.chroma .si { color:#9ece6a }
+.chroma .sx { color:#9ece6a }
+.chroma .sr { color:#b4f9f8 }
+.chroma .s1 { color:#9ece6a }
+.chroma .ss { color:#9ece6a }
+.chroma .m { color:#ff9e64 }
+.chroma .mb { color:#ff9e64 }
+.chroma .mf { color:#ff9e64 }
+.chroma .mh { color:#ff9e64 }
+.chroma .mi { color:#ff9e64 }
+.chroma .il { color:#ff9e64 }
+.chroma .mo { color:#ff9e64 }
+.chroma .o { color:#89ddff }
+.chroma .ow { color:#bb9af7 }
+.chroma .p { color:#a9b1d6 }
+.chroma .c { color:#565f89;font-style:italic }
+.chroma .ch { color:#565f89;font-style:italic }
+.chroma .cm { color:#565f89;font-style:italic }
+.chroma .c1 { color:#565f89;font-style:italic }
+.chroma .cs { color:#565f89;font-style:italic }
+.chroma .cp { color:#565f89;font-style:italic }
+.chroma .cpf { color:#565f89;font-style:italic }
+.chroma .gd { color:#f7768e;background-color:rgba(247,118,142,0.1) }
+.chroma .gi { color:#9ece6a;background-color:rgba(158,206,106,0.1) }
+.chroma .ge { font-style:italic }
+.chroma .go { color:#565f89 }
+.chroma .err { color:#f7768e }
+
+ 
+html.dark .bg { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma { color:#a9b1d6;background-color:#1a1b26 }
+html.dark .chroma .hl { background-color:#1e2030 }
+
+ 
+.prose .katex-display {
+  margin: 1.5rem 0;
+  overflow: visible;
+}
+.prose .katex-display > .katex {
+  overflow: visible;
+}
+.prose .katex-display > .katex > .katex-html {
+  overflow: visible;
+}
+
+.toc-link.active {
+  color: rgb(14 116 144);
+  font-weight: 700;
+  border-left-width: 2px;
+  border-color: rgb(14 116 144);
+}
+html.dark .toc-link.active {
+  color: rgb(103 232 249);
+  border-color: rgb(103 232 249);
+}
+
+#toc-nav #TableOfContents > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#toc-nav #TableOfContents > ul > li {
+  margin: 0;
+}
+#toc-nav #TableOfContents a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+#toc-nav #TableOfContents a:hover {
+  background-color: #f1f5f9;
+}
+html.dark #toc-nav #TableOfContents a {
+  border-color: #1e293b;
+  color: #94a3b8;
+}
+html.dark #toc-nav #TableOfContents a:hover {
+  background-color: #1e293b;
+}
+#toc-nav #TableOfContents a.active,
+#toc-nav #TableOfContents .toc-link.active {
+  color: #0e7490;
+  font-weight: 700;
+  border-left: 2px solid #0e7490;
+}
+html.dark #toc-nav #TableOfContents a.active {
+  color: #67e8e9;
+  border-color: #67e8e9;
+}
+#toc-nav #TableOfContents ul ul {
+  list-style: none;
+  padding: 0;
+}
+#toc-nav #TableOfContents ul ul a {
+  padding-left: 2rem;
+  font-size: 0.8125rem;
+}
+</style>
+</head>
+<body class="bg-background text-on-background dark:bg-slate-900 dark:text-slate-100 selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col"><nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="/" class="text-xl font-serif font-bold text-cyan-900 dark:text-cyan-100 italic tracking-tight hover:opacity-80 transition-opacity">
+      abel&#39;s blog
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      
+        
+        
+        
+          
+        
+        <a
+          href="/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Home</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/archives/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >Archives</a>
+      
+        
+        
+        
+          
+        
+        <a
+          href="/about/"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-900 dark:hover:text-white transition-colors duration-200"
+        >About</a>
+      
+      <button id="theme-toggle" class="material-symbols-outlined text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-300 scale-95 active:opacity-70 transition-all cursor-pointer" aria-label="Toggle dark mode">
+        dark_mode
+      </button>
+    </div>
+    
+    <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-slate-600 dark:text-slate-300 cursor-pointer" aria-label="Open menu">
+      menu
+    </button>
+  </div>
+  
+  <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="flex flex-col px-8 py-4 gap-4">
+      
+        <a href="/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Home</a>
+      
+        <a href="/archives/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">Archives</a>
+      
+        <a href="/about/" class="text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">About</a>
+      
+      <button id="theme-toggle-mobile" class="text-left text-slate-500 dark:text-slate-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-sm">dark_mode</span>
+        Toggle theme
+      </button>
+    </div>
+  </div>
+</nav>
+<main class="flex-1">
+<div class="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+  <header class="mb-12">
+    <h1 class="text-3xl md:text-4xl font-headline font-bold text-on-background dark:text-white tracking-tight mb-4">Guide</h1>
+    
+  </header>
+
+  <div class="space-y-2">
+    
+    <a href="/posts/theme-customization-guide/" class="group grid grid-cols-1 md:grid-cols-12 gap-4 p-4 hover:bg-surface-container-lowest dark:hover:bg-slate-800 transition-all duration-300 rounded-lg">
+      <div class="md:col-span-2 text-[10px] font-label text-on-surface-variant dark:text-slate-500 pt-1 uppercase">
+        Mar 27, 2026
+      </div>
+      <div class="md:col-span-10">
+        <h3 class="text-base font-bold text-on-background dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
+          主题自定义指南
+        </h3>
+        
+        <p class="text-xs text-on-surface-variant dark:text-slate-400 mt-1.5 leading-relaxed">一份完整的 Modern Archivist 主题自定义指南。列出修改不同内容时，应当编辑哪个文件的哪个位置。</p>
+        
+        <div class="mt-3 flex gap-3 flex-wrap">
+          
+          <span class="text-[9px] uppercase tracking-tighter bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Guide</span>
+          
+          <span class="text-[9px] uppercase tracking-tighter bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Theme</span>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a href="/posts/hugo-usage-guide/" class="group grid grid-cols-1 md:grid-cols-12 gap-4 p-4 hover:bg-surface-container-lowest dark:hover:bg-slate-800 transition-all duration-300 rounded-lg">
+      <div class="md:col-span-2 text-[10px] font-label text-on-surface-variant dark:text-slate-500 pt-1 uppercase">
+        Mar 26, 2026
+      </div>
+      <div class="md:col-span-10">
+        <h3 class="text-base font-bold text-on-background dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
+          Hugo 使用指南：从零开始到日常写作
+        </h3>
+        
+        <p class="text-xs text-on-surface-variant dark:text-slate-400 mt-1.5 leading-relaxed">结合 Modern Archivist 主题，详细说明 Hugo 的项目结构、内容管理、命令行操作、Front Matter 写法、模板机制和部署流程。</p>
+        
+        <div class="mt-3 flex gap-3 flex-wrap">
+          
+          <span class="text-[9px] uppercase tracking-tighter bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Guide</span>
+          
+          <span class="text-[9px] uppercase tracking-tighter bg-surface-container dark:bg-slate-700 px-2 py-0.5 rounded text-primary dark:text-cyan-400">Hugo</span>
+          
+        </div>
+      </div>
+    </a>
+    
+  </div>
+</div>
+
+  </main><footer class="w-full mt-20 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+  <div class="flex flex-col md:flex-row justify-between items-center px-12 py-12 max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0">
+      <a href="/" class="text-sm font-serif font-bold text-cyan-900 dark:text-cyan-100">abel&#39;s blog</a>
+      <p class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest mt-2">
+        &copy; 2026 abel&#39;s blog. All research curated for deep reading.
+      </p>
+    </div>
+    <div class="flex gap-8">
+      
+        
+          <a href="https://github.com/" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100" target="_blank" rel="noopener">GitHub</a>
+        
+        
+      
+      
+        <a href="http://localhost:1313/index.xml" class="text-slate-400 dark:text-slate-500 font-sans text-[10px] uppercase tracking-widest hover:text-cyan-600 dark:hover:text-cyan-400 underline decoration-cyan-500/30 transition-opacity opacity-80 hover:opacity-100">RSS Feed</a>
+      
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
