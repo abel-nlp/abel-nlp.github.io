@@ -6,8 +6,29 @@
     <description>Recent content in Tags on abel&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distillation</title>
+      <link>https://example.org/tags/distillation/</link>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/distillation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://example.org/tags/llm/</link>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RL</title>
+      <link>https://example.org/tags/rl/</link>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://example.org/tags/rl/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Markdown</title>
       <link>https://example.org/tags/markdown/</link>

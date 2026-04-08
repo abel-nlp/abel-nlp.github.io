@@ -6,8 +6,15 @@
     <description>Recent content in Home on abel&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>On-Policy Distillation</title>
+      <link>https://example.org/posts/on-policy-distillation/</link>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/on-policy-distillation/</guid>
+      <description>&lt;h2 id=&#34;self-distilled-rlvr&#34;&gt;Self-Distilled RLVR&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;中科院；京东&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;背景与动机&#34;&gt;背景与动机&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;GRPO依靠环境给出的稀疏信号奖励（比如对/错或者对错的程度）来更新模型，并且需要多次采样，计算量比较大；&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;OPD需要一个更大的教师模型来为学生模型提供token-level的稠密监督信号，虽然效率更高，但也有一定的计算成本开销；&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;OPSD（On-Policy Self-Distillation）作为一种比较新的大模型知识蒸馏方法，兼顾了效率和成本，使用同一个模型既当教师由当学生。学生模型只能看到普通的prompt，而教师模型额外还能看到特权信息（privileged information，比如GT），从而高效地完成蒸馏。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;然而，论文发现OPSD的实际训练过程中存在一定的隐患。如Figure 1所示，OPSD在训练早期虽能快速达到峰值，但随即开始持续下降，长期训练的稳定性较差；相比之下，GRPO虽然起步慢，但在后期却逐步稳定上升。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;论文发现，虽然学生模型并没有接触到特权信息，但在推理阶段却显式地依赖这一个不可见的特权信息，即OPSD发生了系统性的特性信息泄露问题。例如在推理时，学生模型会幻觉地生成“如参考答案上说”&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;img src=&#34;./fig1.png&#34; alt=&#34;figure 1&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom:50%&#34; /&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;因此，论文主要围绕着：为什么都是token-level的蒸馏，OPD有效而OPSD却发生了信息泄漏？&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;分析&#34;&gt;分析&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;论文认为核心原因在于信息的不对称性。&lt;/li&gt;&#xA;&lt;li&gt;在OPD中，教师模型和学生模块看到的东西都是一样的，也就是信息对称的，老师给出了更好的分布是因为它模型更大，推力能力更强；而在OPSD中，老师的强则更多是它看到了学生看不到的特权信息；&lt;/li&gt;&#xA;&lt;li&gt;论文从数学上证明了这种不对称会导致目标函数中存在一个学生模型无法消除的互信息Gap；&lt;/li&gt;&#xA;&lt;li&gt;简单来说，就是真正的教师应该是教会学生推理的思路和过程，而OPSD的教师则是拿着参考答案直接告诉学生这道题选D&lt;/li&gt;&#xA;&lt;li&gt;那么为什么OPSD早期学生模型的学习效率高呢？论文认为这是学生和老师差距很大，模型主要在学习如何进行一般性的推理，此时性能猛增；但到了训练的中后期，学生已经尽力贴近教师的常规分布后，特权信息带来的Gap使得优化器逼迫学生死记硬背prompt和特权信息之间的虚假统计关联&lt;/li&gt;&#xA;&lt;li&gt;换句话说，OPSD也是用类KL散度的loss去优化的，目标是让学生的概率分布尽量贴近老师看到特权信息后的概率分布。而看了特权信息的概率分布在某些token上的概率会异常高，学生只能强行把自己的这几个token也给高概率，从而造成信息的泄漏。（比如教师模型对学生模型说，无论你怎么想的，现在把这个token的概率提到0.9）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;方法&#34;&gt;方法&lt;/h3&gt;&#xA;&lt;img src=&#34;./fig2.png&#34; alt=&#34;figure 2&#34; style=&#34;display: block; margin-left: auto; margin-right: auto; zoom:50%&#34; /&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;因此，本文提出了基于自蒸馏的RLVR，简称RLSD。该方法将梯度更新的方向和更新幅度解耦，不再让学生模型直接模仿教师模型的分布，而是让正确答案（类似GRPO）承担更新的方向，教师模型的token分数承担更新的幅度。&lt;/li&gt;&#xA;&lt;li&gt;也就是说，学生模型给出response后，梯度更新的方向（或者优势函数）由GT来决定，答案正确就鼓励，错了就惩罚；而梯度更新的幅度则由教师模型的token-level信息决定，但不是完全决定，而是计算出一个比率。通俗地理解，就是看了特权信息的教师模型的信号变成了梯度更新的权重，而非学生模型必须逼近的概率本身。&lt;/li&gt;&#xA;&lt;li&gt;换言之，学生模型回答正确后，教师模型可以指导哪些地方可以再强化一下（“你回答的不错，但这个地方还需要做点修改”）&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>Markdown 渲染测试</title>
       <link>https://example.org/posts/markdown-rendering-test/</link>

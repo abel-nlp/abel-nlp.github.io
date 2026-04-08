@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LLM on abel&#39;s blog</title>
-    <link>https://example.org/tags/llm/</link>
-    <description>Recent content in LLM on abel&#39;s blog</description>
+    <title>RL on abel&#39;s blog</title>
+    <link>https://example.org/tags/rl/</link>
+    <description>Recent content in RL on abel&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/rl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>On-Policy Distillation</title>
       <link>https://example.org/posts/on-policy-distillation/</link>
