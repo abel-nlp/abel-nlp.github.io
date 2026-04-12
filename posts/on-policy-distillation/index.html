@@ -582,18 +582,18 @@ html.dark #toc-nav #TableOfContents a.active {
 <p>OPD需要一个更大的教师模型来为学生模型提供token-level的稠密监督信号，虽然效率更高，但也有一定的计算成本开销；</p>
 </li>
 <li>
-<p>OPSD（On-Policy Self-Distillation）作为一种比较新的大模型知识蒸馏方法，兼顾了效率和成本，使用同一个模型既当教师由当学生。学生模型只能看到普通的prompt，而教师模型额外还能看到特权信息（privileged information，比如GT），从而高效地完成蒸馏。</p>
+<p>OPSD（On-Policy Self-Distillation）作为一种比较新的大模型知识蒸馏方法，兼顾了效率和成本，使用同一个模型既当教师又当学生。学生模型只能看到普通的prompt，而教师模型额外还能看到特权信息（privileged information，比如GT），从而高效地完成蒸馏。</p>
 </li>
 <li>
 <p>然而，论文发现OPSD的实际训练过程中存在一定的隐患。如Figure 1所示，OPSD在训练早期虽能快速达到峰值，但随即开始持续下降，长期训练的稳定性较差；相比之下，GRPO虽然起步慢，但在后期却逐步稳定上升。</p>
 </li>
 <li>
-<p>论文发现，虽然学生模型并没有接触到特权信息，但在推理阶段却显式地依赖这一个不可见的特权信息，即OPSD发生了系统性的特性信息泄露问题。例如在推理时，学生模型会幻觉地生成“如参考答案上说”</p>
+<p>论文发现，虽然学生模型并没有接触到特权信息，但在推理阶段却显式地依赖这一个不可见的特权信息，即OPSD发生了系统性的特权信息泄露问题。例如在推理时，学生模型会幻觉地生成“如参考答案上说”</p>
 </li>
 </ul>
 <img src="./fig1.png" alt="figure 1" style="display: block; margin-left: auto; margin-right: auto; zoom:50%" />
 <ul>
-<li>因此，论文主要围绕着：为什么都是token-level的蒸馏，OPD有效而OPSD却发生了信息泄漏？</li>
+<li>因此，论文主要围绕着：为什么都是token-level的蒸馏，OPD有效而OPSD却发生了信息泄漏展开研究</li>
 </ul>
 <h3 id="分析">分析</h3>
 <ul>
